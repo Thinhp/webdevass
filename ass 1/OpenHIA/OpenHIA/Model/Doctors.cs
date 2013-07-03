@@ -31,6 +31,9 @@ namespace OpenHIA.Model
             this.Address = address;
         }
 
+        /// <summary>
+        /// Getters and Setters
+        /// </summary>
         public string DoctorID { get; set; }
         public string DoctorName { get; set; }
         public string DoctorDOB { get; set; }
