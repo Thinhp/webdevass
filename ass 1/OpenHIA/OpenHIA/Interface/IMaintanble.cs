@@ -9,7 +9,7 @@ namespace OpenHIA.Interface
     public interface IMaintanble<T>
     {
         string Create(T obj);
-        T Read(string key);
+        T Retrieve(string key);
         void Update(T obj);
         void Delete(string key);
     }

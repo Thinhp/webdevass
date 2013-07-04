@@ -12,6 +12,7 @@ namespace OpenHIA.Program
         {
             Console.WriteLine("Program starts ");
             Console.Read();
+            
         }
     }
 }

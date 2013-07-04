@@ -8,6 +8,7 @@ namespace OpenHIA.Model
 {
     public class Visit
     {
+
         /// <summary>
         /// Getters and Setters for properties
         /// </summary>

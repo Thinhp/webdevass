@@ -5,3 +5,5 @@ C:\Users\Thinh\Downloads\Webdevass\ass 1\OpenHIA\OpenHIA\bin\Debug\OpenHIA.pdb
 C:\Users\Thinh\Downloads\Webdevass\ass 1\OpenHIA\OpenHIA\obj\Debug\OpenHIA.csprojResolveAssemblyReference.cache
 C:\Users\Thinh\Downloads\Webdevass\ass 1\OpenHIA\OpenHIA\obj\Debug\OpenHIA.exe
 C:\Users\Thinh\Downloads\Webdevass\ass 1\OpenHIA\OpenHIA\obj\Debug\OpenHIA.pdb
+C:\Users\Thinh\Downloads\webdevass\ass 1\OpenHIA\OpenHIA\bin\Debug\nunit.framework.dll
+C:\Users\Thinh\Downloads\webdevass\ass 1\OpenHIA\OpenHIA\bin\Debug\nunit.framework.xml
