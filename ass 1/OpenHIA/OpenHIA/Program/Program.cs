@@ -10,7 +10,7 @@ namespace OpenHIA.Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Program starts");
+            Console.WriteLine("Program starts ");
             Console.Read();
         }
     }

@@ -44,9 +44,12 @@
     <Compile Include="Exceptions\InvalidDoctorsInformationException.cs" />
     <Compile Include="Exceptions\InvalidHospitalInformationException.cs" />
     <Compile Include="Exceptions\InvalidPatientsInformationException.cs" />
+    <Compile Include="Interface\IMaintanble.cs" />
     <Compile Include="Model\Doctors.cs" />
     <Compile Include="Model\Hospitals.cs" />
     <Compile Include="Model\Patients.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\Visit.cs" />
     <Compile Include="Program\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
