@@ -8,6 +8,10 @@ namespace OpenHIA.Exceptions
 {
     class InvalidPatientsInformationException : Exception
     {
-        public InvalidPatientsInformationException(string msg) : base(msg) { }
+        public InvalidPatientsInformationException(string msg) 
+            : base(msg) 
+        { 
+        
+        }
     }
 }

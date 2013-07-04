@@ -6,24 +6,30 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Model
 {
-    class Patients
+    public class Patients : Person
     {
         private static int currentID= 0;
 
+        /// <summary>
+        /// Constructor to create patient instance
+        /// </summary>
+        /// <param name="name">Name of patient</param>
+        /// <param name="gender">Gender of patient</param>
+        /// <param name="dob">Patient date of birth</param>
+        /// <param name="address">Address of patient</param>
         public Patients(string name, string gender, string dob, string address)
         {
             currentID++;
-            this.PatientID = "P" + currentID;
+            this.Id = "P" + currentID;
             this.Name = name;
             this.Gender = gender;
             this.Dob = dob;
             this.Address = address;
         }
 
-        public string PatientID { get; set; }
-        public string Name { get; set; }
+        /// <summary>
+        /// Getters and setters for properties
+        /// </summary>
         public string Gender { get; set; }
-        public string Dob { get; set; }
-        public string Address { get; set; }
     }
 }

@@ -8,9 +8,6 @@ namespace OpenHIA.Model
 {
     class Hospitals
     {
-        /// <summary>
-        /// Properties to store hospital data such as ID, name, license number, address
-        /// </summary>
         private static int currentID = 0;
 
         /// <summary>

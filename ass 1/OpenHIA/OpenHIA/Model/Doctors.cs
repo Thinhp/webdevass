@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Model
 {
-    public class Doctors
+    public class Doctors : Person
     {
 
-        /// <summary>
-        /// Properties to store Doctor data
-        /// </summary>
         private static int currentID = 0;
 
         /// <summary>
-        /// Constructor to create doctors
+        /// Constructor to create doctor instance
         /// </summary>
         /// <param name="doctorName">Doctor's name</param>
         /// <param name="doctorDOB">Doctor's date of birth</param>
@@ -24,9 +21,9 @@ namespace OpenHIA.Model
         public Doctors(string doctorName, string doctorDOB, string licenseNumber, string address)
         {
             currentID++;
-            this.DoctorID = "D" + currentID;
-            this.DoctorName = doctorName;
-            this.DoctorDOB = doctorDOB;
+            this.Id = "D" + currentID;
+            this.Name = doctorName;
+            this.Dob = doctorDOB;
             this.LicenseNumber = licenseNumber;
             this.Address = address;
         }
@@ -34,10 +31,7 @@ namespace OpenHIA.Model
         /// <summary>
         /// Getters and Setters
         /// </summary>
-        public string DoctorID { get; set; }
-        public string DoctorName { get; set; }
-        public string DoctorDOB { get; set; }
+
         public string LicenseNumber { get; set; }
-        public string Address { get; set; }
     }
 }

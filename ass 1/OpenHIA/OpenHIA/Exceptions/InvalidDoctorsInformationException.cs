@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Exceptions
 {
-    class InvalidDoctorsInformationException
+    class InvalidDoctorsInformationException : Exception
     {
+        public InvalidDoctorsInformationException(string msg)
+            : base(msg)
+        {
+
+        }
     }
 }
