@@ -9,7 +9,7 @@ namespace OpenHIA.Model
     public class Patients : Person
     {
         //Properties
-        private static int currentID= 0;
+        private static int currentId= 0;
         public string Gender { get; set; }
 
         /// <summary>
@@ -21,8 +21,8 @@ namespace OpenHIA.Model
         /// <param name="address">Address of patient</param>
         public Patients(string name, string gender, string dob, string address)
         {
-            currentID++;
-            this.Id = currentID;
+            currentId++;
+            this.Id = "P" + currentId;
             this.Name = name;
             this.Gender = gender;
             this.Dob = dob;

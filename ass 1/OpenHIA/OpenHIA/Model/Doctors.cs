@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenHIA.Interface;
 
 namespace OpenHIA.Model
 {
-    public class Doctors : Person
+    public class Doctors : Person, IControllable
     {
 
         //Properties
-        private static int currentID = 0;
+        private static int currentId = 0;
         public string LicenseNumber { get; set; }
 
         /// <summary>
@@ -22,13 +23,30 @@ namespace OpenHIA.Model
         /// <param name="address">Doctor's address</param>
         public Doctors(string doctorName, string doctorDOB, string licenseNumber, string address)
         {
-            currentID++;
-            this.Id = currentID;
+            currentId++;
+            this.Id = "D" + currentId;
             this.Name = doctorName;
             this.Dob = doctorDOB;
             this.LicenseNumber = licenseNumber;
             this.Address = address;
         }
 
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            Doctors otherDoctor = obj as Doctors;
+            if (otherDoctor != null)
+            {
+                return this.Id.CompareTo(otherDoctor.Id);
+            }
+            else
+            {
+                throw new ArgumentException("Object is not a Doctor");
+            }
+            
+            throw new NotImplementedException();
+        }
     }
 }

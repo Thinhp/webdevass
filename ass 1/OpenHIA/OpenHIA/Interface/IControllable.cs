@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Interface
 {
-    public interface IMaintanble<T>
+    public interface IControllable : IComparable
     {
-        void Create(T obj);
-        T Read(string key);
-        void Update(T obj);
-        void Delete(string key);
+        
     }
 }

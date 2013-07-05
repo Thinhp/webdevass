@@ -50,6 +50,7 @@
     <Compile Include="Exceptions\InvalidDoctorsInformationException.cs" />
     <Compile Include="Exceptions\InvalidHospitalInformationException.cs" />
     <Compile Include="Exceptions\InvalidPatientsInformationException.cs" />
+    <Compile Include="Interface\IControllable.cs" />
     <Compile Include="Interface\IMaintanble.cs" />
     <Compile Include="Model\Doctors.cs" />
     <Compile Include="Model\Hospitals.cs" />

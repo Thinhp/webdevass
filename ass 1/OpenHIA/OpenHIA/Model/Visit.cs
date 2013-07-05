@@ -11,7 +11,7 @@ namespace OpenHIA.Model
 
         // Properties
         private static int currentId = 0;
-        public int Id { get; set; }
+        public string Id { get; set; }
         public DateTime TreatedDate { get; set; }
         public string Place { get; set; }
         public Patients TreatedPatient { get; set; }
@@ -23,7 +23,7 @@ namespace OpenHIA.Model
             string diagnosis, string outcome)
         {
             currentId++;
-            this.Id = currentId;
+            this.Id = "V" + currentId;
             this.TreatedDate = treatedDate;
             this.Place = place;
             this.TreatedPatient = patient;

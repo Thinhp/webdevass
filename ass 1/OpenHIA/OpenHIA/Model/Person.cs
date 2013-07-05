@@ -9,7 +9,7 @@ namespace OpenHIA.Model
     public abstract class Person
     {
         //Properties
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Dob { get; set; }
         public string Address { get; set; }

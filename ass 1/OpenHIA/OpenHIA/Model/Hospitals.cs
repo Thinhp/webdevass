@@ -9,9 +9,9 @@ namespace OpenHIA.Model
     class Hospitals
     {
         //Properties
-        private static int currentID = 0;
+        private static int currentId = 0;
         public string HospitalName { get; set; }
-        public int HosptialID { get; set; }
+        public string HosptialId { get; set; }
         public string LicenseNumber { get; set; }
         public string Address { get; set; }
 
@@ -24,8 +24,8 @@ namespace OpenHIA.Model
         /// <param name="address"> Hospital's address</param>
         public Hospitals(string hospitalName, string licenseNumber, string address)
         {
-            currentID++;
-            this.HosptialID = currentID;
+            currentId++;
+            this.HosptialId = "H" + currentId;
             this.HospitalName = hospitalName;
             this.LicenseNumber = licenseNumber;
             this.Address = address;
