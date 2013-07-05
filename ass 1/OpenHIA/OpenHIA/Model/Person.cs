@@ -8,10 +8,8 @@ namespace OpenHIA.Model
 {
     public abstract class Person
     {
-        /// <summary>
-        /// Getters and Setters for properties
-        /// </summary>
-        public string Id { get; set; }
+        //Properties
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Dob { get; set; }
         public string Address { get; set; }

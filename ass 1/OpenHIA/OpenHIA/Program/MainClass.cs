@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Program
 {
-    class Program
+    class MainClass
     {
-        public void start()
+        public static void Main(string[] args)
         {
-            Console.WriteLine("========== Program starts ==========");
-            Console.Read();
+            Program program = new Program();
+            program.start();
         }
     }
 }

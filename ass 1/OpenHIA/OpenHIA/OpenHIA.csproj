@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DoctorList.cs" />
+    <Compile Include="Data\HospitalList.cs" />
+    <Compile Include="Data\PatientList.cs" />
     <Compile Include="Exceptions\InvalidDoctorsInformationException.cs" />
     <Compile Include="Exceptions\InvalidHospitalInformationException.cs" />
     <Compile Include="Exceptions\InvalidPatientsInformationException.cs" />
@@ -54,6 +56,8 @@
     <Compile Include="Model\Patients.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Visit.cs" />
+    <Compile Include="Program\MainClass.cs" />
+    <Compile Include="Program\Menu.cs" />
     <Compile Include="Program\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClass\TestDoctorList.cs" />

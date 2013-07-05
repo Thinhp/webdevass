@@ -8,7 +8,9 @@ namespace OpenHIA.Model
 {
     public class Patients : Person
     {
+        //Properties
         private static int currentID= 0;
+        public string Gender { get; set; }
 
         /// <summary>
         /// Constructor to create patient instance
@@ -20,16 +22,12 @@ namespace OpenHIA.Model
         public Patients(string name, string gender, string dob, string address)
         {
             currentID++;
-            this.Id = "P" + currentID;
+            this.Id = currentID;
             this.Name = name;
             this.Gender = gender;
             this.Dob = dob;
             this.Address = address;
         }
 
-        /// <summary>
-        /// Getters and setters for properties
-        /// </summary>
-        public string Gender { get; set; }
     }
 }

@@ -8,7 +8,12 @@ namespace OpenHIA.Model
 {
     class Hospitals
     {
+        //Properties
         private static int currentID = 0;
+        public string HospitalName { get; set; }
+        public int HosptialID { get; set; }
+        public string LicenseNumber { get; set; }
+        public string Address { get; set; }
 
         /// <summary>
         /// Constructor to create hosptial instance with hospital name, license number,
@@ -20,21 +25,11 @@ namespace OpenHIA.Model
         public Hospitals(string hospitalName, string licenseNumber, string address)
         {
             currentID++;
-            this.HosptialID = "H" + currentID;
+            this.HosptialID = currentID;
             this.HospitalName = hospitalName;
             this.LicenseNumber = licenseNumber;
             this.Address = address;
         }
 
-        /// <summary>
-        /// Getters and Setters
-        /// </summary>
-        public string HospitalName { get; set; }
-
-        public string HosptialID { get; set; }
-
-        public string LicenseNumber { get; set; }
-
-        public string Address { get; set; }
     }
 }

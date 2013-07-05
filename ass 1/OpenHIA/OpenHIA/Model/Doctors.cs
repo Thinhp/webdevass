@@ -9,7 +9,9 @@ namespace OpenHIA.Model
     public class Doctors : Person
     {
 
+        //Properties
         private static int currentID = 0;
+        public string LicenseNumber { get; set; }
 
         /// <summary>
         /// Constructor to create doctor instance
@@ -21,17 +23,12 @@ namespace OpenHIA.Model
         public Doctors(string doctorName, string doctorDOB, string licenseNumber, string address)
         {
             currentID++;
-            this.Id = "D" + currentID;
+            this.Id = currentID;
             this.Name = doctorName;
             this.Dob = doctorDOB;
             this.LicenseNumber = licenseNumber;
             this.Address = address;
         }
 
-        /// <summary>
-        /// Getters and Setters
-        /// </summary>
-
-        public string LicenseNumber { get; set; }
     }
 }
