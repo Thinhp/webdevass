@@ -12,12 +12,13 @@ namespace OpenHIA.Data
     {
         private List<Doctors> doctors = new List<Doctors>();
 
-        public string Create(Doctors obj)
+
+        public void Create(Doctors obj)
         {
             throw new NotImplementedException();
         }
 
-        public Doctors Retrieve(string key)
+        public Doctors Read(string key)
         {
             throw new NotImplementedException();
         }
