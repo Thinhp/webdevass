@@ -8,6 +8,7 @@ namespace OpenHIA.Interface
 {
     public interface IMaintanble<T>
     {
+        void GetAllRecords(); 
         void Create(T obj);
         T Read(string key);
         void Update(T obj);

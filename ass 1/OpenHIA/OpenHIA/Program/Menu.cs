@@ -8,5 +8,6 @@ namespace OpenHIA.Program
 {
     class Menu
     {
+
     }
 }

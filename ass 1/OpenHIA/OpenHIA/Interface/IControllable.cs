@@ -8,6 +8,6 @@ namespace OpenHIA.Interface
 {
     public interface IControllable : IComparable
     {
-        
+        public bool isValid();
     }
 }

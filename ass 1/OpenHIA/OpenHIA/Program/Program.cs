@@ -13,11 +13,11 @@ namespace OpenHIA.Program
         public void start()
         {
             Console.WriteLine("========== Program starts ==========");
+            Console.WriteLine("************************************");
 
-            var doctorList = new DoctorList();
-            doctorList.[0] = new Doctors("Thinh", "28/2/1992","BBA102","102 3/2");
-
-            Console.WriteLine(doctorList.doctors.Count());
+            DoctorList docs = new DoctorList();
+            Doctors adoc = new Doctors("Thinh", "28/2/1992", "ABCD", "123 3/2");
+            docs.Create(adoc);
             Console.Read();
         }
     }
