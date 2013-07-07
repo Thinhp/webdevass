@@ -31,7 +31,11 @@ namespace OpenHIA.Model
             this.Address = address;
         }
 
-
+        /// <summary>
+        /// This method is used to sort doctor list by doctor's name
+        /// </summary>
+        /// <param name="obj">Doctor object to compare</param>
+        /// <returns></returns>
         public int CompareTo(object obj)
         {
             if (obj == null) return 1;
@@ -39,7 +43,7 @@ namespace OpenHIA.Model
             Doctors otherDoctor = obj as Doctors;
             if (otherDoctor != null)
             {
-                return this.Id.CompareTo(otherDoctor.Id);
+                return this.Name.CompareTo(otherDoctor.Name);
             }
             else
             {
@@ -48,10 +52,15 @@ namespace OpenHIA.Model
             
             throw new NotImplementedException();
         }
-
+        
+        /// <summary>
+        /// Override ToString() method to display to console
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return this.Id + "    " + this.Name;
+            return this.Id + "    " + this.Name + "              " + this.Dob + "          " + this.LicenseNumber +
+                "            " + this.Address;
         }
 
         
