@@ -5,21 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenHIA.Interface;
 using OpenHIA.Model;
+using OpenHIA.Exceptions;
 
 namespace OpenHIA.Data
 {
     public class DoctorList : IMaintanble<Doctors>
     {
-        public List<Doctors> Doctors { get; set; }
+        // Doctor list to hold doctor database
+        private List<Doctors> doctorsList = new List<Doctors>();
 
         public void Create(Doctors obj)
         {
-            throw new NotImplementedException();
+            doctorsList.Add(obj);
         }
 
         public Doctors Read(string key)
         {
-            throw new NotImplementedException();
+            foreach (Doctors doc in doctorsList)
+            {
+                if (doc.Id.Equals(key))
+                {
+                    return doc;
+                }
+            }
+
+            throw new InvalidDoctorsInformationException("No doctor found");  
         }
 
         public void Update(Doctors obj)
@@ -35,9 +45,10 @@ namespace OpenHIA.Data
 
         public void GetAllRecords()
         {
-            foreach (var doc in Doctors)
+            Console.WriteLine("Id" + "    " + "Name");
+            foreach (Doctors doc in doctorsList)
             {
-                Console.WriteLine("
+                Console.WriteLine(doc.ToString());
             }
         }
     }

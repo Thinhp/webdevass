@@ -48,5 +48,12 @@ namespace OpenHIA.Model
             
             throw new NotImplementedException();
         }
+
+        public override string ToString()
+        {
+            return this.Id + "    " + this.Name;
+        }
+
+        
     }
 }
