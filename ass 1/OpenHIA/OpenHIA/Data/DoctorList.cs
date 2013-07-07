@@ -24,8 +24,14 @@ namespace OpenHIA.Data
             doctorsList.Sort();
         }
 
+        /// <summary>
+        /// Crud operation: Read id from doctor and return a doctor object
+        /// </summary>
+        /// <param name="key">doctor's id</param>
+        /// <returns></returns>
         public Doctors Read(string key)
         {
+            // Loop through doctor list and get doctor object based on 'key'
             foreach (Doctors doc in doctorsList)
             {
                 if (doc.Id.Equals(key))
@@ -37,6 +43,10 @@ namespace OpenHIA.Data
             throw new InvalidDoctorsInformationException("No doctor found");  
         }
 
+        /// <summary>
+        /// Crud operation: Update the doctor list 
+        /// </summary>
+        /// <param name="obj">doctor object to update</param>
         public void Update(Doctors obj)
         {
             foreach (Doctors doc in doctorsList)
@@ -53,6 +63,10 @@ namespace OpenHIA.Data
             }
         }
 
+        /// <summary>
+        /// Crud operaition: Delete doctor based on key id
+        /// </summary>
+        /// <param name="key">doctor's id</param>
         public void Delete(string key)
         {
             foreach (Doctors doc in doctorsList)
@@ -65,6 +79,9 @@ namespace OpenHIA.Data
             }
         }
 
+        /// <summary>
+        /// Get all records on the list
+        /// </summary>
         public void GetAllRecords()
         {
             Console.WriteLine("Id" + "    " + "Name" + "               " + "Date of birth" + "      " + 

@@ -12,9 +12,19 @@ namespace OpenHIA.Program
     {
         public void start()
         {
+            Menu menu = new Menu();
+
             Console.WriteLine("========== Program starts ==========");
             Console.WriteLine("************************************");
+            Console.WriteLine();
+            menu.displayMainMenu();
 
+            Console.Write("Hello " );
+            Console.Read();
+        }
+
+        public void testData()
+        {
             DoctorList docs = new DoctorList();
             Doctors adoc = new Doctors("Calencilla", "28/2/1992", "BB-23ab", "23A/15 Nguyen Thien Thuat");
             Doctors adoc2 = new Doctors("Alexander", "1/1/1993", "ab323CD", "123 3/2");
