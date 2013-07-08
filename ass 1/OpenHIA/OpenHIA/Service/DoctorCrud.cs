@@ -9,7 +9,7 @@ using OpenHIA.Exceptions;
 
 namespace OpenHIA.Data
 {
-    public class DoctorList : IMaintanble<Doctors>
+    public class DoctorCrud : IMaintanble<Doctors>
     {
         // Properties: doctor list to hold doctor database
 

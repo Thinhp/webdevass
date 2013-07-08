@@ -44,10 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Database.cs" />
-    <Compile Include="Data\DoctorList.cs" />
-    <Compile Include="Data\HospitalList.cs" />
-    <Compile Include="Data\PatientList.cs" />
+    <Compile Include="Model\Database.cs" />
+    <Compile Include="Service\DoctorCrud.cs" />
+    <Compile Include="Service\HospitalCrud.cs" />
+    <Compile Include="Service\PatientCrud.cs" />
     <Compile Include="Exceptions\InvalidDoctorsInformationException.cs" />
     <Compile Include="Exceptions\InvalidHospitalInformationException.cs" />
     <Compile Include="Exceptions\InvalidPatientsInformationException.cs" />

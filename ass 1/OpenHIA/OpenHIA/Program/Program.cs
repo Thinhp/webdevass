@@ -10,9 +10,10 @@ namespace OpenHIA.Program
 {
     class Program
     {
-        public void start()
+        private Menu menu = new Menu();
+
+        public void Start()
         {
-            Menu menu = new Menu();
 
             Console.WriteLine("========== Program starts ==========");
             Console.WriteLine("************************************\n");
@@ -21,27 +22,39 @@ namespace OpenHIA.Program
             string currentMenu = "mainmenu";
             do
             {
-                switch(option)
+                switch (currentMenu)
                 {
-                    case "start":
-                        menu.displayMainMenu();
-                        option = Console.ReadLine();
-                        break;
-                    case "5":
+                    case "mainmenu": 
+                        MainMenuAction(ref option);
                         break;
                     default:
-                        menu.displayErrorInput();
-                        menu.displayMainMenu();
-                        option = Console.ReadLine();
                         break;
                 }
-            } while(option != "5");
+            } while (option != "5" && currentMenu == "mainmenu");
 
+        }
+
+        private void MainMenuAction(ref string option)
+        {
+            switch (option)
+            {
+                case "start":
+                    menu.DisplayMainMenu();
+                    option = Console.ReadLine();
+                    break;
+                case "5":
+                    break;
+                default:
+                    menu.DisplayErrorInput();
+                    menu.DisplayMainMenu();
+                    option = Console.ReadLine();
+                    break;
+            }
         }
 
         public void testData()
         {
-            DoctorList docs = new DoctorList();
+            DoctorCrud docs = new DoctorCrud();
             Doctors adoc = new Doctors("Calencilla", "28/2/1992", "BB-23ab", "23A/15 Nguyen Thien Thuat");
             Doctors adoc2 = new Doctors("Alexander", "1/1/1993", "ab323CD", "123 3/2");
             Doctors adoc3 = new Doctors("Bolland", "8/3/1995", "ABCD", "123 3/2");

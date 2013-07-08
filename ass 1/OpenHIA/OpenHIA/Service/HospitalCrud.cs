@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Data
 {
-    class PatientList
+    public class HospitalCrud
     {
     }
 }

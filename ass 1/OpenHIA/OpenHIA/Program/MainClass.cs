@@ -11,7 +11,7 @@ namespace OpenHIA.Program
         public static void Main(string[] args)
         {
             Program program = new Program();
-            program.start();
+            program.Start();
         }
     }
 }

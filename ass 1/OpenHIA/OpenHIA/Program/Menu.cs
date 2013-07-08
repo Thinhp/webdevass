@@ -8,17 +8,23 @@ namespace OpenHIA.Program
 {
     class Menu
     {
-        public void displayMainMenu()
+        /// <summary>
+        /// Display the main menu of the system
+        /// </summary>
+        public void DisplayMainMenu()
         {
             Console.WriteLine("1. Doctors CRUD");
             Console.WriteLine("2. Patients CRUD");
             Console.WriteLine("3. Hospital CRUD");
             Console.WriteLine("4. Visit CRUD");
             Console.WriteLine("5. Exit");
-            Console.WriteLine("Please choose an option: ");
+            Console.Write("Please choose an option: ");
         }
 
-        public void displayErrorInput()
+        /// <summary>
+        /// Display invalid input error message of the system
+        /// </summary>
+        public void DisplayErrorInput()
         {
             Console.WriteLine("Invalid input. Please enter again\n");
         }
