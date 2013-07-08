@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Model
 {
-    class Hospitals
+    public class Hospitals
     {
         //Properties
         private static int currentId = 0;

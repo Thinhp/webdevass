@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Database.cs" />
     <Compile Include="Data\DoctorList.cs" />
     <Compile Include="Data\HospitalList.cs" />
     <Compile Include="Data\PatientList.cs" />

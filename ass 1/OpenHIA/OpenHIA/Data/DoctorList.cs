@@ -12,7 +12,6 @@ namespace OpenHIA.Data
     public class DoctorList : IMaintanble<Doctors>
     {
         // Properties: doctor list to hold doctor database
-        private List<Doctors> doctorsList = new List<Doctors>();
 
         /// <summary>
         /// Crud operation: Create a new doctor object
@@ -20,8 +19,8 @@ namespace OpenHIA.Data
         /// <param name="obj">a doctor object to add to list</param>
         public void Create(Doctors obj)
         {
-            doctorsList.Add(obj);
-            doctorsList.Sort();
+            Database.DoctorList.Add(obj);
+            Database.DoctorList.Sort();
         }
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace OpenHIA.Data
         public Doctors Read(string key)
         {
             // Loop through doctor list and get doctor object based on 'key'
-            foreach (Doctors doc in doctorsList)
+            foreach (Doctors doc in Database.DoctorList)
             {
                 if (doc.Id.Equals(key))
                 {
@@ -49,7 +48,7 @@ namespace OpenHIA.Data
         /// <param name="obj">doctor object to update</param>
         public void Update(Doctors obj)
         {
-            foreach (Doctors doc in doctorsList)
+            foreach (Doctors doc in Database.DoctorList)
             {
                 if (doc.Id.Equals(obj.Id))
                 {
@@ -57,7 +56,7 @@ namespace OpenHIA.Data
                     doc.Dob = obj.Dob;
                     doc.LicenseNumber = obj.LicenseNumber;
                     doc.Address = obj.Address;
-                    doctorsList.Sort();
+                    Database.DoctorList.Sort();
                     break;
                 }
             }
@@ -69,11 +68,11 @@ namespace OpenHIA.Data
         /// <param name="key">doctor's id</param>
         public void Delete(string key)
         {
-            foreach (Doctors doc in doctorsList)
+            foreach (Doctors doc in Database.DoctorList)
             {
                 if (doc.Id.Equals(key))
                 {
-                    doctorsList.Remove(doc);
+                    Database.DoctorList.Remove(doc);
                     break;
                 }
             }
@@ -86,7 +85,7 @@ namespace OpenHIA.Data
         {
             Console.WriteLine("Id" + "    " + "Name" + "               " + "Date of birth" + "      " + 
                 "License Number" + "  " + "Address");
-            foreach (Doctors doc in doctorsList)
+            foreach (Doctors doc in Database.DoctorList)
             {
                 Console.WriteLine(doc.ToString());
             }

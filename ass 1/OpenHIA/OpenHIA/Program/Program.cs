@@ -15,12 +15,28 @@ namespace OpenHIA.Program
             Menu menu = new Menu();
 
             Console.WriteLine("========== Program starts ==========");
-            Console.WriteLine("************************************");
-            Console.WriteLine();
-            menu.displayMainMenu();
+            Console.WriteLine("************************************\n");
 
-            Console.Write("Hello " );
-            Console.Read();
+            string option = "start";
+            string currentMenu = "mainmenu";
+            do
+            {
+                switch(option)
+                {
+                    case "start":
+                        menu.displayMainMenu();
+                        option = Console.ReadLine();
+                        break;
+                    case "5":
+                        break;
+                    default:
+                        menu.displayErrorInput();
+                        menu.displayMainMenu();
+                        option = Console.ReadLine();
+                        break;
+                }
+            } while(option != "5");
+
         }
 
         public void testData()

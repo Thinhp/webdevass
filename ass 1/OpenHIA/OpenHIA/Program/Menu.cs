@@ -10,15 +10,17 @@ namespace OpenHIA.Program
     {
         public void displayMainMenu()
         {
-            Console.WriteLine("1. Display doctors");
-            Console.WriteLine("2. Display patients");
-            Console.WriteLine("3. Display hospitals");
-            Console.WriteLine("4. Display visit history");
-            Console.WriteLine("5. Doctors CRUD");
-            Console.WriteLine("6. Patients CRUD");
-            Console.WriteLine("7. Hospital CRUD");
-            Console.WriteLine("8. Visit CRUD");
-            Console.Read();
+            Console.WriteLine("1. Doctors CRUD");
+            Console.WriteLine("2. Patients CRUD");
+            Console.WriteLine("3. Hospital CRUD");
+            Console.WriteLine("4. Visit CRUD");
+            Console.WriteLine("5. Exit");
+            Console.WriteLine("Please choose an option: ");
+        }
+
+        public void displayErrorInput()
+        {
+            Console.WriteLine("Invalid input. Please enter again\n");
         }
     }
 }
