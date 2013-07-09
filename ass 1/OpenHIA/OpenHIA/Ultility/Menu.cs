@@ -67,7 +67,7 @@ namespace OpenHIA.Program
         /// <summary>
         public void DisplayVisitOption()
         {
-            Console.WriteLine("1. Ada new visit");
+            Console.WriteLine("1. Add new visit");
             Console.WriteLine("2. Edit visit");
             Console.WriteLine("3. Delete visit");
             Console.WriteLine("4. Display all visits");

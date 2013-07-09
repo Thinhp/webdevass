@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenHIA.Model;
-using OpenHIA.Data;
+using OpenHIA.Service;
+using OpenHIA.Ultility;
 
 namespace OpenHIA.Program
 {
     class Program
     {
         private Menu menu = new Menu();
+        private DataHandler datahandler = new DataHandler();
 
         /// <summary>
         /// Display the menu for user when starting the program
@@ -34,8 +36,7 @@ namespace OpenHIA.Program
                         Console.WriteLine();
                         Console.WriteLine("========== Program starts ==========");
                         Console.WriteLine("************************************\n");
-                        option = "start";
-                        RunMainMenu(ref option);
+                        RunMainMenu();
                         option = "3";
                         break;
                     case "2":
@@ -56,19 +57,24 @@ namespace OpenHIA.Program
 
         }
 
-        private void RunMainMenu(ref string option)
+        /// <summary>
+        /// Main menu including 4 CRUD
+        /// </summary>
+        /// <param name="option">an option when user chooses</param>
+        private void RunMainMenu()
         {
+            menu.DisplayMainMenu();
+            string option = Console.ReadLine();
+
             do
             {
                 switch (option)
                 {
-                    case "start":
-                        menu.DisplayMainMenu();
-                        option = Console.ReadLine();
-                        break;
                     case "1":
+                        Console.WriteLine();
                         menu.DisplayDoctorOption();
                         option = Console.ReadLine();
+                        datahandler.DoctorHandler(option);
                         break;
                     case "2":
                         break;
@@ -80,7 +86,6 @@ namespace OpenHIA.Program
                         break;
                     default:
                         menu.DisplayErrorInput();
-                        menu.DisplayMainMenu();
                         option = Console.ReadLine();
                         break;
 
@@ -88,6 +93,10 @@ namespace OpenHIA.Program
             } while (option != "5");
         }
 
+        private void RunDoctorOption()
+        {
+
+        }
         private void TestProgramAction()
         {
 

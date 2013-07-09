@@ -59,10 +59,11 @@
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Visit.cs" />
     <Compile Include="Program\MainClass.cs" />
-    <Compile Include="Program\Menu.cs" />
+    <Compile Include="Ultility\Menu.cs" />
     <Compile Include="Program\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestClass\TestDoctorList.cs" />
+    <Compile Include="Ultility\DataHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

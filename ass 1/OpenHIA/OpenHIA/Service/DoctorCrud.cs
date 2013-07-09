@@ -7,7 +7,7 @@ using OpenHIA.Interface;
 using OpenHIA.Model;
 using OpenHIA.Exceptions;
 
-namespace OpenHIA.Data
+namespace OpenHIA.Service
 {
     public class DoctorCrud : IMaintanble<Doctors>
     {

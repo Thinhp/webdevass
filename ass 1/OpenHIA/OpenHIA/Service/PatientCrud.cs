@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenHIA.Data
+namespace OpenHIA.Service
 {
-    class PatientCrud
+    public class PatientCrud
     {
     }
 }

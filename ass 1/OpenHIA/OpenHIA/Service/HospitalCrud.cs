@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenHIA.Data
+namespace OpenHIA.Service
 {
     public class HospitalCrud
     {

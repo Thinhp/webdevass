@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenHIA.Model;
 
-namespace OpenHIA.Data
+namespace OpenHIA.Service
 {
     public class Database
     {
