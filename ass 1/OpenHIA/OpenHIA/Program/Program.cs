@@ -31,15 +31,16 @@ namespace OpenHIA.Program
                 switch (option)
                 {
                     case "1":
-                        Console.WriteLine();                        
-                        StartMenuAction();
-                        option = "exit";
+                        Console.WriteLine();
+                        option = "start";
+                        RunMainMenu(ref option);
+                        option = "3";
                         break;
                     case "2":
+                        Console.WriteLine();
                         TestProgramAction();
                         menu.DisplayStartMenu();
                         option = Console.ReadLine();
-                        Console.WriteLine();
                         break;
                     case "3":
                         return;
@@ -49,53 +50,38 @@ namespace OpenHIA.Program
                         break;
                 }
 
-            } while(option != "exit");
+            } while(option != "3");
 
         }
 
-        /// <summary>
-        /// Action when user press going directly to the main program
-        /// Display main menu 
-        /// </summary>
-        private void StartMenuAction()
+        private void RunMainMenu(ref string option)
         {
-
-            string option = "start";
-            string currentMenu = "mainmenu";
-
             do
             {
-                switch (currentMenu)
+                switch (option)
                 {
-                    case "mainmenu": 
-                        MainMenuAction(ref option);
+                    case "start":
+                        menu.DisplayMainMenu();
+                        option = Console.ReadLine();
+                        break;
+                    case "1":
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                    case "5":
                         break;
                     default:
+                        menu.DisplayErrorInput();
+                        menu.DisplayMainMenu();
+                        option = Console.ReadLine();
                         break;
-                }
-            } while (option != "5" && currentMenu == "mainmenu");
-        }
 
-        /// <summary>
-        /// Action when user press options from the main menu
-        /// </summary>
-        /// <param name="option">a string when user enter his/her option</param>
-        private void MainMenuAction(ref string option)
-        {
-            switch (option)
-            {
-                case "start":
-                    menu.DisplayMainMenu();
-                    option = Console.ReadLine();
-                    break;
-                case "5":
-                    break;
-                default:
-                    menu.DisplayErrorInput();
-                    menu.DisplayMainMenu();
-                    option = Console.ReadLine();
-                    break;
-            }
+                }
+            } while (option != "5");
         }
 
         private void TestProgramAction()

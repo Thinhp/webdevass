@@ -26,14 +26,14 @@ namespace OpenHIA.Data
         /// <summary>
         /// Crud operation: Read id from doctor and return a doctor object
         /// </summary>
-        /// <param name="key">doctor's id</param>
+        /// <param name="key">doctor's id or name</param>
         /// <returns></returns>
         public Doctors Read(string key)
         {
             // Loop through doctor list and get doctor object based on 'key'
             foreach (Doctors doc in Database.DoctorList)
             {
-                if (doc.Id.Equals(key))
+                if (doc.Id.Equals(key) || doc.Name.Equals(key))
                 {
                     return doc;
                 }
