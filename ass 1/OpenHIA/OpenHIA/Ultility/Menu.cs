@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenHIA.Program
+namespace OpenHIA.Ultility
 {
-    class Menu
+    public class Menu
     {
 
         /// <summary>
         /// Display the first menu when user starts the program
         /// including either testin the program or go directly to it
         /// </summary>
-        public void DisplayStartMenu()
+        public static void DisplayStartMenu()
         {
             Console.WriteLine("1. Start the program");
             Console.WriteLine("2. Test the program");
@@ -24,7 +24,7 @@ namespace OpenHIA.Program
         /// <summary>
         /// Display the main menu of the system
         /// </summary>
-        public void DisplayMainMenu()
+        public static void DisplayMainMenu()
         {
             Console.WriteLine("1. Doctors CRUD");
             Console.WriteLine("2. Patients CRUD");
@@ -34,7 +34,7 @@ namespace OpenHIA.Program
             Console.Write("Please choose an option: ");
         }
 
-        public void DisplayDoctorOption()
+        public static void DisplayDoctorOption()
         {
             Console.WriteLine("1. Add new doctor");
             Console.WriteLine("2. Edit doctor");
@@ -44,7 +44,7 @@ namespace OpenHIA.Program
             Console.Write("Please choose an option: ");
         }
 
-        public void DisplayPatientOption()
+        public static void DisplayPatientOption()
         {
             Console.WriteLine("1. Add new patient");
             Console.WriteLine("2. Edit patient");
@@ -54,7 +54,7 @@ namespace OpenHIA.Program
             Console.Write("Please choose an option: ");
         }
 
-        public void DisplayHospitalOption()
+        public static void DisplayHospitalOption()
         {
             Console.WriteLine("1. Add new hospital");
             Console.WriteLine("2. Edit hospital");
@@ -65,7 +65,7 @@ namespace OpenHIA.Program
         }
 
         /// <summary>
-        public void DisplayVisitOption()
+        public static void DisplayVisitOption()
         {
             Console.WriteLine("1. Add new visit");
             Console.WriteLine("2. Edit visit");
@@ -77,7 +77,7 @@ namespace OpenHIA.Program
 
         /// Display invalid input error message of the system
         /// </summary>
-        public void DisplayErrorInput()
+        public static void DisplayErrorInput()
         {
             Console.Write("Invalid input. Please enter again: ");
         }

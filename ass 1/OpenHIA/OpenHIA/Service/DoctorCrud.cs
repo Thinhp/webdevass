@@ -39,7 +39,7 @@ namespace OpenHIA.Service
                 }
             }
 
-            throw new InvalidDoctorsInformationException("No doctor found");  
+            throw new InvalidDoctorsInformationException("No doctor found");
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace OpenHIA.Service
         /// </summary>
         public void GetAllRecords()
         {
-            Console.WriteLine("Id" + "    " + "Name" + "               " + "Date of birth" + "      " + 
+            Console.WriteLine("Id" + "    " + "Name" + "               " + "Date of birth" + "      " +
                 "License Number" + "  " + "Address");
             foreach (Doctors doc in Database.DoctorList)
             {

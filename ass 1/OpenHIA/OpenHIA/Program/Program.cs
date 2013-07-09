@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenHIA.Model;
 using OpenHIA.Service;
+using OpenHIA.Program;
 using OpenHIA.Ultility;
 
 namespace OpenHIA.Program
 {
     class Program
     {
-        private Menu menu = new Menu();
         private DataHandler datahandler = new DataHandler();
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace OpenHIA.Program
             Console.WriteLine("========== OPENHIA ==========");
             Console.WriteLine("*****************************\n");
 
-            menu.DisplayStartMenu();
+            Menu.DisplayStartMenu();
             string option = Console.ReadLine();
 
             //A loop to display the start menu
@@ -42,13 +42,13 @@ namespace OpenHIA.Program
                     case "2":
                         Console.WriteLine();
                         TestProgramAction();
-                        menu.DisplayStartMenu();
+                        Menu.DisplayStartMenu();
                         option = Console.ReadLine();
                         break;
                     case "3":
                         return;
                     default:
-                        menu.DisplayErrorInput();
+                        Menu.DisplayErrorInput();
                         option = Console.ReadLine();
                         break;
                 }
@@ -63,29 +63,41 @@ namespace OpenHIA.Program
         /// <param name="option">an option when user chooses</param>
         private void RunMainMenu()
         {
-            menu.DisplayMainMenu();
-            string option = Console.ReadLine();
+            string currentDisplay = "mainmenu";
+            string option = "";            
 
             do
             {
+                if(currentDisplay.Equals("mainmenu"))
+                {
+                    Menu.DisplayMainMenu();
+                    option = Console.ReadLine();
+                }
+
                 switch (option)
                 {
                     case "1":
+                        currentDisplay = "mainmenu";
                         Console.WriteLine();
-                        menu.DisplayDoctorOption();
+                        Menu.DisplayDoctorOption();
                         option = Console.ReadLine();
                         datahandler.DoctorHandler(option);
                         break;
                     case "2":
+                        currentDisplay = "mainmenu";
                         break;
                     case "3":
+                        currentDisplay = "mainmenu";
                         break;
                     case "4":
+                        currentDisplay = "mainmenu";
                         break;
                     case "5":
+                        currentDisplay = "mainmenu";
                         break;
                     default:
-                        menu.DisplayErrorInput();
+                        currentDisplay = "";
+                        Menu.DisplayErrorInput();
                         option = Console.ReadLine();
                         break;
 
@@ -93,34 +105,30 @@ namespace OpenHIA.Program
             } while (option != "5");
         }
 
-        private void RunDoctorOption()
-        {
-
-        }
         private void TestProgramAction()
         {
 
         }
 
-        public void testData()
-        {
-            DoctorCrud docs = new DoctorCrud();
-            Doctors adoc = new Doctors("Calencilla", "28/2/1992", "BB-23ab", "23A/15 Nguyen Thien Thuat");
-            Doctors adoc2 = new Doctors("Alexander", "1/1/1993", "ab323CD", "123 3/2");
-            Doctors adoc3 = new Doctors("Bolland", "8/3/1995", "ABCD", "123 3/2");
-            docs.Create(adoc);
-            docs.Create(adoc2);
-            docs.Create(adoc3);
-            docs.GetAllRecords();
-            string updateString = "Dillan";
-            string updateId = "D3";
-            Doctors temp = docs.Read(updateId);
-            temp.Name = updateString;
-            docs.Update(temp);
+        //public void testData()
+        //{
+        //    DoctorCrud docs = new DoctorCrud();
+        //    Doctors adoc = new Doctors("Calencilla", "28/2/1992", "BB-23ab", "23A/15 Nguyen Thien Thuat");
+        //    Doctors adoc2 = new Doctors("Alexander", "1/1/1993", "ab323CD", "123 3/2");
+        //    Doctors adoc3 = new Doctors("Bolland", "8/3/1995", "ABCD", "123 3/2");
+        //    docs.Create(adoc);
+        //    docs.Create(adoc2);
+        //    docs.Create(adoc3);
+        //    docs.GetAllRecords();
+        //    string updateString = "Dillan";
+        //    string updateId = "D3";
+        //    Doctors temp = docs.Read(updateId);
+        //    temp.Name = updateString;
+        //    docs.Update(temp);
 
-            Console.ReadLine();
-            docs.GetAllRecords();
-            Console.Read();
-        }
+        //    Console.ReadLine();
+        //    docs.GetAllRecords();
+        //    Console.Read();
+        //}
     }
 }
