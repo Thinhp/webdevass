@@ -19,8 +19,8 @@ namespace OpenHIA.Program
         public void Start()
         {
 
-            Console.WriteLine("========== Program starts ==========");
-            Console.WriteLine("************************************\n");
+            Console.WriteLine("========== OPENHIA ==========");
+            Console.WriteLine("*****************************\n");
 
             menu.DisplayStartMenu();
             string option = Console.ReadLine();
@@ -32,6 +32,8 @@ namespace OpenHIA.Program
                 {
                     case "1":
                         Console.WriteLine();
+                        Console.WriteLine("========== Program starts ==========");
+                        Console.WriteLine("************************************\n");
                         option = "start";
                         RunMainMenu(ref option);
                         option = "3";
@@ -65,6 +67,8 @@ namespace OpenHIA.Program
                         option = Console.ReadLine();
                         break;
                     case "1":
+                        menu.DisplayDoctorOption();
+                        option = Console.ReadLine();
                         break;
                     case "2":
                         break;
