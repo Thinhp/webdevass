@@ -12,14 +12,57 @@ namespace OpenHIA.Program
     {
         private Menu menu = new Menu();
 
+        /// <summary>
+        /// Display the menu for user when starting the program
+        /// prompt option: go directly to program, execute the test, or exit
+        /// </summary>
         public void Start()
         {
 
             Console.WriteLine("========== Program starts ==========");
             Console.WriteLine("************************************\n");
 
+            menu.DisplayStartMenu();
+            string option = Console.ReadLine();
+
+            //A loop to display the start menu
+            do
+            {
+                switch (option)
+                {
+                    case "1":
+                        Console.WriteLine();                        
+                        StartMenuAction();
+                        option = "exit";
+                        break;
+                    case "2":
+                        TestProgramAction();
+                        menu.DisplayStartMenu();
+                        option = Console.ReadLine();
+                        Console.WriteLine();
+                        break;
+                    case "3":
+                        return;
+                    default:
+                        menu.DisplayErrorInput();
+                        option = Console.ReadLine();
+                        break;
+                }
+
+            } while(option != "exit");
+
+        }
+
+        /// <summary>
+        /// Action when user press going directly to the main program
+        /// Display main menu 
+        /// </summary>
+        private void StartMenuAction()
+        {
+
             string option = "start";
             string currentMenu = "mainmenu";
+
             do
             {
                 switch (currentMenu)
@@ -31,9 +74,12 @@ namespace OpenHIA.Program
                         break;
                 }
             } while (option != "5" && currentMenu == "mainmenu");
-
         }
 
+        /// <summary>
+        /// Action when user press options from the main menu
+        /// </summary>
+        /// <param name="option">a string when user enter his/her option</param>
         private void MainMenuAction(ref string option)
         {
             switch (option)
@@ -50,6 +96,11 @@ namespace OpenHIA.Program
                     option = Console.ReadLine();
                     break;
             }
+        }
+
+        private void TestProgramAction()
+        {
+
         }
 
         public void testData()
