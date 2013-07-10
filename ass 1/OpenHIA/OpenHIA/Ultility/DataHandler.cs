@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenHIA.Service;
 using OpenHIA.Program;
+using OpenHIA.Model;
 
 namespace OpenHIA.Ultility
 {
@@ -19,13 +20,23 @@ namespace OpenHIA.Ultility
                 switch (option)
                 {
                     case "1":
-                        Console.WriteLine("Inside Doctor handler");
+                        Console.Write("Enter doctor's name: ");
+                        string doctorname = Console.ReadLine();
+                        Console.Write("Enter doctor's Date of birth(dd/mm/yyyy): ");
+                        string doctordob = Console.ReadLine();
+                        Console.Write("Enter doctor's license number: ");
+                        string license = Console.ReadLine();
+                        Console.Write("Enter doctor's address: ");
+                        string address = Console.ReadLine();
+                        Doctors newdoc = new Doctors(doctorname, doctordob, license, address);
+                        doctormanager.Create(newdoc);
                         break;
                     case "2":
                         break;
                     case "3":
                         break;
                     case "4":
+                        doctormanager.GetAllRecords();
                         break;
                     case "5":
                         break;

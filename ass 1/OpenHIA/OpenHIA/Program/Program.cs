@@ -82,6 +82,7 @@ namespace OpenHIA.Program
                         Menu.DisplayDoctorOption();
                         option = Console.ReadLine();
                         datahandler.DoctorHandler(option);
+                        if (option == "5") option = "1";
                         break;
                     case "2":
                         currentDisplay = "mainmenu";
