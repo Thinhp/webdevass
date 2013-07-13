@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenHIA.Interface
+namespace OpenHIA.Service
 {
-    public interface IControllable : IComparable
+    class VisitCrud
     {
     }
 }

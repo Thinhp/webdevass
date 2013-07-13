@@ -18,38 +18,35 @@ namespace OpenHIA.Ultility
 
         public void DoctorHandler(string option)
         {
-            switch (option)
+            do
             {
-                case "1":
-                    DoctorOption1();
-                    break;
-                case "2":
-                    Console.Write("Enter doctor's id or name: ");
-                    string doctorsearch = Console.ReadLine();
-                    try
-                    {
-                        Doctors doctorfound = doctormanager.Read(doctorsearch);
 
-                    }
-                    catch (InvalidDoctorsInformationException e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-
-                    break;
-                case "3":
-                    Console.Write("");
-                    break;
-                case "4":
-                    doctormanager.GetAllRecords();
-                    break;
-                case "5":
-                    break;
-                default:
-                    Menu.DisplayErrorInput();
-                    option = Console.ReadLine();
-                    break;
-            }
+                switch (option)
+                {
+                    case "1":
+                        DoctorOption1();
+                        option = "5";
+                        break;
+                    case "2":
+                        DoctorOption2();
+                        option = "5";
+                        break;
+                    case "3":
+                        DoctorOption3();
+                        option = "5";
+                        break;
+                    case "4":
+                        DoctorOption4();
+                        option = "5";
+                        break;
+                    case "5":
+                        break;
+                    default:
+                        Menu.DisplayErrorInput("Invalid input. Please enter from 1 - 5: ");
+                        option = Console.ReadLine();
+                        break;
+                }
+            } while (option != "5");
         }
 
         public void PatientHandler(string option)
@@ -69,6 +66,7 @@ namespace OpenHIA.Ultility
 
         private void DoctorOption1()
         {
+            Console.WriteLine();
             Console.Write("Enter doctor's name: ");
             string doctorname = Console.ReadLine();
             Console.Write("Enter doctor's Date of birth(dd/mm/yyyy): ");
@@ -79,6 +77,67 @@ namespace OpenHIA.Ultility
             string address = Console.ReadLine();
             Doctors newdoc = new Doctors(doctorname, doctordob, license, address);
             doctormanager.Create(newdoc);
+            Console.WriteLine("<====== Doctor created ======>\n");
+        }
+
+        private void DoctorOption2()
+        {
+            Console.Write("Enter doctor's id: ");
+            string doctorsearch = Console.ReadLine();
+            try
+            {
+                Doctors doctorfound = doctormanager.Read(doctorsearch);
+                Console.WriteLine("Doctor's id: " + doctorfound.Id);
+
+                Console.WriteLine("Doctor's name: " + doctorfound.Name);
+                Console.Write("Update doctor's name: ");
+                string newDocName = Console.ReadLine();
+                doctorfound.Name = newDocName;
+                Console.WriteLine("Updated -> doctor's name: " + doctorfound.Name);
+
+                Console.WriteLine("Doctor's date of birth: " + doctorfound.Dob);
+                Console.Write("Update doctor's date of birth: ");
+                string newDocDob = Console.ReadLine();
+                doctorfound.Dob = newDocDob;
+                Console.WriteLine("Updated -> doctor's date of birth: " + doctorfound.Dob);
+
+                Console.WriteLine("Doctor's license: " + doctorfound.LicenseNumber);
+                Console.Write("Update doctor's license number: ");
+                string newDocLicense = Console.ReadLine();
+                doctorfound.LicenseNumber = newDocLicense;
+                Console.WriteLine("Updated -> doctor's license number: " + doctorfound.LicenseNumber);
+
+            }
+            catch (InvalidDoctorsInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        private void DoctorOption3()
+        {
+            Console.Write("Enter doctor's id: ");
+            string doctorsearch = Console.ReadLine();
+            try
+            {
+                Doctors doctorfound = doctormanager.Read(doctorsearch);
+                doctormanager.Delete(doctorfound.Id);
+                Console.WriteLine("Doctor deleted");
+            }
+            catch (InvalidDoctorsInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
+        }
+
+        private void DoctorOption4()
+        {
+            Console.WriteLine();
+            doctormanager.GetAllRecords();
+            Console.WriteLine();
+
         }
     }
 }

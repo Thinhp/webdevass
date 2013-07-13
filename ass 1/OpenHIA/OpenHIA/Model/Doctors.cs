@@ -7,7 +7,7 @@ using OpenHIA.Interface;
 
 namespace OpenHIA.Model
 {
-    public class Doctors : Person, IControllable
+    public class Doctors : Person, IComparable
     {
 
         //Properties

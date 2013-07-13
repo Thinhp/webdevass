@@ -64,7 +64,6 @@ namespace OpenHIA.Ultility
             Console.Write("Please choose an option: ");
         }
 
-        /// <summary>
         public static void DisplayVisitOption()
         {
             Console.WriteLine("1. Add new visit");
@@ -75,11 +74,20 @@ namespace OpenHIA.Ultility
             Console.Write("Please choose an option: ");
         }
 
-        /// Display invalid input error message of the system
+        /// <summary>
+        /// Display invalid input error message of the system by default
         /// </summary>
         public static void DisplayErrorInput()
         {
             Console.Write("Invalid input. Please enter again: ");
+        }
+
+        /// <summary>
+        /// Display invalid input error message of the system as user wants
+        /// </summary>
+        public static void DisplayErrorInput(string msg)
+        {
+            Console.Write(msg);
         }
     }
 }

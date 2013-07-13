@@ -79,10 +79,7 @@ namespace OpenHIA.Program
                     case "1":
                         currentDisplay = "mainmenu";
                         Console.WriteLine();
-                        Menu.DisplayDoctorOption();
-                        option = Console.ReadLine();
-                        datahandler.DoctorHandler(option);
-                        if (option == "5") option = "1";
+                        RunDoctorOption();
                         break;
                     case "2":
                         currentDisplay = "mainmenu";
@@ -108,6 +105,18 @@ namespace OpenHIA.Program
 
         private void TestProgramAction()
         {
+
+        }
+
+        private void RunDoctorOption()
+        {
+            string option = "";
+            do{
+                Menu.DisplayDoctorOption();
+                option = Console.ReadLine();
+                datahandler.DoctorHandler(option);
+
+            } while (option != "5");
 
         }
 

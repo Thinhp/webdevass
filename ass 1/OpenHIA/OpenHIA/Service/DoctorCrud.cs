@@ -33,7 +33,7 @@ namespace OpenHIA.Service
             // Loop through doctor list and get doctor object based on 'key'
             foreach (Doctors doc in Database.DoctorList)
             {
-                if (doc.Id.Equals(key) || doc.Name.Equals(key))
+                if (doc.Id.Equals(key))
                 {
                     return doc;
                 }
