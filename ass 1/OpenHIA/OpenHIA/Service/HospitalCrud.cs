@@ -13,8 +13,8 @@ namespace OpenHIA.Service
     {
         public void GetAllRecords()
         {
-            Console.WriteLine("Id" + "    " + "Name" + "               " + 
-                "License Number" + "  " + "Address");
+            string line = String.Format("{0,-5} {1,-15} {2,-15} {3,-15}", "Id", "Name", "License number", "Address");
+            Console.WriteLine(line);
             foreach (Hospital hos in Database.HospitalList)
             {
                 Console.WriteLine(hos.ToString());
@@ -24,7 +24,6 @@ namespace OpenHIA.Service
         public void Create(Hospital obj)
         {
             Database.HospitalList.Add(obj);
-            Database.HospitalList.Sort();
         }
 
         public Hospital Read(string key)
@@ -32,7 +31,7 @@ namespace OpenHIA.Service
             // Loop through doctor list and get doctor object based on 'key'
             foreach (Hospital hos in Database.HospitalList)
             {
-                if (hos.Id.Equals(key))
+                if (hos.Id.Equals(key) || hos.Name.Equals(key))
                 {
                     return hos;
                 }

@@ -31,5 +31,11 @@ namespace OpenHIA.Model
             this.Address = address;
         }
 
+        public override string ToString()
+        {
+            string line = String.Format("{0,-5} {1,-15} {2,-15} {3,-15}", this.Id, this.Name, this.LicenseNumber, this.Address);
+            return line; 
+        }
+
     }
 }

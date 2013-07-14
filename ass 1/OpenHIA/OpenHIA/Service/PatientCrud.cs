@@ -25,7 +25,6 @@ namespace OpenHIA.Service
         public void Create(Patient obj)
         {
             Database.PatientList.Add(obj);
-            Database.PatientList.Sort();
 
         }
 

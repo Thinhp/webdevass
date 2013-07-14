@@ -13,8 +13,9 @@ namespace OpenHIA.Service
     {
         public void GetAllRecords()
         {
-            Console.WriteLine("Id" + "    " + "Name" + "               " + 
-                "License Number" + "  " + "Address");
+            string line = String.Format("{0,-5} {1,-10} {2,-10} {3,-15} {4, -15} {5,-15} {6,-15}", "Id", "Patient Id", 
+                "Doctor Id", "Date", "Place", "Diagnosis", "Outcome");
+            Console.WriteLine(line);
             foreach (Visit vis in Database.VisitList)
             {
                 Console.WriteLine(vis.ToString());
@@ -24,7 +25,6 @@ namespace OpenHIA.Service
         public void Create(Visit obj)
         {
             Database.VisitList.Add(obj);
-            Database.VisitList.Sort();
         }
 
         public Visit Read(string key)

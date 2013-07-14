@@ -19,18 +19,6 @@ namespace OpenHIA.Ultility
 
         DataValidation datavalidation = new DataValidation();
 
-        public bool compareListOption(string original, string[] listOfOption)
-        {
-            foreach (string row in listOfOption)
-            {
-                if (row.Equals(original))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public void DoctorHandler(ref string option)
         {
             do
@@ -155,6 +143,11 @@ namespace OpenHIA.Ultility
             string doctorname = Console.ReadLine();
             Console.Write("Enter doctor's date of birth(dd/mm/yyyy): ");
             string doctordob = Console.ReadLine();
+            if (datavalidation.CheckDate(doctordob) == false)
+            {
+                Console.WriteLine("Please type in format (dd/mm/yyyy)\n");
+                return;
+            }
             Console.Write("Enter doctor's license number: ");
             string license = Console.ReadLine();
             Console.Write("Enter doctor's address: ");
@@ -176,18 +169,23 @@ namespace OpenHIA.Ultility
                 Console.WriteLine("Doctor's name: " + doctorfound.Name);
                 Console.Write("Update doctor's name: ");
                 string newDocName = Console.ReadLine();
-                doctorfound.Name = newDocName;
 
                 Console.WriteLine("Doctor's date of birth: " + doctorfound.Dob);
                 Console.Write("Update doctor's date of birth: ");
                 string newDocDob = Console.ReadLine();
-                doctorfound.Dob = newDocDob;
+                if (datavalidation.CheckDate(newDocDob) == false)
+                {
+                    Console.WriteLine("Please type in format (dd/mm/yyyy)\n");
+                    return;
+                }
 
                 Console.WriteLine("Doctor's license: " + doctorfound.LicenseNumber);
                 Console.Write("Update doctor's license number: ");
                 string newDocLicense = Console.ReadLine();
-                doctorfound.LicenseNumber = newDocLicense;
 
+                doctorfound.Name = newDocName;
+                doctorfound.LicenseNumber = newDocLicense;
+                doctorfound.Dob = newDocDob;
                 Console.WriteLine("<====== Doctor updated ======>\n");
 
             }
@@ -230,8 +228,28 @@ namespace OpenHIA.Ultility
             string patientname = Console.ReadLine();
             Console.Write("Enter patient's date of birth(dd/mm/yyyy): ");
             string patientdob = Console.ReadLine();
+            if (datavalidation.CheckDate(patientdob) == false)
+            {
+                Console.WriteLine("Please type in format (dd/mm/yyyy)\n");
+                return;
+            }
             Console.Write("Enter patient's gender(m/f):  ");
             string gender = Console.ReadLine().ToLower();
+            if (datavalidation.CheckGender(gender) == false)
+            {
+                Console.WriteLine("Please type either 'm' or 'f'\n");
+                return;
+            }
+
+            if (gender.Equals("m"))
+            {
+                gender = "male";
+            }
+            else
+            {
+                gender = "female";
+            }
+
             Console.Write("Enter patient's address: ");
             string address = Console.ReadLine();
             Patient newpa = new Patient(patientname, gender, patientdob, address);
@@ -252,23 +270,42 @@ namespace OpenHIA.Ultility
                 Console.WriteLine("Patient's name: " + patientfound.Name);
                 Console.Write("Update patient's name: ");
                 string newPaName = Console.ReadLine();
-                patientfound.Name = newPaName;
 
                 Console.WriteLine("Patient's date of birth: " + patientfound.Dob);
                 Console.Write("Update patient's date of birth: ");
                 string newPaDob = Console.ReadLine();
-                patientfound.Dob = newPaDob;
+                if (datavalidation.CheckDate(newPaDob) == false)
+                {
+                    Console.WriteLine("Please type in format (dd/mm/yyyy)\n");
+                    return;
+                }
 
                 Console.WriteLine("Patient's gender: " + patientfound.Gender);
                 Console.Write("Update patient's gender: ");
                 string newPaGender = Console.ReadLine();
-                patientfound.Gender = newPaGender;
+                if (datavalidation.CheckGender(newPaGender) == false)
+                {
+                    Console.WriteLine("Please type either 'm' or 'f'\n");
+                    return;
+                }
+
+                if (newPaGender.Equals("m"))
+                {
+                    newPaGender = "male";
+                }
+                else
+                {
+                    newPaGender = "female";
+                }
 
                 Console.WriteLine("Patient's address: " + patientfound.Address);
                 Console.Write("Update patient's address: ");
                 string newPaAddress = Console.ReadLine();
-                patientfound.Gender = newPaAddress;
 
+                patientfound.Name = newPaName;
+                patientfound.Gender = newPaAddress;
+                patientfound.Gender = newPaGender;
+                patientfound.Dob = newPaDob;
                 Console.WriteLine("<====== Patient updated ======>\n");
 
             }
@@ -330,18 +367,18 @@ namespace OpenHIA.Ultility
                 Console.WriteLine("Hospital's name: " + hospitalfound.Name);
                 Console.Write("Update hospital's name: ");
                 string newHosName = Console.ReadLine();
-                hospitalfound.Name = newHosName;
 
                 Console.WriteLine("Hospital's license number: " + hospitalfound.LicenseNumber);
                 Console.Write("Update hospital's license number: ");
                 string newHosLicense = Console.ReadLine();
-                hospitalfound.LicenseNumber = newHosLicense;
 
                 Console.WriteLine("Hospital's address: " + hospitalfound.Address);
                 Console.Write("Update hospital's address: ");
                 string newHosAddress = Console.ReadLine();
-                hospitalfound.Address = newHosAddress;
 
+                hospitalfound.Name = newHosName;
+                hospitalfound.Address = newHosAddress;
+                hospitalfound.LicenseNumber = newHosLicense;
                 Console.WriteLine("<====== Hospital updated ======>\n");
 
             }
@@ -386,17 +423,27 @@ namespace OpenHIA.Ultility
                 Patient visitPatient = patientmanager.Read(Console.ReadLine());
                 Console.Write("Enter doctor's id: ");
                 Doctor visitDoctor = doctormanager.Read(Console.ReadLine());
+                Console.Write("Enter hospital's name or id: ");
+                Hospital visitHospital = hospitalmanager.Read(Console.ReadLine());
 
                 Console.Write("Enter treated date(dd/mm/yyyy): ");
                 string treatedDate = Console.ReadLine();
-                Console.Write("Enter place: ");
-                string place = Console.ReadLine();
+                if (datavalidation.CheckDate(treatedDate) == false)
+                {
+                    Console.WriteLine("Please type in format (dd/mm/yyyy)\n");
+                    return;
+                }
                 Console.Write("Enter Diagnosis: ");
                 string diagnosis = Console.ReadLine();
                 Console.Write("Enter outcome: ");
                 string outcome = Console.ReadLine();
+                if (datavalidation.CheckOutCome(outcome) == false)
+                {
+                    Console.WriteLine("Outcome must be 'CURED','DECREASED','INCREASED','UNCHANGED','DIED'");
+                    return;
+                }
 
-                Visit newvis = new Visit(treatedDate, place, visitPatient, visitDoctor, diagnosis, outcome);
+                Visit newvis = new Visit(treatedDate, visitHospital, visitPatient, visitDoctor, diagnosis, outcome);
                 visitmanager.Create(newvis);
 
                 Console.WriteLine("<====== Visit added ======>\n");
@@ -409,7 +456,10 @@ namespace OpenHIA.Ultility
             catch (InvalidDoctorsInformationException e)
             {
                 Console.WriteLine(e.Message);
-
+            }
+            catch (InvalidHospitalInformationException e)
+            {
+                Console.WriteLine(e.Message);
             }
 
         }
@@ -426,33 +476,40 @@ namespace OpenHIA.Ultility
                 Console.WriteLine("Patient's id: " + visitfound.TreatedPatient.Id);
                 Console.Write("Update patient's id: ");
                 Patient visitPatient = patientmanager.Read(Console.ReadLine());
-                visitfound.TreatedPatient = visitPatient;
 
                 Console.WriteLine("Doctor's id: " + visitfound.TreatingDoctor.Id);
                 Console.Write("Update doctor's id: ");
                 Doctor visitDoctor = doctormanager.Read(Console.ReadLine());
-                visitfound.TreatingDoctor = visitDoctor;
+
+                Console.WriteLine("Hospital's id: " + visitfound.Place.Id);
+                Console.WriteLine("Hospital's name: " + visitfound.Place.Name);
+                Console.Write("Update hospital's by either name or id: ");
+                Hospital visitHospital = hospitalmanager.Read(Console.ReadLine());
 
                 Console.WriteLine("Visit date: " + visitfound.TreatedDate);
                 Console.Write("Update visit date(dd/mm/yyyy): ");
                 string newVisitDate = Console.ReadLine();
-                visitfound.TreatedDate = newVisitDate;
-
-                Console.WriteLine("Visit place: " + visitfound.Place);
-                Console.Write("Update visit place: ");
-                string newVisitPlace = Console.ReadLine();
-                visitfound.Place = newVisitPlace;
 
                 Console.WriteLine("Visit diagnosis: " + visitfound.Diagnosis);
                 Console.Write("Update diagnosis: ");
                 string newVisitDiagnosis = Console.ReadLine();
-                visitfound.Diagnosis = newVisitDiagnosis;
 
                 Console.WriteLine("Visit outcome: " + visitfound.Outcome);
                 Console.Write("Update outcome: ");
                 string newVisitOutcome = Console.ReadLine();
-                visitfound.Outcome = newVisitOutcome;
 
+                if (datavalidation.CheckOutCome(newVisitOutcome) == false)
+                {
+                    Console.WriteLine("Outcome must be 'CURED','DECREASED','INCREASED','UNCHANGED','DIED'");
+                    return;
+                }
+
+                visitfound.TreatingDoctor = visitDoctor;
+                visitfound.TreatedPatient = visitPatient;
+                visitfound.Outcome = newVisitOutcome;
+                visitfound.Diagnosis = newVisitDiagnosis;
+                visitfound.TreatedDate = newVisitDate;
+                visitfound.Place = visitHospital;
                 Console.WriteLine("<====== Visit updated ======>\n");
 
             }
@@ -493,6 +550,28 @@ namespace OpenHIA.Ultility
             Console.WriteLine();
             visitmanager.GetAllRecords();
             Console.WriteLine();
+        }
+
+        public void PopulateSampleData()
+        {
+            Doctor sam1 = new Doctor("Sam", "03/08/1993", "AB345AD", "123 Vinh Hung");
+            Doctor sam2 = new Doctor("Mike", "08/03/1998", "CD34EAC", "3/2 Truong Chinh");
+            doctormanager.Create(sam1);
+            doctormanager.Create(sam2);
+
+            Patient sam3 = new Patient("Hung", "male", "18/9/1990", "345 CMT8");
+            Patient sam4 = new Patient("Minh", "female", "10/10/1991", "2A Vuong Trieu");
+            patientmanager.Create(sam3);
+            patientmanager.Create(sam4);
+
+            Hospital sam5 = new Hospital("Thong Nhat", "3GHE29", "111 DBT");
+            Hospital sam6 = new Hospital("Cho Ray", "GH54K3", "333 Ban Co");
+            hospitalmanager.Create(sam5);
+            hospitalmanager.Create(sam6);
+
+            Visit sam7 = new Visit("11/11/2011", sam5, sam3, sam1, "ICD98", "CURED");
+            visitmanager.Create(sam7);
+
         }
     }
 }

@@ -24,6 +24,9 @@ namespace OpenHIA.Program
             Console.WriteLine("========== OPENHIA ==========");
             Console.WriteLine("*****************************\n");
 
+            //Populate sample data
+            datahandler.PopulateSampleData();
+
             Menu.DisplayStartMenu();
             string option = Console.ReadLine();
 
