@@ -12,12 +12,42 @@ namespace OpenHIA.Ultility
 {
     public class DataHandler
     {
-        private DoctorCrud doctormanager = new DoctorCrud();
-        private PatientCrud patientmanager = new PatientCrud();
-        private HospitalCrud hospitalmanager = new HospitalCrud();
-        private VisitCrud visitmanager = new VisitCrud();
+        private DoctorCrud doctorManager = new DoctorCrud();
+        private PatientCrud patientManager = new PatientCrud();
+        private HospitalCrud hospitalManager = new HospitalCrud();
+        private VisitCrud visitManager = new VisitCrud();
 
-        DataValidation datavalidation = new DataValidation();
+        private DataValidation datavalidation = new DataValidation();
+
+        public DoctorCrud DoctorManager
+        {
+            get { return doctorManager; }
+            set { this.doctorManager = value; }
+        }
+
+        public PatientCrud PatientManager
+        {
+            get { return patientManager; }
+            set { this.patientManager = value; }
+        }
+
+        public HospitalCrud HospitalManager
+        {
+            get { return hospitalManager; }
+            set { this.hospitalManager = value; }
+        }
+
+        public VisitCrud VisitManager
+        {
+            get { return visitManager; }
+            set { this.visitManager = value; }
+        }
+
+        public DataValidation DataValidation
+        {
+            get { return datavalidation; }
+            set { this.datavalidation = value; }
+        }
 
         public void DoctorHandler(ref string option)
         {
@@ -141,6 +171,12 @@ namespace OpenHIA.Ultility
             Console.WriteLine();
             Console.Write("Enter doctor's name: ");
             string doctorname = Console.ReadLine();
+            if (datavalidation.CheckName(doctorname) == false)
+            {
+                Console.WriteLine("Please type correct name format\n");
+                return;
+            }
+
             Console.Write("Enter doctor's date of birth(dd/mm/yyyy): ");
             string doctordob = Console.ReadLine();
             if (datavalidation.CheckDate(doctordob) == false)
@@ -148,12 +184,13 @@ namespace OpenHIA.Ultility
                 Console.WriteLine("Please type in format (dd/mm/yyyy)\n");
                 return;
             }
+
             Console.Write("Enter doctor's license number: ");
             string license = Console.ReadLine();
             Console.Write("Enter doctor's address: ");
             string address = Console.ReadLine();
             Doctor newdoc = new Doctor(doctorname, doctordob, license, address);
-            doctormanager.Create(newdoc);
+            doctorManager.Create(newdoc);
             Console.WriteLine("<====== Doctor added ======>\n");
         }
 
@@ -163,12 +200,17 @@ namespace OpenHIA.Ultility
             string doctorsearch = Console.ReadLine();
             try
             {
-                Doctor doctorfound = doctormanager.Read(doctorsearch);
+                Doctor doctorfound = doctorManager.Read(doctorsearch);
                 Console.WriteLine("Doctor's id: " + doctorfound.Id);
 
                 Console.WriteLine("Doctor's name: " + doctorfound.Name);
                 Console.Write("Update doctor's name: ");
                 string newDocName = Console.ReadLine();
+                if (datavalidation.CheckName(newDocName) == false)
+                {
+                    Console.WriteLine("Please type correct name format\n");
+                    return;
+                }
 
                 Console.WriteLine("Doctor's date of birth: " + doctorfound.Dob);
                 Console.Write("Update doctor's date of birth: ");
@@ -202,8 +244,8 @@ namespace OpenHIA.Ultility
             string doctorsearch = Console.ReadLine();
             try
             {
-                Doctor doctorfound = doctormanager.Read(doctorsearch);
-                doctormanager.Delete(doctorfound.Id);
+                Doctor doctorfound = doctorManager.Read(doctorsearch);
+                doctorManager.Delete(doctorfound.Id);
                 Console.WriteLine("<====== Doctor deleted ======>");
             }
             catch (InvalidDoctorsInformationException e)
@@ -216,7 +258,7 @@ namespace OpenHIA.Ultility
         private void DoctorOption4()
         {
             Console.WriteLine();
-            doctormanager.GetAllRecords();
+            doctorManager.GetAllRecords();
             Console.WriteLine();
 
         }
@@ -253,7 +295,7 @@ namespace OpenHIA.Ultility
             Console.Write("Enter patient's address: ");
             string address = Console.ReadLine();
             Patient newpa = new Patient(patientname, gender, patientdob, address);
-            patientmanager.Create(newpa);
+            patientManager.Create(newpa);
             Console.WriteLine("<====== Patient added ======>\n");
 
         }
@@ -264,12 +306,17 @@ namespace OpenHIA.Ultility
             string patientsearch = Console.ReadLine();
             try
             {
-                Patient patientfound = patientmanager.Read(patientsearch);
+                Patient patientfound = patientManager.Read(patientsearch);
                 Console.WriteLine("Patient's id: " + patientfound.Id);
 
                 Console.WriteLine("Patient's name: " + patientfound.Name);
                 Console.Write("Update patient's name: ");
                 string newPaName = Console.ReadLine();
+                if (datavalidation.CheckName(newPaName) == false)
+                {
+                    Console.WriteLine("Please type correct name format\n");
+                    return;
+                }
 
                 Console.WriteLine("Patient's date of birth: " + patientfound.Dob);
                 Console.Write("Update patient's date of birth: ");
@@ -321,8 +368,8 @@ namespace OpenHIA.Ultility
             string patientsearch = Console.ReadLine();
             try
             {
-                Patient patientfound = patientmanager.Read(patientsearch);
-                patientmanager.Delete(patientfound.Id);
+                Patient patientfound = patientManager.Read(patientsearch);
+                patientManager.Delete(patientfound.Id);
                 Console.WriteLine("<====== Patient deleted ======>");
             }
             catch (InvalidPatientsInformationException e)
@@ -335,7 +382,7 @@ namespace OpenHIA.Ultility
         private void PatientOption4()
         {
             Console.WriteLine();
-            patientmanager.GetAllRecords();
+            patientManager.GetAllRecords();
             Console.WriteLine();
 
         }
@@ -350,7 +397,7 @@ namespace OpenHIA.Ultility
             Console.Write("Enter hospital's address: ");
             string address = Console.ReadLine();
             Hospital newhos = new Hospital(hospitalName, hospitalLicense, address);
-            hospitalmanager.Create(newhos);
+            hospitalManager.Create(newhos);
             Console.WriteLine("<====== Hospital added ======>\n");
 
         }
@@ -361,7 +408,7 @@ namespace OpenHIA.Ultility
             string hospitalsearch = Console.ReadLine();
             try
             {
-                Hospital hospitalfound = hospitalmanager.Read(hospitalsearch);
+                Hospital hospitalfound = hospitalManager.Read(hospitalsearch);
                 Console.WriteLine("Hospital's id: " + hospitalfound.Id);
 
                 Console.WriteLine("Hospital's name: " + hospitalfound.Name);
@@ -395,8 +442,8 @@ namespace OpenHIA.Ultility
             string hospitalsearch = Console.ReadLine();
             try
             {
-                Hospital hospitalfound = hospitalmanager.Read(hospitalsearch);
-                hospitalmanager.Delete(hospitalfound.Id);
+                Hospital hospitalfound = hospitalManager.Read(hospitalsearch);
+                hospitalManager.Delete(hospitalfound.Id);
                 Console.WriteLine("<====== Hospital deleted ======>");
             }
             catch (InvalidHospitalInformationException e)
@@ -409,7 +456,7 @@ namespace OpenHIA.Ultility
         private void HospitalOption4()
         {
             Console.WriteLine();
-            hospitalmanager.GetAllRecords();
+            hospitalManager.GetAllRecords();
             Console.WriteLine();
 
         }
@@ -420,11 +467,11 @@ namespace OpenHIA.Ultility
             try
             {
                 Console.Write("Enter patient's id: ");
-                Patient visitPatient = patientmanager.Read(Console.ReadLine());
+                Patient visitPatient = patientManager.Read(Console.ReadLine());
                 Console.Write("Enter doctor's id: ");
-                Doctor visitDoctor = doctormanager.Read(Console.ReadLine());
+                Doctor visitDoctor = doctorManager.Read(Console.ReadLine());
                 Console.Write("Enter hospital's name or id: ");
-                Hospital visitHospital = hospitalmanager.Read(Console.ReadLine());
+                Hospital visitHospital = hospitalManager.Read(Console.ReadLine());
 
                 Console.Write("Enter treated date(dd/mm/yyyy): ");
                 string treatedDate = Console.ReadLine();
@@ -439,12 +486,12 @@ namespace OpenHIA.Ultility
                 string outcome = Console.ReadLine();
                 if (datavalidation.CheckOutCome(outcome) == false)
                 {
-                    Console.WriteLine("Outcome must be 'CURED','DECREASED','INCREASED','UNCHANGED','DIED'");
+                    Console.WriteLine("Outcome must be 'CURED','DECREASED','INCREASED','UNCHANGED','DIED'\n");
                     return;
                 }
 
                 Visit newvis = new Visit(treatedDate, visitHospital, visitPatient, visitDoctor, diagnosis, outcome);
-                visitmanager.Create(newvis);
+                visitManager.Create(newvis);
 
                 Console.WriteLine("<====== Visit added ======>\n");
 
@@ -470,21 +517,21 @@ namespace OpenHIA.Ultility
             string visitsearch = Console.ReadLine();
             try
             {
-                Visit visitfound = visitmanager.Read(visitsearch);
+                Visit visitfound = visitManager.Read(visitsearch);
                 Console.WriteLine("Visit's id: " + visitfound.Id);
 
                 Console.WriteLine("Patient's id: " + visitfound.TreatedPatient.Id);
                 Console.Write("Update patient's id: ");
-                Patient visitPatient = patientmanager.Read(Console.ReadLine());
+                Patient visitPatient = patientManager.Read(Console.ReadLine());
 
                 Console.WriteLine("Doctor's id: " + visitfound.TreatingDoctor.Id);
                 Console.Write("Update doctor's id: ");
-                Doctor visitDoctor = doctormanager.Read(Console.ReadLine());
+                Doctor visitDoctor = doctorManager.Read(Console.ReadLine());
 
                 Console.WriteLine("Hospital's id: " + visitfound.Place.Id);
                 Console.WriteLine("Hospital's name: " + visitfound.Place.Name);
                 Console.Write("Update hospital's by either name or id: ");
-                Hospital visitHospital = hospitalmanager.Read(Console.ReadLine());
+                Hospital visitHospital = hospitalManager.Read(Console.ReadLine());
 
                 Console.WriteLine("Visit date: " + visitfound.TreatedDate);
                 Console.Write("Update visit date(dd/mm/yyyy): ");
@@ -534,8 +581,8 @@ namespace OpenHIA.Ultility
             string visitsearch = Console.ReadLine();
             try
             {
-                Visit visitfound = visitmanager.Read(visitsearch);
-                visitmanager.Delete(visitfound.Id);
+                Visit visitfound = visitManager.Read(visitsearch);
+                visitManager.Delete(visitfound.Id);
                 Console.WriteLine("<====== Visit deleted ======>");
             }
             catch (InvalidVisitInformationException e)
@@ -548,7 +595,7 @@ namespace OpenHIA.Ultility
         private void VisitOption4()
         {
             Console.WriteLine();
-            visitmanager.GetAllRecords();
+            visitManager.GetAllRecords();
             Console.WriteLine();
         }
 
@@ -556,21 +603,21 @@ namespace OpenHIA.Ultility
         {
             Doctor sam1 = new Doctor("Sam", "03/08/1993", "AB345AD", "123 Vinh Hung");
             Doctor sam2 = new Doctor("Mike", "08/03/1998", "CD34EAC", "3/2 Truong Chinh");
-            doctormanager.Create(sam1);
-            doctormanager.Create(sam2);
+            doctorManager.Create(sam1);
+            doctorManager.Create(sam2);
 
             Patient sam3 = new Patient("Hung", "male", "18/9/1990", "345 CMT8");
             Patient sam4 = new Patient("Minh", "female", "10/10/1991", "2A Vuong Trieu");
-            patientmanager.Create(sam3);
-            patientmanager.Create(sam4);
+            patientManager.Create(sam3);
+            patientManager.Create(sam4);
 
             Hospital sam5 = new Hospital("Thong Nhat", "3GHE29", "111 DBT");
             Hospital sam6 = new Hospital("Cho Ray", "GH54K3", "333 Ban Co");
-            hospitalmanager.Create(sam5);
-            hospitalmanager.Create(sam6);
+            hospitalManager.Create(sam5);
+            hospitalManager.Create(sam6);
 
             Visit sam7 = new Visit("11/11/2011", sam5, sam3, sam1, "ICD98", "CURED");
-            visitmanager.Create(sam7);
+            visitManager.Create(sam7);
 
         }
     }

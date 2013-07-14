@@ -7,6 +7,7 @@ using OpenHIA.Model;
 using OpenHIA.Service;
 using OpenHIA.Program;
 using OpenHIA.Ultility;
+using OpenHIA.TestClass;
 
 namespace OpenHIA.Program
 {
@@ -24,9 +25,6 @@ namespace OpenHIA.Program
             Console.WriteLine("========== OPENHIA ==========");
             Console.WriteLine("*****************************\n");
 
-            //Populate sample data
-            datahandler.PopulateSampleData();
-
             Menu.DisplayStartMenu();
             string option = Console.ReadLine();
 
@@ -39,12 +37,16 @@ namespace OpenHIA.Program
                         Console.WriteLine();
                         Console.WriteLine("========== Program starts ==========");
                         Console.WriteLine("************************************");
+
+                        //Populate sample data
+                        datahandler.PopulateSampleData();
+
                         RunMainMenu();
                         option = "3";
                         break;
                     case "2":
                         Console.WriteLine();
-                        //TestProgramAction();
+                        TestProgram();
                         Menu.DisplayStartMenu();
                         option = Console.ReadLine();
                         break;
@@ -56,7 +58,7 @@ namespace OpenHIA.Program
                         break;
                 }
 
-            } while(option != "3");
+            } while (option != "3");
 
         }
 
@@ -67,11 +69,11 @@ namespace OpenHIA.Program
         private void RunMainMenu()
         {
             string currentDisplay = "mainmenu";
-            string option = "";            
+            string option = "";
 
             do
             {
-                if(currentDisplay.Equals("mainmenu"))
+                if (currentDisplay.Equals("mainmenu"))
                 {
                     Console.WriteLine();
                     Menu.DisplayMainMenu();
@@ -116,7 +118,8 @@ namespace OpenHIA.Program
         private void RunDoctorOption()
         {
             string option = "";
-            do{
+            do
+            {
                 Menu.DisplayDoctorOption();
                 option = Console.ReadLine();
                 datahandler.DoctorHandler(ref option);
@@ -159,6 +162,15 @@ namespace OpenHIA.Program
                 datahandler.VisitHandler(ref option);
 
             } while (option != "5");
+        }
+
+        private void TestProgram()
+        {
+            TestAllCases testAll = new TestAllCases();
+
+            testAll.TestDoctorOption1();
+            testAll.TestDoctorOption2();
+            testAll.TestDoctorOption3();
         }
     }
 }

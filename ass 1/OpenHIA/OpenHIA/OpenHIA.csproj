@@ -60,6 +60,7 @@
     <Compile Include="Model\Visit.cs" />
     <Compile Include="Program\MainClass.cs" />
     <Compile Include="Service\VisitCrud.cs" />
+    <Compile Include="TestClass\TestAllCases.cs" />
     <Compile Include="Ultility\DataValidation.cs" />
     <Compile Include="Ultility\Menu.cs" />
     <Compile Include="Program\Program.cs" />
@@ -70,9 +71,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestClass\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

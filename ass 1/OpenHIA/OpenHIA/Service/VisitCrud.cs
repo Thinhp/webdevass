@@ -9,7 +9,7 @@ using OpenHIA.Exceptions;
 
 namespace OpenHIA.Service
 {
-    class VisitCrud : IMaintanble<Visit>
+    public class VisitCrud : IMaintanble<Visit>
     {
         public void GetAllRecords()
         {

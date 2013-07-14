@@ -29,6 +29,10 @@ namespace OpenHIA.Model
             this.Address = address;
         }
 
+        /// <summary>
+        /// Overriding the ToString to display nicer
+        /// </summary>
+        /// <returns>A formatted strin</returns>
         public override string ToString()
         {
             string line = String.Format("{0,-5} {1,-15} {2,-15} {3,-10} {4,-15}", this.Id, this.Name, this.Dob, this.Gender, this.Address);

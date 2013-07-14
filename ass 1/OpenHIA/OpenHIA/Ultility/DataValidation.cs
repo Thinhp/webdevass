@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace OpenHIA.Ultility
 {
-    class DataValidation
+    public class DataValidation
     {
         public bool CheckDate(string date)
         {
@@ -23,7 +23,7 @@ namespace OpenHIA.Ultility
             int day = Convert.ToInt32(date.Substring(0, 2));
             int month = Convert.ToInt32(date.Substring(3, 2));
             int year = Convert.ToInt32(date.Substring(6));
-            
+
             if (day < 0 || day > 31)
             {
                 return false;
@@ -44,8 +44,8 @@ namespace OpenHIA.Ultility
 
         public bool CheckOutCome(string outcome)
         {
-            string[] outcomeList = new string[]{"CURED","DECREASED","INCREASED","UNCHANGED","DIED"};
-            if (compareListOption(outcome, outcomeList))
+            string pattern = @"^CURED|DECREASED|INCREASED|UNCHANGED|DIED$";
+            if (Regex.IsMatch(outcome, pattern))
             {
                 return true;
             }
@@ -68,18 +68,15 @@ namespace OpenHIA.Ultility
             }
         }
 
-        public bool compareListOption(string original, string[] listOfOption)
+        public bool CheckName(string name)
         {
-            foreach (string row in listOfOption)
+            string pattern = @"^[a-zA-Z\ ]+$";
+            if (Regex.IsMatch(name + "", pattern))
             {
-                if (row.Equals(original))
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }
-
 
     }
 }
