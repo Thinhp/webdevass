@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidVisitInformationException.cs" />
     <Compile Include="Model\Database.cs" />
     <Compile Include="Service\DoctorCrud.cs" />
     <Compile Include="Service\HospitalCrud.cs" />
@@ -52,13 +53,14 @@
     <Compile Include="Exceptions\InvalidHospitalInformationException.cs" />
     <Compile Include="Exceptions\InvalidPatientsInformationException.cs" />
     <Compile Include="Interface\IMaintanble.cs" />
-    <Compile Include="Model\Doctors.cs" />
-    <Compile Include="Model\Hospitals.cs" />
-    <Compile Include="Model\Patients.cs" />
+    <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Hospital.cs" />
+    <Compile Include="Model\Patient.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Visit.cs" />
     <Compile Include="Program\MainClass.cs" />
     <Compile Include="Service\VisitCrud.cs" />
+    <Compile Include="Ultility\DataValidation.cs" />
     <Compile Include="Ultility\Menu.cs" />
     <Compile Include="Program\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

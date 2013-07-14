@@ -35,13 +35,13 @@ namespace OpenHIA.Program
                     case "1":
                         Console.WriteLine();
                         Console.WriteLine("========== Program starts ==========");
-                        Console.WriteLine("************************************\n");
+                        Console.WriteLine("************************************");
                         RunMainMenu();
                         option = "3";
                         break;
                     case "2":
                         Console.WriteLine();
-                        TestProgramAction();
+                        //TestProgramAction();
                         Menu.DisplayStartMenu();
                         option = Console.ReadLine();
                         break;
@@ -70,6 +70,7 @@ namespace OpenHIA.Program
             {
                 if(currentDisplay.Equals("mainmenu"))
                 {
+                    Console.WriteLine();
                     Menu.DisplayMainMenu();
                     option = Console.ReadLine();
                 }
@@ -83,12 +84,18 @@ namespace OpenHIA.Program
                         break;
                     case "2":
                         currentDisplay = "mainmenu";
+                        Console.WriteLine();
+                        RunPatientOption();
                         break;
                     case "3":
                         currentDisplay = "mainmenu";
+                        Console.WriteLine();
+                        RunHospitalOption();
                         break;
                     case "4":
                         currentDisplay = "mainmenu";
+                        Console.WriteLine();
+                        RunVisitOption();
                         break;
                     case "5":
                         currentDisplay = "mainmenu";
@@ -103,42 +110,52 @@ namespace OpenHIA.Program
             } while (option != "5");
         }
 
-        private void TestProgramAction()
-        {
-
-        }
-
         private void RunDoctorOption()
         {
             string option = "";
             do{
                 Menu.DisplayDoctorOption();
                 option = Console.ReadLine();
-                datahandler.DoctorHandler(option);
+                datahandler.DoctorHandler(ref option);
 
             } while (option != "5");
 
         }
 
-        //public void testData()
-        //{
-        //    DoctorCrud docs = new DoctorCrud();
-        //    Doctors adoc = new Doctors("Calencilla", "28/2/1992", "BB-23ab", "23A/15 Nguyen Thien Thuat");
-        //    Doctors adoc2 = new Doctors("Alexander", "1/1/1993", "ab323CD", "123 3/2");
-        //    Doctors adoc3 = new Doctors("Bolland", "8/3/1995", "ABCD", "123 3/2");
-        //    docs.Create(adoc);
-        //    docs.Create(adoc2);
-        //    docs.Create(adoc3);
-        //    docs.GetAllRecords();
-        //    string updateString = "Dillan";
-        //    string updateId = "D3";
-        //    Doctors temp = docs.Read(updateId);
-        //    temp.Name = updateString;
-        //    docs.Update(temp);
+        private void RunPatientOption()
+        {
+            string option = "";
+            do
+            {
+                Menu.DisplayPatientOption();
+                option = Console.ReadLine();
+                datahandler.PatientHandler(ref option);
 
-        //    Console.ReadLine();
-        //    docs.GetAllRecords();
-        //    Console.Read();
-        //}
+            } while (option != "5");
+        }
+
+        private void RunHospitalOption()
+        {
+            string option = "";
+            do
+            {
+                Menu.DisplayHospitalOption();
+                option = Console.ReadLine();
+                datahandler.HospitalHandler(ref option);
+
+            } while (option != "5");
+        }
+
+        private void RunVisitOption()
+        {
+            string option = "";
+            do
+            {
+                Menu.DisplayVisitOption();
+                option = Console.ReadLine();
+                datahandler.VisitHandler(ref option);
+
+            } while (option != "5");
+        }
     }
 }

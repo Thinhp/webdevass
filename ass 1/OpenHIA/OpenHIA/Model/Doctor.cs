@@ -7,7 +7,7 @@ using OpenHIA.Interface;
 
 namespace OpenHIA.Model
 {
-    public class Doctor : Person, IComparable
+    public class Doctor : Person
     {
 
         //Properties
@@ -29,28 +29,6 @@ namespace OpenHIA.Model
             this.Dob = doctorDOB;
             this.LicenseNumber = licenseNumber;
             this.Address = address;
-        }
-
-        /// <summary>
-        /// This method is used to sort doctor list by doctor's name
-        /// </summary>
-        /// <param name="obj">Doctor object to compare</param>
-        /// <returns></returns>
-        public int CompareTo(object obj)
-        {
-            if (obj == null) return 1;
-
-            Doctor otherDoctor = obj as Doctor;
-            if (otherDoctor != null)
-            {
-                return this.Name.CompareTo(otherDoctor.Name);
-            }
-            else
-            {
-                throw new ArgumentException("Object is not a Doctor");
-            }
-            
-            throw new NotImplementedException();
         }
         
         /// <summary>

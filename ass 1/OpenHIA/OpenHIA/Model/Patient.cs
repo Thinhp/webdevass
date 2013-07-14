@@ -29,5 +29,10 @@ namespace OpenHIA.Model
             this.Address = address;
         }
 
+        public override string ToString()
+        {
+            return this.Id + "    " + this.Name + "              " + this.Dob + "          " + this.Gender +
+                "            " + this.Address;
+        }
     }
 }
