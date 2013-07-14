@@ -38,7 +38,7 @@ namespace OpenHIA.Service
                 }
             }
 
-            throw new InvalidHospitalInformationException("No hospital found");
+            throw new InvalidHospitalInformationException("******* No hospital found *******\n");
         }
 
         public void Update(Hospital obj)

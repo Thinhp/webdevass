@@ -15,6 +15,7 @@ namespace OpenHIA.Ultility
         private DoctorCrud doctormanager = new DoctorCrud();
         private PatientCrud patientmanager = new PatientCrud();
         private HospitalCrud hospitalmanager = new HospitalCrud();
+        private VisitCrud visitmanager = new VisitCrud();
 
         DataValidation datavalidation = new DataValidation();
 
@@ -211,7 +212,7 @@ namespace OpenHIA.Ultility
             {
                 Console.WriteLine(e.Message);
             }
-            
+
         }
 
         private void DoctorOption4()
@@ -263,6 +264,11 @@ namespace OpenHIA.Ultility
                 string newPaGender = Console.ReadLine();
                 patientfound.Gender = newPaGender;
 
+                Console.WriteLine("Patient's address: " + patientfound.Address);
+                Console.Write("Update patient's address: ");
+                string newPaAddress = Console.ReadLine();
+                patientfound.Gender = newPaAddress;
+
                 Console.WriteLine("<====== Patient updated ======>\n");
 
             }
@@ -270,8 +276,6 @@ namespace OpenHIA.Ultility
             {
                 Console.WriteLine(e.Message);
             }
-
-
         }
 
         private void PatientOption3()
@@ -301,42 +305,194 @@ namespace OpenHIA.Ultility
 
         private void HospitalOption1()
         {
+            Console.WriteLine();
+            Console.Write("Enter hospital's name: ");
+            string hospitalName = Console.ReadLine();
+            Console.Write("Enter hospital's license number: ");
+            string hospitalLicense = Console.ReadLine();
+            Console.Write("Enter hospital's address: ");
+            string address = Console.ReadLine();
+            Hospital newhos = new Hospital(hospitalName, hospitalLicense, address);
+            hospitalmanager.Create(newhos);
+            Console.WriteLine("<====== Hospital added ======>\n");
 
         }
 
         private void HospitalOption2()
         {
+            Console.Write("Enter hospital's id: ");
+            string hospitalsearch = Console.ReadLine();
+            try
+            {
+                Hospital hospitalfound = hospitalmanager.Read(hospitalsearch);
+                Console.WriteLine("Hospital's id: " + hospitalfound.Id);
+
+                Console.WriteLine("Hospital's name: " + hospitalfound.Name);
+                Console.Write("Update hospital's name: ");
+                string newHosName = Console.ReadLine();
+                hospitalfound.Name = newHosName;
+
+                Console.WriteLine("Hospital's license number: " + hospitalfound.LicenseNumber);
+                Console.Write("Update hospital's license number: ");
+                string newHosLicense = Console.ReadLine();
+                hospitalfound.LicenseNumber = newHosLicense;
+
+                Console.WriteLine("Hospital's address: " + hospitalfound.Address);
+                Console.Write("Update hospital's address: ");
+                string newHosAddress = Console.ReadLine();
+                hospitalfound.Address = newHosAddress;
+
+                Console.WriteLine("<====== Hospital updated ======>\n");
+
+            }
+            catch (InvalidHospitalInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
         }
 
         private void HospitalOption3()
         {
+            Console.Write("Enter hospital's id: ");
+            string hospitalsearch = Console.ReadLine();
+            try
+            {
+                Hospital hospitalfound = hospitalmanager.Read(hospitalsearch);
+                hospitalmanager.Delete(hospitalfound.Id);
+                Console.WriteLine("<====== Hospital deleted ======>");
+            }
+            catch (InvalidHospitalInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
         }
 
         private void HospitalOption4()
         {
+            Console.WriteLine();
+            hospitalmanager.GetAllRecords();
+            Console.WriteLine();
 
         }
 
         private void VisitOption1()
         {
+            Console.WriteLine();
+            try
+            {
+                Console.Write("Enter patient's id: ");
+                Patient visitPatient = patientmanager.Read(Console.ReadLine());
+                Console.Write("Enter doctor's id: ");
+                Doctor visitDoctor = doctormanager.Read(Console.ReadLine());
+
+                Console.Write("Enter treated date(dd/mm/yyyy): ");
+                string treatedDate = Console.ReadLine();
+                Console.Write("Enter place: ");
+                string place = Console.ReadLine();
+                Console.Write("Enter Diagnosis: ");
+                string diagnosis = Console.ReadLine();
+                Console.Write("Enter outcome: ");
+                string outcome = Console.ReadLine();
+
+                Visit newvis = new Visit(treatedDate, place, visitPatient, visitDoctor, diagnosis, outcome);
+                visitmanager.Create(newvis);
+
+                Console.WriteLine("<====== Visit added ======>\n");
+
+            }
+            catch (InvalidPatientsInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (InvalidDoctorsInformationException e)
+            {
+                Console.WriteLine(e.Message);
+
+            }
 
         }
 
         private void VisitOption2()
         {
+            Console.Write("Enter visit's id: ");
+            string visitsearch = Console.ReadLine();
+            try
+            {
+                Visit visitfound = visitmanager.Read(visitsearch);
+                Console.WriteLine("Visit's id: " + visitfound.Id);
+
+                Console.WriteLine("Patient's id: " + visitfound.TreatedPatient.Id);
+                Console.Write("Update patient's id: ");
+                Patient visitPatient = patientmanager.Read(Console.ReadLine());
+                visitfound.TreatedPatient = visitPatient;
+
+                Console.WriteLine("Doctor's id: " + visitfound.TreatingDoctor.Id);
+                Console.Write("Update doctor's id: ");
+                Doctor visitDoctor = doctormanager.Read(Console.ReadLine());
+                visitfound.TreatingDoctor = visitDoctor;
+
+                Console.WriteLine("Visit date: " + visitfound.TreatedDate);
+                Console.Write("Update visit date(dd/mm/yyyy): ");
+                string newVisitDate = Console.ReadLine();
+                visitfound.TreatedDate = newVisitDate;
+
+                Console.WriteLine("Visit place: " + visitfound.Place);
+                Console.Write("Update visit place: ");
+                string newVisitPlace = Console.ReadLine();
+                visitfound.Place = newVisitPlace;
+
+                Console.WriteLine("Visit diagnosis: " + visitfound.Diagnosis);
+                Console.Write("Update diagnosis: ");
+                string newVisitDiagnosis = Console.ReadLine();
+                visitfound.Diagnosis = newVisitDiagnosis;
+
+                Console.WriteLine("Visit outcome: " + visitfound.Outcome);
+                Console.Write("Update outcome: ");
+                string newVisitOutcome = Console.ReadLine();
+                visitfound.Outcome = newVisitOutcome;
+
+                Console.WriteLine("<====== Visit updated ======>\n");
+
+            }
+            catch (InvalidVisitInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (InvalidPatientsInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (InvalidDoctorsInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
         }
 
         private void VisitOption3()
         {
+            Console.Write("Enter visit's id: ");
+            string visitsearch = Console.ReadLine();
+            try
+            {
+                Visit visitfound = visitmanager.Read(visitsearch);
+                visitmanager.Delete(visitfound.Id);
+                Console.WriteLine("<====== Visit deleted ======>");
+            }
+            catch (InvalidVisitInformationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
         }
 
         private void VisitOption4()
         {
-
+            Console.WriteLine();
+            visitmanager.GetAllRecords();
+            Console.WriteLine();
         }
     }
 }

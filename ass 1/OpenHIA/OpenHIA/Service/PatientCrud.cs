@@ -14,8 +14,8 @@ namespace OpenHIA.Service
 
         public void GetAllRecords()
         {
-            Console.WriteLine("Id" + "    " + "Name" + "               " + "Date of birth" + "      " +
-                "Gender" + "  " + "Address");
+            string line = String.Format("{0,-5} {1,-15} {2,-15} {3,-10} {4,-15}", "Id", "Name", "Date of birth", "Gender", "Address");
+            Console.WriteLine(line);
             foreach (Patient pa in Database.PatientList)
             {
                 Console.WriteLine(pa.ToString());
@@ -40,7 +40,7 @@ namespace OpenHIA.Service
                 }
             }
 
-            throw new InvalidPatientsInformationException("No patient found");
+            throw new InvalidPatientsInformationException("******* No patient found *******\n");
         }
 
         public void Update(Patient obj)

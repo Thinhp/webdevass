@@ -38,7 +38,7 @@ namespace OpenHIA.Service
                 }
             }
 
-            throw new InvalidVisitInformationException("No visit found");
+            throw new InvalidVisitInformationException("******* No visit found *******\n");
         }
 
         public void Update(Visit obj)

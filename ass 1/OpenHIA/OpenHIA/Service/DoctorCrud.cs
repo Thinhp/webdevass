@@ -20,7 +20,6 @@ namespace OpenHIA.Service
         public void Create(Doctor obj)
         {
             Database.DoctorList.Add(obj);
-            Database.DoctorList.Sort();
         }
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace OpenHIA.Service
                 }
             }
 
-            throw new InvalidDoctorsInformationException("No doctor found");
+            throw new InvalidDoctorsInformationException("******* No doctor found *******\n");
         }
 
         /// <summary>
@@ -83,8 +82,8 @@ namespace OpenHIA.Service
         /// </summary>
         public void GetAllRecords()
         {
-            Console.WriteLine("Id" + "    " + "Name" + "               " + "Date of birth" + "      " +
-                "License Number" + "  " + "Address");
+            string line = String.Format("{0,-5} {1,-15} {2,-15} {3,-15} {4,-15}", "Id", "Name", "Date of birth", "License Number", "Address");
+            Console.WriteLine(line);
             foreach (Doctor doc in Database.DoctorList)
             {
                 Console.WriteLine(doc.ToString());

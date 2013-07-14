@@ -37,8 +37,8 @@ namespace OpenHIA.Model
         /// <returns></returns>
         public override string ToString()
         {
-            return this.Id + "    " + this.Name + "              " + this.Dob + "          " + this.LicenseNumber +
-                "            " + this.Address;
+            string line = String.Format("{0,-5} {1,-15} {2,-15} {3,-15} {4,-15}", this.Id, this.Name, this.Dob, this.LicenseNumber, this.Address);
+            return line; 
         }
 
         
