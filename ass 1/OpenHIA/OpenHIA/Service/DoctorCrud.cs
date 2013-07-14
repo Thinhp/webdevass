@@ -9,7 +9,7 @@ using OpenHIA.Exceptions;
 
 namespace OpenHIA.Service
 {
-    public class DoctorCrud : IMaintanble<Doctors>
+    public class DoctorCrud : IMaintanble<Doctor>
     {
         // Properties: doctor list to hold doctor database
 
@@ -17,7 +17,7 @@ namespace OpenHIA.Service
         /// Crud operation: Create a new doctor object
         /// </summary>
         /// <param name="obj">a doctor object to add to list</param>
-        public void Create(Doctors obj)
+        public void Create(Doctor obj)
         {
             Database.DoctorList.Add(obj);
             Database.DoctorList.Sort();
@@ -28,10 +28,10 @@ namespace OpenHIA.Service
         /// </summary>
         /// <param name="key">doctor's id or name</param>
         /// <returns></returns>
-        public Doctors Read(string key)
+        public Doctor Read(string key)
         {
             // Loop through doctor list and get doctor object based on 'key'
-            foreach (Doctors doc in Database.DoctorList)
+            foreach (Doctor doc in Database.DoctorList)
             {
                 if (doc.Id.Equals(key))
                 {
@@ -46,9 +46,9 @@ namespace OpenHIA.Service
         /// Crud operation: Update the doctor list 
         /// </summary>
         /// <param name="obj">doctor object to update</param>
-        public void Update(Doctors obj)
+        public void Update(Doctor obj)
         {
-            foreach (Doctors doc in Database.DoctorList)
+            foreach (Doctor doc in Database.DoctorList)
             {
                 if (doc.Id.Equals(obj.Id))
                 {
@@ -68,7 +68,7 @@ namespace OpenHIA.Service
         /// <param name="key">doctor's id</param>
         public void Delete(string key)
         {
-            foreach (Doctors doc in Database.DoctorList)
+            foreach (Doctor doc in Database.DoctorList)
             {
                 if (doc.Id.Equals(key))
                 {
@@ -85,7 +85,7 @@ namespace OpenHIA.Service
         {
             Console.WriteLine("Id" + "    " + "Name" + "               " + "Date of birth" + "      " +
                 "License Number" + "  " + "Address");
-            foreach (Doctors doc in Database.DoctorList)
+            foreach (Doctor doc in Database.DoctorList)
             {
                 Console.WriteLine(doc.ToString());
             }

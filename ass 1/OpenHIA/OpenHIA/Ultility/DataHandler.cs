@@ -75,7 +75,7 @@ namespace OpenHIA.Ultility
             string license = Console.ReadLine();
             Console.Write("Enter doctor's address: ");
             string address = Console.ReadLine();
-            Doctors newdoc = new Doctors(doctorname, doctordob, license, address);
+            Doctor newdoc = new Doctor(doctorname, doctordob, license, address);
             doctormanager.Create(newdoc);
             Console.WriteLine("<====== Doctor created ======>\n");
         }
@@ -86,7 +86,7 @@ namespace OpenHIA.Ultility
             string doctorsearch = Console.ReadLine();
             try
             {
-                Doctors doctorfound = doctormanager.Read(doctorsearch);
+                Doctor doctorfound = doctormanager.Read(doctorsearch);
                 Console.WriteLine("Doctor's id: " + doctorfound.Id);
 
                 Console.WriteLine("Doctor's name: " + doctorfound.Name);
@@ -121,7 +121,7 @@ namespace OpenHIA.Ultility
             string doctorsearch = Console.ReadLine();
             try
             {
-                Doctors doctorfound = doctormanager.Read(doctorsearch);
+                Doctor doctorfound = doctormanager.Read(doctorsearch);
                 doctormanager.Delete(doctorfound.Id);
                 Console.WriteLine("Doctor deleted");
             }

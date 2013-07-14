@@ -14,12 +14,12 @@ namespace OpenHIA.Model
         public string Id { get; set; }
         public DateTime TreatedDate { get; set; }
         public string Place { get; set; }
-        public Patients TreatedPatient { get; set; }
-        public Doctors TreatingDoctor { get; set; }
+        public Patient TreatedPatient { get; set; }
+        public Doctor TreatingDoctor { get; set; }
         public string Diagnosis { get; set; }
         public string Outcome { get; set; }
 
-        public Visit(DateTime treatedDate, string place, Patients patient, Doctors doctor,
+        public Visit(DateTime treatedDate, string place, Patient patient, Doctor doctor,
             string diagnosis, string outcome)
         {
             currentId++;

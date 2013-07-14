@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Model
 {
-    public class Patients : Person
+    public class Patient : Person
     {
         //Properties
         private static int currentId= 0;
@@ -19,7 +19,7 @@ namespace OpenHIA.Model
         /// <param name="gender">Gender of patient</param>
         /// <param name="dob">Patient date of birth</param>
         /// <param name="address">Address of patient</param>
-        public Patients(string name, string gender, string dob, string address)
+        public Patient(string name, string gender, string dob, string address)
         {
             currentId++;
             this.Id = "P" + currentId;

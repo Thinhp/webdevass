@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace OpenHIA.Model
 {
-    public class Hospitals
+    public class Hospital
     {
         //Properties
         private static int currentId = 0;
-        public string HospitalName { get; set; }
-        public string HosptialId { get; set; }
+        public string Name { get; set; }
+        public string Id { get; set; }
         public string LicenseNumber { get; set; }
         public string Address { get; set; }
 
@@ -22,11 +22,11 @@ namespace OpenHIA.Model
         /// <param name="hospitalName">Hospita's name</param>
         /// <param name="licenseNumber">Hospital's license number</param>
         /// <param name="address"> Hospital's address</param>
-        public Hospitals(string hospitalName, string licenseNumber, string address)
+        public Hospital(string hospitalName, string licenseNumber, string address)
         {
             currentId++;
-            this.HosptialId = "H" + currentId;
-            this.HospitalName = hospitalName;
+            this.Id = "H" + currentId;
+            this.Name = hospitalName;
             this.LicenseNumber = licenseNumber;
             this.Address = address;
         }

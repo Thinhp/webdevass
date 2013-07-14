@@ -7,7 +7,7 @@ using OpenHIA.Interface;
 
 namespace OpenHIA.Model
 {
-    public class Doctors : Person, IComparable
+    public class Doctor : Person, IComparable
     {
 
         //Properties
@@ -21,7 +21,7 @@ namespace OpenHIA.Model
         /// <param name="doctorDOB">Doctor's date of birth</param>
         /// <param name="licenseNumber">Doctor's licenseNumber</param>
         /// <param name="address">Doctor's address</param>
-        public Doctors(string doctorName, string doctorDOB, string licenseNumber, string address)
+        public Doctor(string doctorName, string doctorDOB, string licenseNumber, string address)
         {
             currentId++;
             this.Id = "D" + currentId;
@@ -40,7 +40,7 @@ namespace OpenHIA.Model
         {
             if (obj == null) return 1;
 
-            Doctors otherDoctor = obj as Doctors;
+            Doctor otherDoctor = obj as Doctor;
             if (otherDoctor != null)
             {
                 return this.Name.CompareTo(otherDoctor.Name);

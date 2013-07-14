@@ -5,35 +5,70 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenHIA.Interface;
 using OpenHIA.Model;
+using OpenHIA.Exceptions;
 
 namespace OpenHIA.Service
 {
-    public class PatientCrud : IMaintanble<Patients>
+    public class PatientCrud : IMaintanble<Patient>
     {
 
         public void GetAllRecords()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Id" + "    " + "Name" + "               " + "Date of birth" + "      " +
+                "Gender" + "  " + "Address");
+            foreach (Patient pa in Database.PatientList)
+            {
+                Console.WriteLine(pa.ToString());
+            }
         }
 
-        public void Create(Patients obj)
+        public void Create(Patient obj)
         {
-            throw new NotImplementedException();
+            Database.PatientList.Add(obj);
+            Database.PatientList.Sort();
+
         }
 
-        public Patients Read(string key)
+        public Patient Read(string key)
         {
-            throw new NotImplementedException();
+            // Loop through doctor list and get doctor object based on 'key'
+            foreach (Patient pa in Database.PatientList)
+            {
+                if (pa.Id.Equals(key))
+                {
+                    return pa;
+                }
+            }
+
+            throw new InvalidPatientsInformationException("No patient found");
         }
 
-        public void Update(Patients obj)
+        public void Update(Patient obj)
         {
-            throw new NotImplementedException();
+            foreach (Patient pa in Database.PatientList)
+            {
+                if (pa.Id.Equals(obj.Id))
+                {
+                    pa.Name = obj.Name;
+                    pa.Dob = obj.Dob;
+                    pa.Gender = obj.Gender;
+                    pa.Address = obj.Address;
+                    Database.PatientList.Sort();
+                    break;
+                }
+            }
         }
 
         public void Delete(string key)
         {
-            throw new NotImplementedException();
+            foreach (Patient pa in Database.PatientList)
+            {
+                if (pa.Id.Equals(key))
+                {
+                    Database.PatientList.Remove(pa);
+                    break;
+                }
+            }
         }
     }
 }

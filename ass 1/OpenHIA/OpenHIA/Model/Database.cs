@@ -8,9 +8,9 @@ namespace OpenHIA.Model
 {
     public class Database
     {
-        public static List<Doctors> DoctorList = new List<Doctors>();
-        public static List<Patients> PatientList = new List<Patients>();
-        public static List<Hospitals> HospitalList = new List<Hospitals>();
+        public static List<Doctor> DoctorList = new List<Doctor>();
+        public static List<Patient> PatientList = new List<Patient>();
+        public static List<Hospital> HospitalList = new List<Hospital>();
         public static List<Visit> VisitList = new List<Visit>();
     }
 }
