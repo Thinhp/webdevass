@@ -168,9 +168,34 @@ namespace OpenHIA.Program
         {
             TestAllCases testAll = new TestAllCases();
 
+            Console.WriteLine("Test CRUD\n");
             testAll.TestDoctorOption1();
             testAll.TestDoctorOption2();
             testAll.TestDoctorOption3();
+            testAll.TestPatientOption1();
+            testAll.TestPatientOption2();
+            testAll.TestPatientOption3();
+            testAll.TestHospitalOption1();
+            testAll.TestHospitalOption2();
+            testAll.TestHospitalOption3();
+            testAll.TestVisitOption1();
+            testAll.TestVisitOption2();
+            testAll.TestVisitOption3();
+
+            Console.WriteLine("\nTest Validation\n");
+            testAll.TestCheckDate();
+            testAll.TestCheckOutcome();
+            testAll.TestCheckGender();
+            testAll.TestCheckName();
+
+            Console.WriteLine();
+
+            Database.DoctorList.Clear();
+            Database.HospitalList.Clear();
+            Database.PatientList.Clear();
+            Database.VisitList.Clear();
         }
+
+        
     }
 }

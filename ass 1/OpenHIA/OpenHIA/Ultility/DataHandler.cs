@@ -483,7 +483,7 @@ namespace OpenHIA.Ultility
                 Console.Write("Enter Diagnosis: ");
                 string diagnosis = Console.ReadLine();
                 Console.Write("Enter outcome: ");
-                string outcome = Console.ReadLine();
+                string outcome = Console.ReadLine().ToUpper();
                 if (datavalidation.CheckOutCome(outcome) == false)
                 {
                     Console.WriteLine("Outcome must be 'CURED','DECREASED','INCREASED','UNCHANGED','DIED'\n");
@@ -543,7 +543,7 @@ namespace OpenHIA.Ultility
 
                 Console.WriteLine("Visit outcome: " + visitfound.Outcome);
                 Console.Write("Update outcome: ");
-                string newVisitOutcome = Console.ReadLine();
+                string newVisitOutcome = Console.ReadLine().ToUpper();
 
                 if (datavalidation.CheckOutCome(newVisitOutcome) == false)
                 {
