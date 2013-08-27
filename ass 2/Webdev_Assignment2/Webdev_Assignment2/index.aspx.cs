@@ -11,6 +11,16 @@ namespace Webdev_Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["Username"] = "";
+            Session["Password"] = "";
+
+            DataSourceDataContext database = new DataSourceDataContext();
+
+            
+        }
+
+        protected void LoginForm1_Authenticate(object sender, AuthenticateEventArgs e)
+        {
 
         }
     }
