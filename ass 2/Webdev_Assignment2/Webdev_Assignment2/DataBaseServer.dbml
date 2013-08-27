@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Webdev_Assignment2" Class="DataSourceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Webdev_Assignment2" Class="DataBaseServerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=THINHLAPTOP\SQLEXPRESS;Initial Catalog=Webdev_Assignment2;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Webdev_Assignment2ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Doctor" Member="Doctors">
     <Type Name="Doctor">
@@ -7,17 +7,6 @@
       <Column Name="Dob" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Licensenumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Drug" Member="Drugs">
-    <Type Name="Drug">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="GenericName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Unit" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="DrugGroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="DrugGroup_Drug" Member="DrugGroup" ThisKey="DrugGroupId" OtherKey="Id" Type="DrugGroup" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Visit" Member="Visits">
@@ -34,6 +23,17 @@
       <Association Name="ICD_Visit" Member="ICD" ThisKey="ICDcode" OtherKey="Code" Type="ICD" IsForeignKey="true" />
       <Association Name="LabOrder_Visit" Member="LabOrder" ThisKey="LabOrderId" OtherKey="Id" Type="LabOrder" IsForeignKey="true" />
       <Association Name="Prescription_Visit" Member="Prescription" ThisKey="PrescriptionId" OtherKey="id" Type="Prescription" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Drug" Member="Drugs">
+    <Type Name="Drug">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GenericName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Unit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="DrugGroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DrugGroup_Drug" Member="DrugGroup" ThisKey="DrugGroupId" OtherKey="Id" Type="DrugGroup" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DrugGroup" Member="DrugGroups">

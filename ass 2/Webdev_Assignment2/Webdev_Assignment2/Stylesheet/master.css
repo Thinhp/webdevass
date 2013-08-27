@@ -1,2 +1,32 @@
-﻿body {
+﻿#Page {
+    width: auto;
+}
+
+#Header {
+    margin-left:auto;
+    margin-right:auto;
+    width: 70%;
+    height: 200px;
+    background-color:lightgreen;
+    font-size: 30px;
+    line-height: 200px;
+    text-align: center;
+}
+
+#Menu {
+    background-color:antiquewhite;
+    width: 70%;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 50px;
+
+}
+
+#Content {
+    height: 200px;
+}
+
+#Footer {
+    background-color: lightgreen;
 }

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Welcome to virtual hospital</title>
-    <link href="Stylesheet/index.css" rel="stylesheet" type="text/css">
+    <link href="Stylesheet/index.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     <form id="form1" runat="server">

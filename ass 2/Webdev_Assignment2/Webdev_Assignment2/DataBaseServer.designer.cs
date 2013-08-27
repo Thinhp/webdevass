@@ -23,7 +23,7 @@ namespace Webdev_Assignment2
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Webdev_Assignment2")]
-	public partial class DataSourceDataContext : System.Data.Linq.DataContext
+	public partial class DataBaseServerDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -33,12 +33,12 @@ namespace Webdev_Assignment2
     partial void InsertDoctor(Doctor instance);
     partial void UpdateDoctor(Doctor instance);
     partial void DeleteDoctor(Doctor instance);
-    partial void InsertDrug(Drug instance);
-    partial void UpdateDrug(Drug instance);
-    partial void DeleteDrug(Drug instance);
     partial void InsertVisit(Visit instance);
     partial void UpdateVisit(Visit instance);
     partial void DeleteVisit(Visit instance);
+    partial void InsertDrug(Drug instance);
+    partial void UpdateDrug(Drug instance);
+    partial void DeleteDrug(Drug instance);
     partial void InsertDrugGroup(DrugGroup instance);
     partial void UpdateDrugGroup(DrugGroup instance);
     partial void DeleteDrugGroup(DrugGroup instance);
@@ -71,31 +71,31 @@ namespace Webdev_Assignment2
     partial void DeleteUser(User instance);
     #endregion
 		
-		public DataSourceDataContext() : 
+		public DataBaseServerDataContext() : 
 				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["Webdev_Assignment2ConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataSourceDataContext(string connection) : 
+		public DataBaseServerDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataSourceDataContext(System.Data.IDbConnection connection) : 
+		public DataBaseServerDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataSourceDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DataBaseServerDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataSourceDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DataBaseServerDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -109,19 +109,19 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		public System.Data.Linq.Table<Drug> Drugs
-		{
-			get
-			{
-				return this.GetTable<Drug>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Visit> Visits
 		{
 			get
 			{
 				return this.GetTable<Visit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Drug> Drugs
+		{
+			get
+			{
+				return this.GetTable<Drug>();
 			}
 		}
 		
@@ -347,229 +347,6 @@ namespace Webdev_Assignment2
 					this._Address = value;
 					this.SendPropertyChanged("Address");
 					this.OnAddressChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Drug")]
-	public partial class Drug : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		private string _GenericName;
-		
-		private System.Nullable<int> _Unit;
-		
-		private System.Nullable<decimal> _Price;
-		
-		private System.Nullable<int> _DrugGroupId;
-		
-		private EntityRef<DrugGroup> _DrugGroup;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnGenericNameChanging(string value);
-    partial void OnGenericNameChanged();
-    partial void OnUnitChanging(System.Nullable<int> value);
-    partial void OnUnitChanged();
-    partial void OnPriceChanging(System.Nullable<decimal> value);
-    partial void OnPriceChanged();
-    partial void OnDrugGroupIdChanging(System.Nullable<int> value);
-    partial void OnDrugGroupIdChanged();
-    #endregion
-		
-		public Drug()
-		{
-			this._DrugGroup = default(EntityRef<DrugGroup>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenericName", DbType="VarChar(50)")]
-		public string GenericName
-		{
-			get
-			{
-				return this._GenericName;
-			}
-			set
-			{
-				if ((this._GenericName != value))
-				{
-					this.OnGenericNameChanging(value);
-					this.SendPropertyChanging();
-					this._GenericName = value;
-					this.SendPropertyChanged("GenericName");
-					this.OnGenericNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unit", DbType="Int")]
-		public System.Nullable<int> Unit
-		{
-			get
-			{
-				return this._Unit;
-			}
-			set
-			{
-				if ((this._Unit != value))
-				{
-					this.OnUnitChanging(value);
-					this.SendPropertyChanging();
-					this._Unit = value;
-					this.SendPropertyChanged("Unit");
-					this.OnUnitChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugGroupId", DbType="Int")]
-		public System.Nullable<int> DrugGroupId
-		{
-			get
-			{
-				return this._DrugGroupId;
-			}
-			set
-			{
-				if ((this._DrugGroupId != value))
-				{
-					if (this._DrugGroup.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDrugGroupIdChanging(value);
-					this.SendPropertyChanging();
-					this._DrugGroupId = value;
-					this.SendPropertyChanged("DrugGroupId");
-					this.OnDrugGroupIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrugGroup_Drug", Storage="_DrugGroup", ThisKey="DrugGroupId", OtherKey="Id", IsForeignKey=true)]
-		public DrugGroup DrugGroup
-		{
-			get
-			{
-				return this._DrugGroup.Entity;
-			}
-			set
-			{
-				DrugGroup previousValue = this._DrugGroup.Entity;
-				if (((previousValue != value) 
-							|| (this._DrugGroup.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DrugGroup.Entity = null;
-						previousValue.Drugs.Remove(this);
-					}
-					this._DrugGroup.Entity = value;
-					if ((value != null))
-					{
-						value.Drugs.Add(this);
-						this._DrugGroupId = value.Id;
-					}
-					else
-					{
-						this._DrugGroupId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("DrugGroup");
 				}
 			}
 		}
@@ -947,6 +724,229 @@ namespace Webdev_Assignment2
 						this._PrescriptionId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Prescription");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Drug")]
+	public partial class Drug : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private string _GenericName;
+		
+		private System.Nullable<int> _Unit;
+		
+		private System.Nullable<decimal> _Price;
+		
+		private System.Nullable<int> _DrugGroupId;
+		
+		private EntityRef<DrugGroup> _DrugGroup;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnGenericNameChanging(string value);
+    partial void OnGenericNameChanged();
+    partial void OnUnitChanging(System.Nullable<int> value);
+    partial void OnUnitChanged();
+    partial void OnPriceChanging(System.Nullable<decimal> value);
+    partial void OnPriceChanged();
+    partial void OnDrugGroupIdChanging(System.Nullable<int> value);
+    partial void OnDrugGroupIdChanged();
+    #endregion
+		
+		public Drug()
+		{
+			this._DrugGroup = default(EntityRef<DrugGroup>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenericName", DbType="VarChar(50)")]
+		public string GenericName
+		{
+			get
+			{
+				return this._GenericName;
+			}
+			set
+			{
+				if ((this._GenericName != value))
+				{
+					this.OnGenericNameChanging(value);
+					this.SendPropertyChanging();
+					this._GenericName = value;
+					this.SendPropertyChanged("GenericName");
+					this.OnGenericNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unit", DbType="Int")]
+		public System.Nullable<int> Unit
+		{
+			get
+			{
+				return this._Unit;
+			}
+			set
+			{
+				if ((this._Unit != value))
+				{
+					this.OnUnitChanging(value);
+					this.SendPropertyChanging();
+					this._Unit = value;
+					this.SendPropertyChanged("Unit");
+					this.OnUnitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugGroupId", DbType="Int")]
+		public System.Nullable<int> DrugGroupId
+		{
+			get
+			{
+				return this._DrugGroupId;
+			}
+			set
+			{
+				if ((this._DrugGroupId != value))
+				{
+					if (this._DrugGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDrugGroupIdChanging(value);
+					this.SendPropertyChanging();
+					this._DrugGroupId = value;
+					this.SendPropertyChanged("DrugGroupId");
+					this.OnDrugGroupIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrugGroup_Drug", Storage="_DrugGroup", ThisKey="DrugGroupId", OtherKey="Id", IsForeignKey=true)]
+		public DrugGroup DrugGroup
+		{
+			get
+			{
+				return this._DrugGroup.Entity;
+			}
+			set
+			{
+				DrugGroup previousValue = this._DrugGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._DrugGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DrugGroup.Entity = null;
+						previousValue.Drugs.Remove(this);
+					}
+					this._DrugGroup.Entity = value;
+					if ((value != null))
+					{
+						value.Drugs.Add(this);
+						this._DrugGroupId = value.Id;
+					}
+					else
+					{
+						this._DrugGroupId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("DrugGroup");
 				}
 			}
 		}
