@@ -8,17 +8,31 @@
     <link href="Stylesheet/master.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
-    <div id="Page">
-        <div id="Header"> Electronic Medical Record (EMR)</div>
-        <div id="Menu">Home Collection About</div>
-        <div id="Content">
-            <asp:LinkButton ID="LinkButton1" runat="server">LinkButton</asp:LinkButton>
+        <div id="Page">
+            <div id="AccountArea">
+                <asp:Label ID="WelcomeLabel" runat="server"></asp:Label>
+                <asp:LinkButton ID="LogoutLinkButton" runat="server" OnClick="LogoutLinkButton_Click">  Logout</asp:LinkButton>
+            </div>
+            <div id="Menu">Home Collection About</div>
+            <div id="Header">Electronic Medical Record (EMR)</div>
+
+            <div id="ContentArea">
+                <div id="EntityPanel">
+
+                    <asp:LinkButton ID="LinkButton1" class="Entity" runat="server" ForeColor="#009933" Width="200px">Doctor</asp:LinkButton><br />
+
+                    <asp:LinkButton ID="LinkButton2" class="Entity" runat="server" ForeColor="#009933" Width="200px">Patient</asp:LinkButton><br />
+
+                    <asp:LinkButton ID="LinkButton3" class="Entity" runat="server" ForeColor="#009933" Width="200px">Hospital</asp:LinkButton><br />
+                    
+                </div>
+
+            </div>
+            <div id="Footer">Footer</div>
         </div>
-        <div id="Footer">Footer</div>
-    </div>
     </form>
 </body>
 </html>

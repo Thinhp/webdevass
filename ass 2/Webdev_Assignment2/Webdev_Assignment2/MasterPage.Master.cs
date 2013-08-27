@@ -11,7 +11,22 @@ namespace Webdev_Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Username"] != null || !Session["Username"].Equals(""))
+            {
+                WelcomeLabel.Text = "Welcome  " + (string)Session["Username"];
+            }
+
 
         }
+
+        protected void LogoutLinkButton_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            Session["Username"] = "";
+            Session["Password"] = "";
+            Session["Role"] = "";
+            response.Redirect("http://localhost:37730/index.aspx", false);
+        }
+
     }
 }
