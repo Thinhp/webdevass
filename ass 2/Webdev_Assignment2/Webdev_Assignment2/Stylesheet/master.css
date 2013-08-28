@@ -46,13 +46,26 @@
     background-color: lightyellow;
     width: 200px;
     background-color: #99D6FF;
+    color: #009933;
 }
 
     .Entity:hover
     {
         background-color: #33ADFF;
+        color: yellow;
     }
+
+#ContentPage
+{
+    border: 2px solid red;
+    margin-left: 200px;
+    margin-top: -500px;
+    height: 500px;
+    
+}
+
 
 #Footer {
     background-color: lightgreen;
+    height: 100px;
 }

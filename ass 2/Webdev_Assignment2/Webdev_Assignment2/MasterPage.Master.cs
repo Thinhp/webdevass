@@ -11,9 +11,14 @@ namespace Webdev_Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Username"] != null || !Session["Username"].Equals(""))
+            if (Session["Username"] != null && !Session["Username"].Equals(""))
             {
                 WelcomeLabel.Text = "Welcome  " + (string)Session["Username"];
+            }
+            else
+            {
+                var response = base.Response;
+                response.Redirect("~/error.aspx",false);
             }
 
 
@@ -25,7 +30,13 @@ namespace Webdev_Assignment2
             Session["Username"] = "";
             Session["Password"] = "";
             Session["Role"] = "";
-            response.Redirect("http://localhost:37730/index.aspx", false);
+            response.Redirect("index.aspx", false);
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("Entities/doctor.aspx", false);
         }
 
     }

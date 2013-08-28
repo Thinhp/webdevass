@@ -19,8 +19,6 @@ namespace Webdev_Assignment2
 
         protected void LoginForm1_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            bool isAdmin = false;
-
             //Get response
             var response = base.Response;
 

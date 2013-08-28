@@ -58,8 +58,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entities\doctor.aspx" />
+    <Content Include="error.aspx" />
     <Content Include="home.aspx" />
     <Content Include="index.aspx" />
+    <Content Include="Stylesheet\doctor.css" />
     <Content Include="Stylesheet\index.css" />
     <Content Include="Stylesheet\master.css" />
     <Content Include="Web.config">
@@ -71,6 +74,20 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBaseServer.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\doctor.aspx.cs">
+      <DependentUpon>doctor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\doctor.aspx.designer.cs">
+      <DependentUpon>doctor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -116,6 +133,9 @@
     <None Include="DataBaseServer.dbml.layout">
       <DependentUpon>DataBaseServer.dbml</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utility\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
