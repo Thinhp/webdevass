@@ -30,13 +30,13 @@ namespace Webdev_Assignment2
             Session["Username"] = "";
             Session["Password"] = "";
             Session["Role"] = "";
-            response.Redirect("index.aspx", false);
+            response.Redirect("~/index.aspx", false);
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
             var response = base.Response;
-            response.Redirect("Entities/doctor.aspx", false);
+            response.Redirect("~/Entities/doctor.aspx", false);
         }
 
         protected void HomeButton_Click(object sender, EventArgs e)

@@ -16,9 +16,22 @@ namespace Webdev_Assignment2.Entities
 
         protected void SearchButton_Click(object sender, EventArgs e)
         {
+            System.Threading.Thread.Sleep(2000);
             string searchkey = SearchField.Text;
 
-            System.Threading.Thread.Sleep(3000);
+            using (DataBaseServerDataContext db = new DataBaseServerDataContext())
+            {
+                var query = db.Doctors.Where(x => x.Name == searchkey).ToList();
+                this.GridView1.DataSource = query;
+                this.GridView1.DataSourceID = string.Empty;
+                this.GridView1.DataBind();
+            }
+
+        }
+
+        protected void LinqDataSource1_Selecting(object sender, LinqDataSourceSelectEventArgs e)
+        {
+
         }
     }
 }
