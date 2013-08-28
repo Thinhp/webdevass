@@ -7,6 +7,7 @@
 
 #AccountArea {
     text-align: right;
+    color: white;
 }
 
 #Header {
@@ -18,7 +19,7 @@
 }
 
 #Menu {
-    background-color:antiquewhite;
+    background-color: #003333;
     width: 1200px;
     height: 50px;
     margin-left: auto;
@@ -27,8 +28,30 @@
 
 }
 
+.MenuButton {
+    margin-right: 1px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #003333;
+    width: 200px;
+    color: #FFFFFF;
+}
+
+    .MenuButton:hover {
+        background-color: #008080;
+        color: black;
+    }
+
+.MenuButtonWrap {
+    float: left;
+}
+
+#LogoutLinkButton {
+    margin-right: 20px;
+}
+
 #ContentArea {
-    height: 800px;
+    height: 680px;
     margin-left:inherit;
 }
 
@@ -45,14 +68,14 @@
     line-height: 50px;
     background-color: lightyellow;
     width: 200px;
-    background-color: #99D6FF;
-    color: #009933;
+    background-color: #003333;
+    color: #FFFFFF;
 }
 
     .Entity:hover
     {
-        background-color: #33ADFF;
-        color: yellow;
+        background-color: #008080;
+        color: #000000;
     }
 
 #ContentPage

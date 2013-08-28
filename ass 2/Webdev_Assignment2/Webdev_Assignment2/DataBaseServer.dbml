@@ -2,7 +2,7 @@
   <Connection Mode="WebSettings" ConnectionString="Data Source=THINHLAPTOP\SQLEXPRESS;Initial Catalog=Webdev_Assignment2;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Webdev_Assignment2ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Doctor" Member="Doctors">
     <Type Name="Doctor">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Dob" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Licensenumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -11,7 +11,7 @@
   </Table>
   <Table Name="dbo.Visit" Member="Visits">
     <Type Name="Visit">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TreatedDate" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Place" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="TreatedPatient" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -27,7 +27,7 @@
   </Table>
   <Table Name="dbo.Drug" Member="Drugs">
     <Type Name="Drug">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="GenericName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Unit" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -38,14 +38,14 @@
   </Table>
   <Table Name="dbo.DrugGroup" Member="DrugGroups">
     <Type Name="DrugGroup">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="GroupName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="DrugGroup_Drug" Member="Drugs" ThisKey="Id" OtherKey="DrugGroupId" Type="Drug" />
     </Type>
   </Table>
   <Table Name="dbo.Hospitals" Member="Hospitals">
     <Type Name="Hospital">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Licensenumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
@@ -61,7 +61,7 @@
   </Table>
   <Table Name="dbo.LabOrder" Member="LabOrders">
     <Type Name="LabOrder">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Date" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="OrderedDoctor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="LabOrderedDetailsId" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -71,7 +71,7 @@
   </Table>
   <Table Name="dbo.LabOrderDetails" Member="LabOrderDetails">
     <Type Name="LabOrderDetail">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MedicalServer" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Result" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="LabOrderDetail_LabOrder" Member="LabOrders" ThisKey="Id" OtherKey="LabOrderedDetailsId" Type="LabOrder" />
@@ -79,7 +79,7 @@
   </Table>
   <Table Name="dbo.MedicalService" Member="MedicalServices">
     <Type Name="MedicalService">
-      <Column Name="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ServiceName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="ServiceGroupId" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -88,14 +88,14 @@
   </Table>
   <Table Name="dbo.MedicalServiceGroup" Member="MedicalServiceGroups">
     <Type Name="MedicalServiceGroup">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ServiceGroup" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="MedicalServiceGroup_MedicalService" Member="MedicalServices" ThisKey="Id" OtherKey="ServiceGroupId" Type="MedicalService" />
     </Type>
   </Table>
   <Table Name="dbo.Patient" Member="Patients">
     <Type Name="Patient">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Gender" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Dob" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
@@ -104,7 +104,7 @@
   </Table>
   <Table Name="dbo.Prescription" Member="Prescriptions">
     <Type Name="Prescription">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Date" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PrescribedDoctor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="PrescriptionDetailsId" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -114,7 +114,7 @@
   </Table>
   <Table Name="dbo.PrescriptionDetails" Member="PrescriptionDetails">
     <Type Name="PrescriptionDetail">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="DrugId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DosePerDay" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -124,7 +124,7 @@
   </Table>
   <Table Name="dbo.[User]" Member="Users">
     <Type Name="User">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UserName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Password" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Column Name="Role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />

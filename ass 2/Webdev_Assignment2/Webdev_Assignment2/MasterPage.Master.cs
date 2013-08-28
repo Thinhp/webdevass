@@ -39,5 +39,16 @@ namespace Webdev_Assignment2
             response.Redirect("Entities/doctor.aspx", false);
         }
 
+        protected void HomeButton_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/home.aspx", false);
+        }
+
+        protected void AboutButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

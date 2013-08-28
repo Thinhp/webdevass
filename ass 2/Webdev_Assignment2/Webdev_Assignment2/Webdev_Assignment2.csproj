@@ -61,6 +61,7 @@
     <Content Include="Entities\doctor.aspx" />
     <Content Include="error.aspx" />
     <Content Include="home.aspx" />
+    <Content Include="Image\ajax-loader.gif" />
     <Content Include="index.aspx" />
     <Content Include="Stylesheet\doctor.css" />
     <Content Include="Stylesheet\index.css" />

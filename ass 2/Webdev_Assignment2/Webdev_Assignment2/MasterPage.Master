@@ -8,15 +8,23 @@
     <link href="Stylesheet/master.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    </head>
+</head>
 <body>
     <form id="form1" runat="server">
         <div id="Page">
-            <div id="AccountArea">
-                <asp:Label ID="WelcomeLabel" runat="server"></asp:Label>
-                <asp:LinkButton ID="LogoutLinkButton" runat="server" OnClick="LogoutLinkButton_Click">  Logout</asp:LinkButton>
+
+            <div id="Menu">
+                <div class="MenuButtonWrap">
+                    <asp:LinkButton class="MenuButton" runat="server" OnClick="HomeButton_Click" Width="100px">Home</asp:LinkButton>
+                </div>
+                <div class="MenuButtonWrap">
+                    <asp:LinkButton class="MenuButton" runat="server" OnClick="AboutButton_Click" Width="100px">About</asp:LinkButton>
+                </div>
+                <div id="AccountArea">
+                    <asp:Label ID="WelcomeLabel" runat="server"></asp:Label>
+                    <asp:LinkButton ID="LogoutLinkButton" runat="server" OnClick="LogoutLinkButton_Click" ForeColor="Yellow">  Logout</asp:LinkButton>
+                </div>
             </div>
-            <div id="Menu">Home Collection About</div>
             <div id="Header">Electronic Medical Record (EMR)</div>
 
             <div id="ContentArea">
@@ -33,7 +41,7 @@
                     <asp:LinkButton ID="LinkButton5" class="Entity" runat="server" Width="200px">Prescription</asp:LinkButton><br />
 
                     <asp:LinkButton ID="LinkButton6" class="Entity" runat="server" Width="200px">PrescriptionDetails</asp:LinkButton><br />
-                    
+
                     <asp:LinkButton ID="LinkButton7" class="Entity" runat="server" Width="200px">Lab Order</asp:LinkButton><br />
 
                     <asp:LinkButton ID="LinkButton8" class="Entity" runat="server" Width="200px">Lab Order Details</asp:LinkButton><br />
@@ -49,12 +57,11 @@
                     <asp:LinkButton ID="LinkButton13" class="Entity" runat="server" Width="200px">ICD</asp:LinkButton><br />
                 </div>
                 <div id="ContentPage">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
-
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
-            
-            
+
+
             </div>
             <div id="Footer">Footer</div>
         </div>

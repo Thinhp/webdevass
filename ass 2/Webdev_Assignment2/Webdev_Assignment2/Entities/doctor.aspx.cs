@@ -13,5 +13,12 @@ namespace Webdev_Assignment2.Entities
         {
 
         }
+
+        protected void SearchButton_Click(object sender, EventArgs e)
+        {
+            string searchkey = SearchField.Text;
+
+            System.Threading.Thread.Sleep(3000);
+        }
     }
 }
