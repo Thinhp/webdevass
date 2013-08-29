@@ -1,19 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="doctor.aspx.cs" Inherits="Webdev_Assignment2.Entities.doctor" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="../Stylesheet/doctor.css" rel="stylesheet" />
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePageMethods="true"></asp:ToolkitScriptManager>
     <div id="doctorfield">
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div id="doctorsearchfield">
                     <asp:Button ID="SearchButton" class="AllSearchButtons btn btn-default" runat="server" Text="Search" OnClick="SearchButton_Click" />
-                    <asp:TextBox ID="SearchField" runat="server" class="AllSearchFields" placeholder="Search" Height="33px" Width="210px"></asp:TextBox>
+
+                    <asp:TextBox ID="SearchField" runat="server" class="AllSearchFields" placeholder="Search" Height="33px" Width="310px"></asp:TextBox>
+
+                    <asp:AutoCompleteExtender ID="SearchField_AutoCompleteExtender" runat="server" TargetControlID="SearchField"
+                        MinimumPrefixLength="1" CompletionInterval="10" ServiceMethod="GetCompletionList"
+                        Enabled="true" CompletionSetCount="10" EnableCaching="true">
+                    </asp:AutoCompleteExtender>
 
                 </div>
                 <asp:UpdateProgress ID="UpdateProgress1" class="AllUpdateProgresses" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
@@ -22,7 +28,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
                 <asp:GridView ID="GridView1" class="AllGridViews" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="652px">
+                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="738px">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" InsertVisible="False" />
@@ -56,29 +62,34 @@
                                 <td>
                                     <asp:Label ID="NameLabel" class="NewBoxTextLabel" runat="server" Text="Name:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="NameTextBox" runat="server" Width="196px"></asp:TextBox>
+                                    
+                                    <asp:RegularExpressionValidator ID="NameValidation" runat="server" ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
+                                    
+                                </td>
                             </tr>
                             <tr>
                                 <td>
                                     <asp:Label ID="DobLabel" class="NewBoxTextLabel" runat="server" Text="Date of birth:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="DobTextBox" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="DobTextBox" runat="server" Width="196px"></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td>
                                     <asp:Label ID="LicenseLabel" class="NewBoxTextLabel" runat="server" Text="License number:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="LicenseTextBox" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="LicenseTextBox" runat="server" Width="196px"></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td>
                                     <asp:Label ID="AddressLabel" class="NewBoxTextLabel" runat="server" Text="Address:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="AddressTextBox" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="AddressTextBox" runat="server" Width="196px"></asp:TextBox></td>
                             </tr>
-                                                        <tr>
-                                <td><td>
-                                    <asp:Button ID="InsertButton" class="btn btn-success" runat="server" OnClick="InsertButton_Click" Text="Insert"></asp:Button></td>
+                            <tr>
+                                <td>
+                                    <td>
+                                        <asp:Button ID="InsertButton" class="btn btn-success" runat="server" OnClick="InsertButton_Click" Text="Insert" Width="106px"></asp:Button></td>
                             </tr>
                         </table>
 

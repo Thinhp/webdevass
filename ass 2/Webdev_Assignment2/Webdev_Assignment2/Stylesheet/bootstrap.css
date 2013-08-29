@@ -1489,7 +1489,7 @@ th {
 }
 
 .table {
-  width: 78%;
+  width: 88%;
   margin-bottom: 21px;
 }
 
@@ -5854,7 +5854,7 @@ a.list-group-item:focus {
 
 .panel-success {
   border-color: #4e9f15;
-    width: 650px;
+    width: 736px;
 }
 
 .panel-success > .panel-heading {

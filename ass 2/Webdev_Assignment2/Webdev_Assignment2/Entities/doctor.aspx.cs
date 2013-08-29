@@ -73,8 +73,31 @@ namespace Webdev_Assignment2.Entities
             LicenseTextBox.Text = "";
             AddressTextBox.Text = "";
 
-
         }
+
+        [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod]
+        public static string[] GetCompletionList(string prefixText)
+        {
+            DataBaseServerDataContext db = new DataBaseServerDataContext();
+            var result = (from n in db.Doctors
+                         where n.Id.ToString().ToLower().Contains(prefixText.ToLower())
+                         select n.Id.ToString())
+                         .Union(from n in db.Doctors
+                                where n.Name.ToLower().Contains(prefixText.ToLower())
+                                select n.Name)
+                                .Union(from n in db.Doctors
+                                       where n.Dob.Contains(prefixText.ToLower())
+                                       select n.Dob)
+                                       .Union(from n in db.Doctors
+                                              where n.Address.ToLower().Contains(prefixText.ToLower())
+                                              select n.Address)
+                                              .Union(from n in db.Doctors
+                                                     where n.Licensenumber.ToLower().Contains(prefixText.ToLower())
+                                                     select n.Licensenumber);
+
+            return result.ToArray();
+        }   
 
     }
 }

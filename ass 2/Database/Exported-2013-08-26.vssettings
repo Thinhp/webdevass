@@ -650,7 +650,7 @@
 												</TabGroup>
 											</DockGroup>
 											<DocumentGroupContainer IsVisible="True" DockedHeight="*" DockedWidth="*" FloatingTop="0" FloatingLeft="0">
-												<DocumentGroup IsVisible="True" FloatingTop="0" FloatingLeft="0">
+												<DocumentGroup FloatingTop="0" FloatingLeft="0">
 													<wm:ToolWindowView Name="ST:0:0:{29ce07d3-1898-47d3-88fa-15453b726b27}" FloatingTop="76.8" FloatingLeft="102.4" FloatingHeight="537.6" FloatingWidth="716.8"/>
 													<wm:ToolWindowView Name="ST:0:0:{c79b74ff-f1d7-4c94-aefa-4d22bfe1b1f9}" FloatingTop="76.8" FloatingLeft="102.4" FloatingHeight="537.6" FloatingWidth="716.8"/>
 													<wm:ToolWindowView ContextVisibilityEnabled="False" ForceCreate="DontForceCreate" Name="ST:0:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}" FloatingTop="76.8" FloatingLeft="102.4" FloatingHeight="537.6" FloatingWidth="716.8"/>
@@ -706,13 +706,13 @@
 											</TabGroup>
 										</DockGroup>
 									</DockGroup>
-									<DockGroup Orientation="Vertical" IsVisible="True" DockedHeight="685" DockedWidth="324">
-										<TabGroup DockedHeight="685" DockedWidth="324" FloatingTop="450" FloatingLeft="1167" FloatingHeight="693" FloatingWidth="258">
-											<wm:ToolWindowView ForceCreate="ForceCreate" IconIndex="2" IconResourceID="6650" IconResourcePackage="da9fb551-c724-11d0-ae1f-00a0c90fffc3" Name="ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}" IsSelected="True" DockedHeight="685" DockedWidth="324" FloatingTop="282" FloatingLeft="994" FloatingHeight="538" FloatingWidth="205"/>
-											<wm:ToolWindowView ForceCreate="ForceCreate" IconIndex="0" IconResourceID="306" IconResourcePackage="70aa6d64-1357-4652-a41d-2bd680b26946" Name="ST:0:0:{e01a3358-4577-42a1-a4a2-4667f21e1c72}" DockedHeight="685" DockedWidth="324" FloatingTop="450" FloatingLeft="1167" FloatingHeight="693" FloatingWidth="258"/>
-											<wm:ToolWindowView ContextVisibilityEnabled="False" ForceCreate="ForceCreate" Name="ST:0:0:{66dba47c-61df-11d2-aa79-00c04f990343}" DockedHeight="685" DockedWidth="324" FloatingTop="76.8" FloatingLeft="819.2" FloatingHeight="693" FloatingWidth="258"/>
+									<DockGroup Orientation="Vertical" IsVisible="True" DockedHeight="685" DockedWidth="216">
+										<TabGroup DockedHeight="685" DockedWidth="216" FloatingTop="450" FloatingLeft="1167" FloatingHeight="693" FloatingWidth="258">
+											<wm:ToolWindowView ForceCreate="ForceCreate" IconIndex="2" IconResourceID="6650" IconResourcePackage="da9fb551-c724-11d0-ae1f-00a0c90fffc3" Name="ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}" IsSelected="True" DockedHeight="685" DockedWidth="216" FloatingTop="282" FloatingLeft="994" FloatingHeight="538" FloatingWidth="205"/>
+											<wm:ToolWindowView ForceCreate="ForceCreate" IconIndex="0" IconResourceID="306" IconResourcePackage="70aa6d64-1357-4652-a41d-2bd680b26946" Name="ST:0:0:{e01a3358-4577-42a1-a4a2-4667f21e1c72}" DockedHeight="685" DockedWidth="216" FloatingTop="450" FloatingLeft="1167" FloatingHeight="693" FloatingWidth="258"/>
+											<wm:ToolWindowView ContextVisibilityEnabled="False" ForceCreate="ForceCreate" Name="ST:0:0:{66dba47c-61df-11d2-aa79-00c04f990343}" DockedHeight="685" DockedWidth="216" FloatingTop="76.8" FloatingLeft="819.2" FloatingHeight="693" FloatingWidth="258"/>
 										</TabGroup>
-										<wm:ToolWindowView ForceCreate="ForceCreate" IconIndex="1" IconResourceID="6650" IconResourcePackage="da9fb551-c724-11d0-ae1f-00a0c90fffc3" Name="ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}" IsSelected="True" IsVisible="True" DockedHeight="677.092352092352" DockedWidth="324" FloatingTop="496" FloatingLeft="1043" FloatingHeight="693" FloatingWidth="258"/>
+										<wm:ToolWindowView ForceCreate="ForceCreate" IconIndex="1" IconResourceID="6650" IconResourcePackage="da9fb551-c724-11d0-ae1f-00a0c90fffc3" Name="ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}" IsSelected="True" IsVisible="True" DockedHeight="677.092352092352" DockedWidth="216" FloatingTop="496" FloatingLeft="1043" FloatingHeight="693" FloatingWidth="258"/>
 									</DockGroup>
 								</DockGroup>
 							</DockRoot>
