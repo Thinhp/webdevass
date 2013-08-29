@@ -12,17 +12,17 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div id="doctorsearchfield">
-                    <asp:Button ID="SearchButton" class="AllSearchButtons" runat="server" Text="Search" OnClick="SearchButton_Click" />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <asp:TextBox ID="SearchField" class="AllSearchFields" runat="server"></asp:TextBox>
+                    <asp:Button ID="SearchButton" class="AllSearchButtons btn btn-default" runat="server" Text="Search" OnClick="SearchButton_Click" />
+                    <asp:TextBox ID="SearchField" runat="server" class="AllSearchFields" placeholder="Search" Height="33px" Width="210px"></asp:TextBox>
+
                 </div>
-                <br />
                 <asp:UpdateProgress ID="UpdateProgress1" class="AllUpdateProgresses" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
                     <ProgressTemplate>
                         <img src="../Image/ajax-loader.gif" style="width: 147px; height: 18px" />
                     </ProgressTemplate>
                 </asp:UpdateProgress>
-                <asp:GridView ID="GridView1" class="AllGridViews" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" 
-                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="652px" >
+                <asp:GridView ID="GridView1" class="AllGridViews" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
+                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="652px">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" InsertVisible="False" />
@@ -45,29 +45,48 @@
                 </asp:GridView>
                 <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Doctors" OnSelecting="LinqDataSource1_Selecting">
                 </asp:LinqDataSource>
+
+                <div class="Newbox panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Create new doctor</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table" table-striped table-bordered table-hover>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="NameLabel" class="NewBoxTextLabel" runat="server" Text="Name:"></asp:Label></td>
+                                <td>
+                                    <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="DobLabel" class="NewBoxTextLabel" runat="server" Text="Date of birth:"></asp:Label></td>
+                                <td>
+                                    <asp:TextBox ID="DobTextBox" runat="server"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="LicenseLabel" class="NewBoxTextLabel" runat="server" Text="License number:"></asp:Label></td>
+                                <td>
+                                    <asp:TextBox ID="LicenseTextBox" runat="server"></asp:TextBox></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="AddressLabel" class="NewBoxTextLabel" runat="server" Text="Address:"></asp:Label></td>
+                                <td>
+                                    <asp:TextBox ID="AddressTextBox" runat="server"></asp:TextBox></td>
+                            </tr>
+                                                        <tr>
+                                <td><td>
+                                    <asp:Button ID="InsertButton" class="btn btn-success" runat="server" OnClick="InsertButton_Click" Text="Insert"></asp:Button></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
                 <br />
                 <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Label ID="NameLabel" runat="server" Text="Name:"></asp:Label>
-                &nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox>
-                <br />
-                <br />
-                &nbsp;&nbsp;&nbsp;
-                <asp:Label ID="DobLabel" runat="server" Text="Date of birth:"></asp:Label>
-                &nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="DateOfBirthTextBox" runat="server"></asp:TextBox>
-                <br />
-                <br />
-                <asp:Label ID="LicenseLabel" runat="server" Text="License number:"></asp:Label>
-                &nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="LicenseTextBox" runat="server"></asp:TextBox>
-                <br />
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Label ID="AddressLabel" runat="server" Text="Address:"></asp:Label>
-                &nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="AddressTextBox" runat="server"></asp:TextBox>
+
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

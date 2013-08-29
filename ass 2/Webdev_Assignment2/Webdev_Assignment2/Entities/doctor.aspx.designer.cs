@@ -103,13 +103,13 @@ namespace Webdev_Assignment2.Entities {
         protected global::System.Web.UI.WebControls.Label DobLabel;
         
         /// <summary>
-        /// DateOfBirthTextBox control.
+        /// DobTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DateOfBirthTextBox;
+        protected global::System.Web.UI.WebControls.TextBox DobTextBox;
         
         /// <summary>
         /// LicenseLabel control.
@@ -146,5 +146,14 @@ namespace Webdev_Assignment2.Entities {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddressTextBox;
+        
+        /// <summary>
+        /// InsertButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button InsertButton;
     }
 }

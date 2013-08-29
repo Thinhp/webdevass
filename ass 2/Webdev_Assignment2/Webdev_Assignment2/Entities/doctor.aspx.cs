@@ -18,27 +18,12 @@ namespace Webdev_Assignment2.Entities
 
         protected void SearchButton_Click(object sender, EventArgs e)
         {
-            //System.Threading.Thread.Sleep(1000);
-            //string searchkey = SearchField.Text;
-            //tempId = this.GridView1.DataSourceID;
+            //Make it sleeps a bit
+            System.Threading.Thread.Sleep(1000);
 
-            //using (DataBaseServerDataContext db = new DataBaseServerDataContext())
-            //{
-            //    //var query = db.Doctors.Where(x => x.Name == searchkey).ToList();
+            //Bind data
+            this.GridView1.DataBind();
 
-            //    var searched = from p in db.Doctors
-            //                   where p.Name.Contains(searchkey)
-            //                   || p.Licensenumber.Contains(searchkey)
-            //                   || p.Id.ToString().Contains(searchkey)
-            //                   || p.Address.Contains(searchkey)
-            //                   select p;
-
-            //    this.GridView1.DataSource = searched;
-            //    this.GridView1.DataSourceID = string.Empty;
-                this.GridView1.DataBind();
-
-                //this.GridView1.DataSourceID = tempId;
-            //}
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,6 +33,7 @@ namespace Webdev_Assignment2.Entities
 
         protected void LinqDataSource1_Selecting(object sender, LinqDataSourceSelectEventArgs e)
         {
+            //Get the linq command and put 'e' paramter result equal to the variable
             DataBaseServerDataContext db = new DataBaseServerDataContext();
             string searchkey = SearchField.Text;
 
@@ -61,7 +47,34 @@ namespace Webdev_Assignment2.Entities
             e.Result = searched;
         }
 
+        protected void InsertButton_Click(object sender, EventArgs e)
+        {
+            DataBaseServerDataContext db = new DataBaseServerDataContext();
+            var name = NameTextBox.Text;
+            var dob = DobTextBox.Text;
+            var license = LicenseTextBox.Text;
+            var address = AddressTextBox.Text;
 
+            var insert = new Doctor()
+            {
+                Name = name,
+                Dob = dob,
+                Licensenumber = license,
+                Address = address
+            };
+
+            db.Doctors.InsertOnSubmit(insert);
+            db.SubmitChanges();
+            GridView1.DataBind();
+
+            //reset field
+            NameTextBox.Text = "";
+            DobTextBox.Text = "";
+            LicenseTextBox.Text = "";
+            AddressTextBox.Text = "";
+
+
+        }
 
     }
 }

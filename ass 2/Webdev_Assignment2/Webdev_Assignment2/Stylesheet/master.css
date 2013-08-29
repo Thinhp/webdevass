@@ -19,7 +19,7 @@
 }
 
 #Menu {
-    background-color: #003333;
+    background-color: #1C5E55;
     width: 1200px;
     height: 50px;
     margin-left: auto;
@@ -32,13 +32,13 @@
     margin-right: 1px;
     text-align: center;
     line-height: 50px;
-    background-color: #003333;
+    background-color: #1C5E55;
     width: 200px;
     color: #FFFFFF;
 }
 
     .MenuButton:hover {
-        background-color: #008080;
+        background-color: #003333;
         color: black;
     }
 
@@ -51,7 +51,7 @@
 }
 
 #ContentArea {
-    height: 680px;
+    height: 900px;
     margin-left:inherit;
 }
 
@@ -68,7 +68,7 @@
     line-height: 50px;
     background-color: lightyellow;
     width: 200px;
-    background-color: #003333;
+    background-color: #1C5E55;
     color: #FFFFFF;
 }
 
@@ -88,18 +88,31 @@
 
 .AllGridViews {
     margin-left: 50px;
+    margin-top: 20px;
 }
 
 .AllSearchButtons {
     margin-left: 50px;
+    margin-bottom: 20px;
 }
 
 .AllSearchFields {
-    margin-left: 50px;
+    margin-left: 30px;
 }
 
 .AllUpdateProgresses {
-    margin-left: 190px;
+    margin-left: 165px;
+    margin-bottom: 20px;
+}
+
+.Newbox {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.NewBoxTextLabel
+{
+    float:right;
 }
 
 
