@@ -112,6 +112,15 @@ namespace Webdev_Assignment2.Entities {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator NameValidation;
         
         /// <summary>
+        /// NameValidation2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NameValidation2;
+        
+        /// <summary>
         /// DobLabel control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,24 @@ namespace Webdev_Assignment2.Entities {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox DobTextBox;
+        
+        /// <summary>
+        /// DobValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DobValidation;
+        
+        /// <summary>
+        /// DobCalendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar DobCalendar;
         
         /// <summary>
         /// LicenseLabel control.
@@ -148,6 +175,15 @@ namespace Webdev_Assignment2.Entities {
         protected global::System.Web.UI.WebControls.TextBox LicenseTextBox;
         
         /// <summary>
+        /// LicenseValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator LicenseValidation;
+        
+        /// <summary>
         /// AddressLabel control.
         /// </summary>
         /// <remarks>
@@ -164,6 +200,15 @@ namespace Webdev_Assignment2.Entities {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AddressTextBox;
+        
+        /// <summary>
+        /// AddressValidation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator AddressValidation;
         
         /// <summary>
         /// InsertButton control.

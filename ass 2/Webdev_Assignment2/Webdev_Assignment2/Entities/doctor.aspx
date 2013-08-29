@@ -28,7 +28,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
                 <asp:GridView ID="GridView1" class="AllGridViews" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="738px">
+                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="738px">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" InsertVisible="False" />
@@ -41,7 +41,7 @@
                     <EditRowStyle BackColor="#7C6F57" />
                     <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
                     <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                    <PagerStyle BackColor="#1C5E55" ForeColor="White" HorizontalAlign="Center" />
                     <RowStyle BackColor="#E3EAEB" />
                     <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
                     <SortedAscendingCellStyle BackColor="#F8FAFA" />
@@ -64,32 +64,56 @@
                                 <td>
                                     <asp:TextBox ID="NameTextBox" runat="server" Width="196px"></asp:TextBox>
                                     
-                                    <asp:RegularExpressionValidator ID="NameValidation" runat="server" ErrorMessage="RegularExpressionValidator"></asp:RegularExpressionValidator>
-                                    
+                                    <asp:RegularExpressionValidator ID="NameValidation" runat="server" Display="Dynamic" ValidationGroup="InsertAllValidation"
+                                        ForeColor="Red" Font-Bold="true" ErrorMessage="* Wrong name format" ControlToValidate="NameTextBox"
+                                        ValidationExpression="^[a-zA-Z''-'\s]{1,40}$"></asp:RegularExpressionValidator>
+                                    <asp:RequiredFieldValidator ID="NameValidation2" ValidationGroup="InsertAllValidation"
+                                        runat="server" ErrorMessage="* Name is required" Display="Dynamic"
+                                        ControlToValidate="NameTextBox" Font-Bold="true" ForeColor="Red"></asp:RequiredFieldValidator>
+
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <asp:Label ID="DobLabel" class="NewBoxTextLabel" runat="server" Text="Date of birth:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="DobTextBox" runat="server" Width="196px"></asp:TextBox></td>
+                                    <asp:TextBox Enabled="false" ID="DobTextBox" runat="server" Width="196px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="DobValidation" runat="server" ValidationGroup="InsertAllValidation"
+                                        ErrorMessage="* Date of birth is required"
+                                        ControlToValidate="DobTextBox" Font-Bold="true" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <br /><br />
+                                    <asp:Calendar ID="DobCalendar" runat="server" 
+                                        OnSelectionChanged="DobCalendar_SelectionChanged" 
+                                         Height="175px" Width="300px"></asp:Calendar>
+                                    
+                                </td>
                             </tr>
                             <tr>
                                 <td>
                                     <asp:Label ID="LicenseLabel" class="NewBoxTextLabel" runat="server" Text="License number:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="LicenseTextBox" runat="server" Width="196px"></asp:TextBox></td>
+                                    <asp:TextBox ID="LicenseTextBox" runat="server" Width="196px"></asp:TextBox>
+                                    
+                                    <asp:RequiredFieldValidator ID="LicenseValidation" runat="server" ValidationGroup="InsertAllValidation"
+                                        Font-Bold="true" ForeColor="Red" ControlToValidate="LicenseTextBox"
+                                        ErrorMessage="*License number is required"></asp:RequiredFieldValidator>
+                                    
+                                </td>
                             </tr>
                             <tr>
                                 <td>
                                     <asp:Label ID="AddressLabel" class="NewBoxTextLabel" runat="server" Text="Address:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="AddressTextBox" runat="server" Width="196px"></asp:TextBox></td>
+                                    <asp:TextBox ID="AddressTextBox" runat="server" Width="196px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="AddressValidation" runat="server" ValidationGroup="InsertAllValidation"
+                                        ForeColor="Red" Font-Bold="true" ControlToValidate="AddressTextBox"
+                                        ErrorMessage="*Address is required"></asp:RequiredFieldValidator>
+                                </td>
                             </tr>
                             <tr>
                                 <td>
                                     <td>
-                                        <asp:Button ID="InsertButton" class="btn btn-success" runat="server" OnClick="InsertButton_Click" Text="Insert" Width="106px"></asp:Button></td>
+                                        <asp:Button ID="InsertButton" ValidationGroup="InsertAllValidation" class="btn btn-success" runat="server" OnClick="InsertButton_Click" Text="Insert" Width="106px"></asp:Button></td>
                             </tr>
                         </table>
 

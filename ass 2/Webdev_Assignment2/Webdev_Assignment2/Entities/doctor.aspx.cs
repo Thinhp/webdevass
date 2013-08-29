@@ -49,30 +49,33 @@ namespace Webdev_Assignment2.Entities
 
         protected void InsertButton_Click(object sender, EventArgs e)
         {
-            DataBaseServerDataContext db = new DataBaseServerDataContext();
-            var name = NameTextBox.Text;
-            var dob = DobTextBox.Text;
-            var license = LicenseTextBox.Text;
-            var address = AddressTextBox.Text;
-
-            var insert = new Doctor()
+            //Check validation
+            if (IsValid)
             {
-                Name = name,
-                Dob = dob,
-                Licensenumber = license,
-                Address = address
-            };
+                DataBaseServerDataContext db = new DataBaseServerDataContext();
+                var name = NameTextBox.Text;
+                var dob = DobTextBox.Text;
+                var license = LicenseTextBox.Text;
+                var address = AddressTextBox.Text;
 
-            db.Doctors.InsertOnSubmit(insert);
-            db.SubmitChanges();
-            GridView1.DataBind();
+                var insert = new Doctor()
+                {
+                    Name = name,
+                    Dob = dob,
+                    Licensenumber = license,
+                    Address = address
+                };
 
-            //reset field
-            NameTextBox.Text = "";
-            DobTextBox.Text = "";
-            LicenseTextBox.Text = "";
-            AddressTextBox.Text = "";
+                db.Doctors.InsertOnSubmit(insert);
+                db.SubmitChanges();
+                GridView1.DataBind();
 
+                //reset field
+                NameTextBox.Text = "";
+                DobTextBox.Text = "";
+                LicenseTextBox.Text = "";
+                AddressTextBox.Text = "";
+            }
         }
 
         [System.Web.Services.WebMethod]
@@ -81,8 +84,8 @@ namespace Webdev_Assignment2.Entities
         {
             DataBaseServerDataContext db = new DataBaseServerDataContext();
             var result = (from n in db.Doctors
-                         where n.Id.ToString().ToLower().Contains(prefixText.ToLower())
-                         select n.Id.ToString())
+                          where n.Id.ToString().ToLower().Contains(prefixText.ToLower())
+                          select n.Id.ToString())
                          .Union(from n in db.Doctors
                                 where n.Name.ToLower().Contains(prefixText.ToLower())
                                 select n.Name)
@@ -97,7 +100,14 @@ namespace Webdev_Assignment2.Entities
                                                      select n.Licensenumber);
 
             return result.ToArray();
-        }   
+        }
+
+        protected void DobCalendar_SelectionChanged(object sender, EventArgs e)
+        {
+            string enteredDate = DobCalendar.SelectedDate.Day + "/" +
+                DobCalendar.SelectedDate.Month + "/" + DobCalendar.SelectedDate.Year;
+            DobTextBox.Text = enteredDate;
+        }
 
     }
 }
