@@ -5777,6 +5777,7 @@ a.list-group-item:focus {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 17px;
+    width: 527px;
 }
 
 .panel-title > a {
@@ -5862,6 +5863,10 @@ a.list-group-item:focus {
   color: #ffffff;
   background-color: #3fb618;
   border-color: #4e9f15;
+    top: 29px;
+    left: 0px;
+    width: 734px;
+    height: 42px;
 }
 
 .panel-success > .panel-heading + .panel-collapse .panel-body {

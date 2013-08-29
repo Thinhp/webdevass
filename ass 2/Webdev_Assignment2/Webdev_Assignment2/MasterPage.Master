@@ -66,9 +66,8 @@
                     </asp:ContentPlaceHolder>
                 </div>
 
-
             </div>
-            <div id="Footer">Footer</div>
+            
         </div>
     </form>
 

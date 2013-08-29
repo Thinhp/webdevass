@@ -12,6 +12,9 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div id="doctorsearchfield">
+                    <asp:Label class="LabelSite" runat="server" Text="DOCTOR" Font-Bold="False"></asp:Label>
+                    <br />
+                    <br />
                     <asp:Button ID="SearchButton" class="AllSearchButtons btn btn-default" runat="server" Text="Search" OnClick="SearchButton_Click" />
 
                     <asp:TextBox ID="SearchField" runat="server" class="AllSearchFields" placeholder="Search" Height="33px" Width="310px"></asp:TextBox>
@@ -52,21 +55,26 @@
                 <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Doctors" OnSelecting="LinqDataSource1_Selecting">
                 </asp:LinqDataSource>
                 <div id="SuccessBoxMessage" class="AlertBoxMessage alert alert-dismissable alert-success">
-                    <strong> Inserted successfull !</strong>
+                    <strong>Inserted successfull !</strong>
                 </div>
 
                 <div class="Newbox panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Create new doctor</h3>
+                    <div class="panel-heading" style="z-index:1;">
+                        <h3 class="panel-title" style="float:left;">Create new doctor</h3>
+                        <button style="float:right; margin-top: -10px; margin-right: -15px;"
+                            onclick="toggle_insertbox('Insertplace');"
+                            type="button" class="btn btn-success dropdown-toggle">
+                            <span class="caret"></span>
+                        </button>
                     </div>
-                    <div class="panel-body">
-                        <table class="table" table-striped table-bordered table-hover>
+                    <div id="Insertplace" class="panel-body" style="display: none;">
+                        <table class="table table-striped table-bordered table-hover">
                             <tr>
                                 <td>
                                     <asp:Label ID="NameLabel" class="NewBoxTextLabel" runat="server" Text="Name:"></asp:Label></td>
                                 <td>
                                     <asp:TextBox ID="NameTextBox" runat="server" Width="196px"></asp:TextBox>
-                                    
+
                                     <asp:RegularExpressionValidator ID="NameValidation" runat="server" Display="Dynamic" ValidationGroup="InsertAllValidation"
                                         ForeColor="Red" Font-Bold="true" ErrorMessage="* Wrong name format" ControlToValidate="NameTextBox"
                                         ValidationExpression="^[a-zA-Z''-'\s]{1,40}$"></asp:RegularExpressionValidator>
@@ -84,11 +92,12 @@
                                     <asp:RequiredFieldValidator ID="DobValidation" runat="server" ValidationGroup="InsertAllValidation"
                                         ErrorMessage="* Date of birth is required"
                                         ControlToValidate="DobTextBox" Font-Bold="true" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <br /><br />
-                                    <asp:Calendar ID="DobCalendar" runat="server" 
-                                        OnSelectionChanged="DobCalendar_SelectionChanged" 
-                                         Height="175px" Width="300px"></asp:Calendar>
-                                    
+                                    <br />
+                                    <br />
+                                    <asp:Calendar ID="DobCalendar" runat="server"
+                                        OnSelectionChanged="DobCalendar_SelectionChanged"
+                                        Height="175px" Width="300px"></asp:Calendar>
+
                                 </td>
                             </tr>
                             <tr>
@@ -96,11 +105,11 @@
                                     <asp:Label ID="LicenseLabel" class="NewBoxTextLabel" runat="server" Text="License number:"></asp:Label></td>
                                 <td>
                                     <asp:TextBox ID="LicenseTextBox" runat="server" Width="196px"></asp:TextBox>
-                                    
+
                                     <asp:RequiredFieldValidator ID="LicenseValidation" runat="server" ValidationGroup="InsertAllValidation"
                                         Font-Bold="true" ForeColor="Red" ControlToValidate="LicenseTextBox"
                                         ErrorMessage="*License number is required"></asp:RequiredFieldValidator>
-                                    
+
                                 </td>
                             </tr>
                             <tr>

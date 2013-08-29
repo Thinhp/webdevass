@@ -10,3 +10,12 @@ function toggle_visibility(id) {
     var box = $('#' + id);
     box.fadeIn(3000);
 }
+
+function toggle_insertbox(id) {
+    var box = $('#' + id);
+
+    if (box.css("display") == "block")
+        box.fadeOut(500);
+    else
+        box.fadeIn(500);
+}
