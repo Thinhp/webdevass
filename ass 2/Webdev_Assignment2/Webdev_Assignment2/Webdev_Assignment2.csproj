@@ -67,6 +67,7 @@
     <Content Include="home.aspx" />
     <Content Include="Image\ajax-loader.gif" />
     <Content Include="index.aspx" />
+    <Content Include="Script\masterscript.js" />
     <Content Include="Stylesheet\bootstrap.css" />
     <Content Include="Stylesheet\doctor.css" />
     <Content Include="Stylesheet\index.css" />

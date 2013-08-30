@@ -38,9 +38,9 @@ namespace Webdev_Assignment2
                     bool validUser = false;
                     bool validPass = false;
 
-                    if (user.UserName.Equals(LoginForm1.UserName))
+                    if (user.Username.Equals(LoginForm1.UserName))
                     {
-                        Session["Username"] = user.UserName;
+                        Session["Username"] = user.Username;
                         validUser = true;
                     }
 

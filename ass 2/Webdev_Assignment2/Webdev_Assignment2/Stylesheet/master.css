@@ -105,6 +105,14 @@
     margin-bottom: 20px;
 }
 
+.AlertBoxMessage {
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 300px;
+
+    display: none;
+}
+
 .Newbox {
     margin-left: 50px;
     margin-top: 50px;

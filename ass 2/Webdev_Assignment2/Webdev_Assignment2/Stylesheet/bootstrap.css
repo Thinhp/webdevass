@@ -5386,6 +5386,7 @@ a.thumbnail:focus {
   color: #ffffff;
   background-color: #3fb618;
   border-color: #4e9f15;
+    width: 750px;
 }
 
 .alert-success hr {
@@ -7297,7 +7298,10 @@ td.visible-print {
 }
 
 .alert {
-  border: none;
+  border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    width: 268px;
 }
 
 .alert .alert-link {

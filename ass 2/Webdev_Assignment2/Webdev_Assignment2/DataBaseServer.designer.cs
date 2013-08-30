@@ -48,12 +48,18 @@ namespace Webdev_Assignment2
     partial void InsertICD(ICD instance);
     partial void UpdateICD(ICD instance);
     partial void DeleteICD(ICD instance);
+    partial void InsertICDChapter(ICDChapter instance);
+    partial void UpdateICDChapter(ICDChapter instance);
+    partial void DeleteICDChapter(ICDChapter instance);
     partial void InsertLabOrder(LabOrder instance);
     partial void UpdateLabOrder(LabOrder instance);
     partial void DeleteLabOrder(LabOrder instance);
     partial void InsertLabOrderDetail(LabOrderDetail instance);
     partial void UpdateLabOrderDetail(LabOrderDetail instance);
     partial void DeleteLabOrderDetail(LabOrderDetail instance);
+    partial void InsertMedicalService(MedicalService instance);
+    partial void UpdateMedicalService(MedicalService instance);
+    partial void DeleteMedicalService(MedicalService instance);
     partial void InsertMedicalServiceGroup(MedicalServiceGroup instance);
     partial void UpdateMedicalServiceGroup(MedicalServiceGroup instance);
     partial void DeleteMedicalServiceGroup(MedicalServiceGroup instance);
@@ -149,6 +155,14 @@ namespace Webdev_Assignment2
 			}
 		}
 		
+		public System.Data.Linq.Table<ICDChapter> ICDChapters
+		{
+			get
+			{
+				return this.GetTable<ICDChapter>();
+			}
+		}
+		
 		public System.Data.Linq.Table<LabOrder> LabOrders
 		{
 			get
@@ -230,6 +244,12 @@ namespace Webdev_Assignment2
 		
 		private string _Address;
 		
+		private EntitySet<Visit> _Visits;
+		
+		private EntitySet<LabOrder> _LabOrders;
+		
+		private EntitySet<Prescription> _Prescriptions;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -248,6 +268,9 @@ namespace Webdev_Assignment2
 		
 		public Doctor()
 		{
+			this._Visits = new EntitySet<Visit>(new Action<Visit>(this.attach_Visits), new Action<Visit>(this.detach_Visits));
+			this._LabOrders = new EntitySet<LabOrder>(new Action<LabOrder>(this.attach_LabOrders), new Action<LabOrder>(this.detach_LabOrders));
+			this._Prescriptions = new EntitySet<Prescription>(new Action<Prescription>(this.attach_Prescriptions), new Action<Prescription>(this.detach_Prescriptions));
 			OnCreated();
 		}
 		
@@ -271,7 +294,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
 			get
@@ -291,7 +314,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dob", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dob", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Dob
 		{
 			get
@@ -311,7 +334,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Licensenumber", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Licensenumber", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Licensenumber
 		{
 			get
@@ -331,7 +354,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Address
 		{
 			get
@@ -348,6 +371,45 @@ namespace Webdev_Assignment2
 					this.SendPropertyChanged("Address");
 					this.OnAddressChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Visit", Storage="_Visits", ThisKey="Id", OtherKey="TreatingDoctor")]
+		public EntitySet<Visit> Visits
+		{
+			get
+			{
+				return this._Visits;
+			}
+			set
+			{
+				this._Visits.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_LabOrder", Storage="_LabOrders", ThisKey="Id", OtherKey="OrderedDoctor")]
+		public EntitySet<LabOrder> LabOrders
+		{
+			get
+			{
+				return this._LabOrders;
+			}
+			set
+			{
+				this._LabOrders.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Prescription", Storage="_Prescriptions", ThisKey="Id", OtherKey="PrescribedDoctor")]
+		public EntitySet<Prescription> Prescriptions
+		{
+			get
+			{
+				return this._Prescriptions;
+			}
+			set
+			{
+				this._Prescriptions.Assign(value);
 			}
 		}
 		
@@ -370,6 +432,42 @@ namespace Webdev_Assignment2
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Visits(Visit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = this;
+		}
+		
+		private void detach_Visits(Visit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = null;
+		}
+		
+		private void attach_LabOrders(LabOrder entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = this;
+		}
+		
+		private void detach_LabOrders(LabOrder entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = null;
+		}
+		
+		private void attach_Prescriptions(Prescription entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = this;
+		}
+		
+		private void detach_Prescriptions(Prescription entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Visit")]
@@ -382,23 +480,29 @@ namespace Webdev_Assignment2
 		
 		private string _TreatedDate;
 		
-		private string _Place;
+		private int _Place;
 		
-		private string _TreatedPatient;
+		private int _TreatedPatient;
 		
-		private string _TreatingDoctor;
+		private int _TreatingDoctor;
 		
 		private string _Outcome;
 		
-		private System.Nullable<int> _PrescriptionId;
+		private int _PrescriptionId;
 		
-		private System.Nullable<int> _LabOrderId;
+		private int _LabOrderId;
 		
 		private string _ICDcode;
+		
+		private EntityRef<Doctor> _Doctor;
+		
+		private EntityRef<Hospital> _Hospital;
 		
 		private EntityRef<ICD> _ICD;
 		
 		private EntityRef<LabOrder> _LabOrder;
+		
+		private EntityRef<Patient> _Patient;
 		
 		private EntityRef<Prescription> _Prescription;
 		
@@ -410,17 +514,17 @@ namespace Webdev_Assignment2
     partial void OnidChanged();
     partial void OnTreatedDateChanging(string value);
     partial void OnTreatedDateChanged();
-    partial void OnPlaceChanging(string value);
+    partial void OnPlaceChanging(int value);
     partial void OnPlaceChanged();
-    partial void OnTreatedPatientChanging(string value);
+    partial void OnTreatedPatientChanging(int value);
     partial void OnTreatedPatientChanged();
-    partial void OnTreatingDoctorChanging(string value);
+    partial void OnTreatingDoctorChanging(int value);
     partial void OnTreatingDoctorChanged();
     partial void OnOutcomeChanging(string value);
     partial void OnOutcomeChanged();
-    partial void OnPrescriptionIdChanging(System.Nullable<int> value);
+    partial void OnPrescriptionIdChanging(int value);
     partial void OnPrescriptionIdChanged();
-    partial void OnLabOrderIdChanging(System.Nullable<int> value);
+    partial void OnLabOrderIdChanging(int value);
     partial void OnLabOrderIdChanged();
     partial void OnICDcodeChanging(string value);
     partial void OnICDcodeChanged();
@@ -428,8 +532,11 @@ namespace Webdev_Assignment2
 		
 		public Visit()
 		{
+			this._Doctor = default(EntityRef<Doctor>);
+			this._Hospital = default(EntityRef<Hospital>);
 			this._ICD = default(EntityRef<ICD>);
 			this._LabOrder = default(EntityRef<LabOrder>);
+			this._Patient = default(EntityRef<Patient>);
 			this._Prescription = default(EntityRef<Prescription>);
 			OnCreated();
 		}
@@ -454,7 +561,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatedDate", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatedDate", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string TreatedDate
 		{
 			get
@@ -474,8 +581,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Place", DbType="VarChar(50)")]
-		public string Place
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Place", DbType="Int NOT NULL")]
+		public int Place
 		{
 			get
 			{
@@ -485,6 +592,10 @@ namespace Webdev_Assignment2
 			{
 				if ((this._Place != value))
 				{
+					if (this._Hospital.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPlaceChanging(value);
 					this.SendPropertyChanging();
 					this._Place = value;
@@ -494,8 +605,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatedPatient", DbType="VarChar(50)")]
-		public string TreatedPatient
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatedPatient", DbType="Int NOT NULL")]
+		public int TreatedPatient
 		{
 			get
 			{
@@ -505,6 +616,10 @@ namespace Webdev_Assignment2
 			{
 				if ((this._TreatedPatient != value))
 				{
+					if (this._Patient.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnTreatedPatientChanging(value);
 					this.SendPropertyChanging();
 					this._TreatedPatient = value;
@@ -514,8 +629,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatingDoctor", DbType="VarChar(50)")]
-		public string TreatingDoctor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TreatingDoctor", DbType="Int NOT NULL")]
+		public int TreatingDoctor
 		{
 			get
 			{
@@ -525,6 +640,10 @@ namespace Webdev_Assignment2
 			{
 				if ((this._TreatingDoctor != value))
 				{
+					if (this._Doctor.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnTreatingDoctorChanging(value);
 					this.SendPropertyChanging();
 					this._TreatingDoctor = value;
@@ -534,7 +653,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Outcome", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Outcome", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Outcome
 		{
 			get
@@ -554,8 +673,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionId", DbType="Int")]
-		public System.Nullable<int> PrescriptionId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionId", DbType="Int NOT NULL")]
+		public int PrescriptionId
 		{
 			get
 			{
@@ -578,8 +697,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabOrderId", DbType="Int")]
-		public System.Nullable<int> LabOrderId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabOrderId", DbType="Int NOT NULL")]
+		public int LabOrderId
 		{
 			get
 			{
@@ -602,7 +721,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ICDcode", DbType="VarChar(10)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ICDcode", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string ICDcode
 		{
 			get
@@ -622,6 +741,74 @@ namespace Webdev_Assignment2
 					this._ICDcode = value;
 					this.SendPropertyChanged("ICDcode");
 					this.OnICDcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Visit", Storage="_Doctor", ThisKey="TreatingDoctor", OtherKey="Id", IsForeignKey=true)]
+		public Doctor Doctor
+		{
+			get
+			{
+				return this._Doctor.Entity;
+			}
+			set
+			{
+				Doctor previousValue = this._Doctor.Entity;
+				if (((previousValue != value) 
+							|| (this._Doctor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Doctor.Entity = null;
+						previousValue.Visits.Remove(this);
+					}
+					this._Doctor.Entity = value;
+					if ((value != null))
+					{
+						value.Visits.Add(this);
+						this._TreatingDoctor = value.Id;
+					}
+					else
+					{
+						this._TreatingDoctor = default(int);
+					}
+					this.SendPropertyChanged("Doctor");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hospital_Visit", Storage="_Hospital", ThisKey="Place", OtherKey="Id", IsForeignKey=true)]
+		public Hospital Hospital
+		{
+			get
+			{
+				return this._Hospital.Entity;
+			}
+			set
+			{
+				Hospital previousValue = this._Hospital.Entity;
+				if (((previousValue != value) 
+							|| (this._Hospital.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Hospital.Entity = null;
+						previousValue.Visits.Remove(this);
+					}
+					this._Hospital.Entity = value;
+					if ((value != null))
+					{
+						value.Visits.Add(this);
+						this._Place = value.Id;
+					}
+					else
+					{
+						this._Place = default(int);
+					}
+					this.SendPropertyChanged("Hospital");
 				}
 			}
 		}
@@ -687,9 +874,43 @@ namespace Webdev_Assignment2
 					}
 					else
 					{
-						this._LabOrderId = default(Nullable<int>);
+						this._LabOrderId = default(int);
 					}
 					this.SendPropertyChanged("LabOrder");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_Visit", Storage="_Patient", ThisKey="TreatedPatient", OtherKey="Id", IsForeignKey=true)]
+		public Patient Patient
+		{
+			get
+			{
+				return this._Patient.Entity;
+			}
+			set
+			{
+				Patient previousValue = this._Patient.Entity;
+				if (((previousValue != value) 
+							|| (this._Patient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Patient.Entity = null;
+						previousValue.Visits.Remove(this);
+					}
+					this._Patient.Entity = value;
+					if ((value != null))
+					{
+						value.Visits.Add(this);
+						this._TreatedPatient = value.Id;
+					}
+					else
+					{
+						this._TreatedPatient = default(int);
+					}
+					this.SendPropertyChanged("Patient");
 				}
 			}
 		}
@@ -721,7 +942,7 @@ namespace Webdev_Assignment2
 					}
 					else
 					{
-						this._PrescriptionId = default(Nullable<int>);
+						this._PrescriptionId = default(int);
 					}
 					this.SendPropertyChanged("Prescription");
 				}
@@ -761,11 +982,11 @@ namespace Webdev_Assignment2
 		
 		private string _GenericName;
 		
-		private System.Nullable<int> _Unit;
+		private int _Unit;
 		
-		private System.Nullable<decimal> _Price;
+		private decimal _Price;
 		
-		private System.Nullable<int> _DrugGroupId;
+		private int _DrugGroupId;
 		
 		private EntityRef<DrugGroup> _DrugGroup;
 		
@@ -779,11 +1000,11 @@ namespace Webdev_Assignment2
     partial void OnNameChanged();
     partial void OnGenericNameChanging(string value);
     partial void OnGenericNameChanged();
-    partial void OnUnitChanging(System.Nullable<int> value);
+    partial void OnUnitChanging(int value);
     partial void OnUnitChanged();
-    partial void OnPriceChanging(System.Nullable<decimal> value);
+    partial void OnPriceChanging(decimal value);
     partial void OnPriceChanged();
-    partial void OnDrugGroupIdChanging(System.Nullable<int> value);
+    partial void OnDrugGroupIdChanging(int value);
     partial void OnDrugGroupIdChanged();
     #endregion
 		
@@ -813,7 +1034,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
 			get
@@ -833,7 +1054,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenericName", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenericName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string GenericName
 		{
 			get
@@ -853,8 +1074,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unit", DbType="Int")]
-		public System.Nullable<int> Unit
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Unit", DbType="Int NOT NULL")]
+		public int Unit
 		{
 			get
 			{
@@ -873,8 +1094,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Price
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Price
 		{
 			get
 			{
@@ -893,8 +1114,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugGroupId", DbType="Int")]
-		public System.Nullable<int> DrugGroupId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugGroupId", DbType="Int NOT NULL")]
+		public int DrugGroupId
 		{
 			get
 			{
@@ -944,7 +1165,7 @@ namespace Webdev_Assignment2
 					}
 					else
 					{
-						this._DrugGroupId = default(Nullable<int>);
+						this._DrugGroupId = default(int);
 					}
 					this.SendPropertyChanged("DrugGroup");
 				}
@@ -1100,6 +1321,8 @@ namespace Webdev_Assignment2
 		
 		private string _Address;
 		
+		private EntitySet<Visit> _Visits;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1116,6 +1339,7 @@ namespace Webdev_Assignment2
 		
 		public Hospital()
 		{
+			this._Visits = new EntitySet<Visit>(new Action<Visit>(this.attach_Visits), new Action<Visit>(this.detach_Visits));
 			OnCreated();
 		}
 		
@@ -1139,7 +1363,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
 			get
@@ -1159,7 +1383,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Licensenumber", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Licensenumber", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Licensenumber
 		{
 			get
@@ -1179,7 +1403,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Address
 		{
 			get
@@ -1196,6 +1420,19 @@ namespace Webdev_Assignment2
 					this.SendPropertyChanged("Address");
 					this.OnAddressChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hospital_Visit", Storage="_Visits", ThisKey="Id", OtherKey="Place")]
+		public EntitySet<Visit> Visits
+		{
+			get
+			{
+				return this._Visits;
+			}
+			set
+			{
+				this._Visits.Assign(value);
 			}
 		}
 		
@@ -1218,6 +1455,18 @@ namespace Webdev_Assignment2
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Visits(Visit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Hospital = this;
+		}
+		
+		private void detach_Visits(Visit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Hospital = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ICD")]
@@ -1226,70 +1475,33 @@ namespace Webdev_Assignment2
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _Name;
-		
-		private string _Chapter;
-		
 		private string _Code;
 		
+		private string _Name;
+		
+		private int _ICDChapterId;
+		
 		private EntitySet<Visit> _Visits;
+		
+		private EntityRef<ICDChapter> _ICDChapter;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnChapterChanging(string value);
-    partial void OnChapterChanged();
     partial void OnCodeChanging(string value);
     partial void OnCodeChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnICDChapterIdChanging(int value);
+    partial void OnICDChapterIdChanged();
     #endregion
 		
 		public ICD()
 		{
 			this._Visits = new EntitySet<Visit>(new Action<Visit>(this.attach_Visits), new Action<Visit>(this.detach_Visits));
+			this._ICDChapter = default(EntityRef<ICDChapter>);
 			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(200)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Chapter", DbType="VarChar(10)")]
-		public string Chapter
-		{
-			get
-			{
-				return this._Chapter;
-			}
-			set
-			{
-				if ((this._Chapter != value))
-				{
-					this.OnChapterChanging(value);
-					this.SendPropertyChanging();
-					this._Chapter = value;
-					this.SendPropertyChanged("Chapter");
-					this.OnChapterChanged();
-				}
-			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
@@ -1312,6 +1524,50 @@ namespace Webdev_Assignment2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ICDChapterId", DbType="Int NOT NULL")]
+		public int ICDChapterId
+		{
+			get
+			{
+				return this._ICDChapterId;
+			}
+			set
+			{
+				if ((this._ICDChapterId != value))
+				{
+					if (this._ICDChapter.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnICDChapterIdChanging(value);
+					this.SendPropertyChanging();
+					this._ICDChapterId = value;
+					this.SendPropertyChanged("ICDChapterId");
+					this.OnICDChapterIdChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ICD_Visit", Storage="_Visits", ThisKey="Code", OtherKey="ICDcode")]
 		public EntitySet<Visit> Visits
 		{
@@ -1322,6 +1578,40 @@ namespace Webdev_Assignment2
 			set
 			{
 				this._Visits.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ICDChapter_ICD", Storage="_ICDChapter", ThisKey="ICDChapterId", OtherKey="id", IsForeignKey=true)]
+		public ICDChapter ICDChapter
+		{
+			get
+			{
+				return this._ICDChapter.Entity;
+			}
+			set
+			{
+				ICDChapter previousValue = this._ICDChapter.Entity;
+				if (((previousValue != value) 
+							|| (this._ICDChapter.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ICDChapter.Entity = null;
+						previousValue.ICDs.Remove(this);
+					}
+					this._ICDChapter.Entity = value;
+					if ((value != null))
+					{
+						value.ICDs.Add(this);
+						this._ICDChapterId = value.id;
+					}
+					else
+					{
+						this._ICDChapterId = default(int);
+					}
+					this.SendPropertyChanged("ICDChapter");
+				}
 			}
 		}
 		
@@ -1358,6 +1648,120 @@ namespace Webdev_Assignment2
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ICDChapter")]
+	public partial class ICDChapter : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _Name;
+		
+		private EntitySet<ICD> _ICDs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public ICDChapter()
+		{
+			this._ICDs = new EntitySet<ICD>(new Action<ICD>(this.attach_ICDs), new Action<ICD>(this.detach_ICDs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ICDChapter_ICD", Storage="_ICDs", ThisKey="id", OtherKey="ICDChapterId")]
+		public EntitySet<ICD> ICDs
+		{
+			get
+			{
+				return this._ICDs;
+			}
+			set
+			{
+				this._ICDs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ICDs(ICD entity)
+		{
+			this.SendPropertyChanging();
+			entity.ICDChapter = this;
+		}
+		
+		private void detach_ICDs(ICD entity)
+		{
+			this.SendPropertyChanging();
+			entity.ICDChapter = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LabOrder")]
 	public partial class LabOrder : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1368,11 +1772,13 @@ namespace Webdev_Assignment2
 		
 		private string _Date;
 		
-		private string _OrderedDoctor;
+		private int _OrderedDoctor;
 		
-		private System.Nullable<int> _LabOrderedDetailsId;
+		private int _LabOrderedDetailsId;
 		
 		private EntitySet<Visit> _Visits;
+		
+		private EntityRef<Doctor> _Doctor;
 		
 		private EntityRef<LabOrderDetail> _LabOrderDetail;
 		
@@ -1384,15 +1790,16 @@ namespace Webdev_Assignment2
     partial void OnIdChanged();
     partial void OnDateChanging(string value);
     partial void OnDateChanged();
-    partial void OnOrderedDoctorChanging(string value);
+    partial void OnOrderedDoctorChanging(int value);
     partial void OnOrderedDoctorChanged();
-    partial void OnLabOrderedDetailsIdChanging(System.Nullable<int> value);
+    partial void OnLabOrderedDetailsIdChanging(int value);
     partial void OnLabOrderedDetailsIdChanged();
     #endregion
 		
 		public LabOrder()
 		{
 			this._Visits = new EntitySet<Visit>(new Action<Visit>(this.attach_Visits), new Action<Visit>(this.detach_Visits));
+			this._Doctor = default(EntityRef<Doctor>);
 			this._LabOrderDetail = default(EntityRef<LabOrderDetail>);
 			OnCreated();
 		}
@@ -1417,7 +1824,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Date
 		{
 			get
@@ -1437,8 +1844,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderedDoctor", DbType="VarChar(50)")]
-		public string OrderedDoctor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderedDoctor", DbType="Int NOT NULL")]
+		public int OrderedDoctor
 		{
 			get
 			{
@@ -1448,6 +1855,10 @@ namespace Webdev_Assignment2
 			{
 				if ((this._OrderedDoctor != value))
 				{
+					if (this._Doctor.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnOrderedDoctorChanging(value);
 					this.SendPropertyChanging();
 					this._OrderedDoctor = value;
@@ -1457,8 +1868,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabOrderedDetailsId", DbType="Int")]
-		public System.Nullable<int> LabOrderedDetailsId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LabOrderedDetailsId", DbType="Int NOT NULL")]
+		public int LabOrderedDetailsId
 		{
 			get
 			{
@@ -1494,6 +1905,40 @@ namespace Webdev_Assignment2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_LabOrder", Storage="_Doctor", ThisKey="OrderedDoctor", OtherKey="Id", IsForeignKey=true)]
+		public Doctor Doctor
+		{
+			get
+			{
+				return this._Doctor.Entity;
+			}
+			set
+			{
+				Doctor previousValue = this._Doctor.Entity;
+				if (((previousValue != value) 
+							|| (this._Doctor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Doctor.Entity = null;
+						previousValue.LabOrders.Remove(this);
+					}
+					this._Doctor.Entity = value;
+					if ((value != null))
+					{
+						value.LabOrders.Add(this);
+						this._OrderedDoctor = value.Id;
+					}
+					else
+					{
+						this._OrderedDoctor = default(int);
+					}
+					this.SendPropertyChanged("Doctor");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LabOrderDetail_LabOrder", Storage="_LabOrderDetail", ThisKey="LabOrderedDetailsId", OtherKey="Id", IsForeignKey=true)]
 		public LabOrderDetail LabOrderDetail
 		{
@@ -1521,7 +1966,7 @@ namespace Webdev_Assignment2
 					}
 					else
 					{
-						this._LabOrderedDetailsId = default(Nullable<int>);
+						this._LabOrderedDetailsId = default(int);
 					}
 					this.SendPropertyChanged("LabOrderDetail");
 				}
@@ -1569,11 +2014,13 @@ namespace Webdev_Assignment2
 		
 		private int _Id;
 		
-		private string _MedicalServer;
+		private int _MedicalService;
 		
 		private string _Result;
 		
 		private EntitySet<LabOrder> _LabOrders;
+		
+		private EntityRef<MedicalService> _MedicalService1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1581,8 +2028,8 @@ namespace Webdev_Assignment2
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnMedicalServerChanging(string value);
-    partial void OnMedicalServerChanged();
+    partial void OnMedicalServiceChanging(int value);
+    partial void OnMedicalServiceChanged();
     partial void OnResultChanging(string value);
     partial void OnResultChanged();
     #endregion
@@ -1590,6 +2037,7 @@ namespace Webdev_Assignment2
 		public LabOrderDetail()
 		{
 			this._LabOrders = new EntitySet<LabOrder>(new Action<LabOrder>(this.attach_LabOrders), new Action<LabOrder>(this.detach_LabOrders));
+			this._MedicalService1 = default(EntityRef<MedicalService>);
 			OnCreated();
 		}
 		
@@ -1613,27 +2061,31 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MedicalServer", DbType="VarChar(100)")]
-		public string MedicalServer
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MedicalService", DbType="Int NOT NULL")]
+		public int MedicalService
 		{
 			get
 			{
-				return this._MedicalServer;
+				return this._MedicalService;
 			}
 			set
 			{
-				if ((this._MedicalServer != value))
+				if ((this._MedicalService != value))
 				{
-					this.OnMedicalServerChanging(value);
+					if (this._MedicalService1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMedicalServiceChanging(value);
 					this.SendPropertyChanging();
-					this._MedicalServer = value;
-					this.SendPropertyChanged("MedicalServer");
-					this.OnMedicalServerChanged();
+					this._MedicalService = value;
+					this.SendPropertyChanged("MedicalService");
+					this.OnMedicalServiceChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Result", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Result", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Result
 		{
 			get
@@ -1663,6 +2115,40 @@ namespace Webdev_Assignment2
 			set
 			{
 				this._LabOrders.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MedicalService_LabOrderDetail", Storage="_MedicalService1", ThisKey="MedicalService", OtherKey="Id", IsForeignKey=true)]
+		public MedicalService MedicalService1
+		{
+			get
+			{
+				return this._MedicalService1.Entity;
+			}
+			set
+			{
+				MedicalService previousValue = this._MedicalService1.Entity;
+				if (((previousValue != value) 
+							|| (this._MedicalService1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MedicalService1.Entity = null;
+						previousValue.LabOrderDetails.Remove(this);
+					}
+					this._MedicalService1.Entity = value;
+					if ((value != null))
+					{
+						value.LabOrderDetails.Add(this);
+						this._MedicalService = value.Id;
+					}
+					else
+					{
+						this._MedicalService = default(int);
+					}
+					this.SendPropertyChanged("MedicalService1");
+				}
 			}
 		}
 		
@@ -1700,95 +2186,22 @@ namespace Webdev_Assignment2
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MedicalService")]
-	public partial class MedicalService
-	{
-		
-		private int _Id;
-		
-		private string _ServiceName;
-		
-		private System.Nullable<decimal> _Price;
-		
-		private System.Nullable<int> _ServiceGroupId;
-		
-		public MedicalService()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this._Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceName", DbType="VarChar(100)")]
-		public string ServiceName
-		{
-			get
-			{
-				return this._ServiceName;
-			}
-			set
-			{
-				if ((this._ServiceName != value))
-				{
-					this._ServiceName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this._Price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGroupId", DbType="Int")]
-		public System.Nullable<int> ServiceGroupId
-		{
-			get
-			{
-				return this._ServiceGroupId;
-			}
-			set
-			{
-				if ((this._ServiceGroupId != value))
-				{
-					this._ServiceGroupId = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MedicalServiceGroup")]
-	public partial class MedicalServiceGroup : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class MedicalService : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private string _ServiceGroup;
+		private string _ServiceName;
+		
+		private decimal _Price;
+		
+		private int _ServiceGroupId;
+		
+		private EntitySet<LabOrderDetail> _LabOrderDetails;
+		
+		private EntityRef<MedicalServiceGroup> _MedicalServiceGroup;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1796,12 +2209,18 @@ namespace Webdev_Assignment2
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnServiceGroupChanging(string value);
-    partial void OnServiceGroupChanged();
+    partial void OnServiceNameChanging(string value);
+    partial void OnServiceNameChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnServiceGroupIdChanging(int value);
+    partial void OnServiceGroupIdChanged();
     #endregion
 		
-		public MedicalServiceGroup()
+		public MedicalService()
 		{
+			this._LabOrderDetails = new EntitySet<LabOrderDetail>(new Action<LabOrderDetail>(this.attach_LabOrderDetails), new Action<LabOrderDetail>(this.detach_LabOrderDetails));
+			this._MedicalServiceGroup = default(EntityRef<MedicalServiceGroup>);
 			OnCreated();
 		}
 		
@@ -1825,7 +2244,199 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGroup", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string ServiceName
+		{
+			get
+			{
+				return this._ServiceName;
+			}
+			set
+			{
+				if ((this._ServiceName != value))
+				{
+					this.OnServiceNameChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceName = value;
+					this.SendPropertyChanged("ServiceName");
+					this.OnServiceNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGroupId", DbType="Int NOT NULL")]
+		public int ServiceGroupId
+		{
+			get
+			{
+				return this._ServiceGroupId;
+			}
+			set
+			{
+				if ((this._ServiceGroupId != value))
+				{
+					if (this._MedicalServiceGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnServiceGroupIdChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceGroupId = value;
+					this.SendPropertyChanged("ServiceGroupId");
+					this.OnServiceGroupIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MedicalService_LabOrderDetail", Storage="_LabOrderDetails", ThisKey="Id", OtherKey="MedicalService")]
+		public EntitySet<LabOrderDetail> LabOrderDetails
+		{
+			get
+			{
+				return this._LabOrderDetails;
+			}
+			set
+			{
+				this._LabOrderDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MedicalServiceGroup_MedicalService", Storage="_MedicalServiceGroup", ThisKey="ServiceGroupId", OtherKey="Id", IsForeignKey=true)]
+		public MedicalServiceGroup MedicalServiceGroup
+		{
+			get
+			{
+				return this._MedicalServiceGroup.Entity;
+			}
+			set
+			{
+				MedicalServiceGroup previousValue = this._MedicalServiceGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._MedicalServiceGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MedicalServiceGroup.Entity = null;
+						previousValue.MedicalServices.Remove(this);
+					}
+					this._MedicalServiceGroup.Entity = value;
+					if ((value != null))
+					{
+						value.MedicalServices.Add(this);
+						this._ServiceGroupId = value.Id;
+					}
+					else
+					{
+						this._ServiceGroupId = default(int);
+					}
+					this.SendPropertyChanged("MedicalServiceGroup");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LabOrderDetails(LabOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.MedicalService1 = this;
+		}
+		
+		private void detach_LabOrderDetails(LabOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.MedicalService1 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MedicalServiceGroup")]
+	public partial class MedicalServiceGroup : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _ServiceGroup;
+		
+		private EntitySet<MedicalService> _MedicalServices;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnServiceGroupChanging(string value);
+    partial void OnServiceGroupChanged();
+    #endregion
+		
+		public MedicalServiceGroup()
+		{
+			this._MedicalServices = new EntitySet<MedicalService>(new Action<MedicalService>(this.attach_MedicalServices), new Action<MedicalService>(this.detach_MedicalServices));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGroup", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string ServiceGroup
 		{
 			get
@@ -1845,6 +2456,19 @@ namespace Webdev_Assignment2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MedicalServiceGroup_MedicalService", Storage="_MedicalServices", ThisKey="Id", OtherKey="ServiceGroupId")]
+		public EntitySet<MedicalService> MedicalServices
+		{
+			get
+			{
+				return this._MedicalServices;
+			}
+			set
+			{
+				this._MedicalServices.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1864,6 +2488,18 @@ namespace Webdev_Assignment2
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_MedicalServices(MedicalService entity)
+		{
+			this.SendPropertyChanging();
+			entity.MedicalServiceGroup = this;
+		}
+		
+		private void detach_MedicalServices(MedicalService entity)
+		{
+			this.SendPropertyChanging();
+			entity.MedicalServiceGroup = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Patient")]
@@ -1881,6 +2517,8 @@ namespace Webdev_Assignment2
 		private string _Dob;
 		
 		private string _Address;
+		
+		private EntitySet<Visit> _Visits;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1900,6 +2538,7 @@ namespace Webdev_Assignment2
 		
 		public Patient()
 		{
+			this._Visits = new EntitySet<Visit>(new Action<Visit>(this.attach_Visits), new Action<Visit>(this.detach_Visits));
 			OnCreated();
 		}
 		
@@ -1923,7 +2562,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
 			get
@@ -1943,7 +2582,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(10)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
 		public string Gender
 		{
 			get
@@ -1963,7 +2602,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dob", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Dob", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Dob
 		{
 			get
@@ -1983,7 +2622,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Address
 		{
 			get
@@ -2000,6 +2639,19 @@ namespace Webdev_Assignment2
 					this.SendPropertyChanged("Address");
 					this.OnAddressChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_Visit", Storage="_Visits", ThisKey="Id", OtherKey="TreatedPatient")]
+		public EntitySet<Visit> Visits
+		{
+			get
+			{
+				return this._Visits;
+			}
+			set
+			{
+				this._Visits.Assign(value);
 			}
 		}
 		
@@ -2022,6 +2674,18 @@ namespace Webdev_Assignment2
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Visits(Visit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Patient = this;
+		}
+		
+		private void detach_Visits(Visit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Patient = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Prescription")]
@@ -2034,11 +2698,13 @@ namespace Webdev_Assignment2
 		
 		private string _Date;
 		
-		private string _PrescribedDoctor;
+		private int _PrescribedDoctor;
 		
-		private System.Nullable<int> _PrescriptionDetailsId;
+		private int _PrescriptionDetailsId;
 		
 		private EntitySet<Visit> _Visits;
+		
+		private EntityRef<Doctor> _Doctor;
 		
 		private EntityRef<PrescriptionDetail> _PrescriptionDetail;
 		
@@ -2050,15 +2716,16 @@ namespace Webdev_Assignment2
     partial void OnidChanged();
     partial void OnDateChanging(string value);
     partial void OnDateChanged();
-    partial void OnPrescribedDoctorChanging(string value);
+    partial void OnPrescribedDoctorChanging(int value);
     partial void OnPrescribedDoctorChanged();
-    partial void OnPrescriptionDetailsIdChanging(System.Nullable<int> value);
+    partial void OnPrescriptionDetailsIdChanging(int value);
     partial void OnPrescriptionDetailsIdChanged();
     #endregion
 		
 		public Prescription()
 		{
 			this._Visits = new EntitySet<Visit>(new Action<Visit>(this.attach_Visits), new Action<Visit>(this.detach_Visits));
+			this._Doctor = default(EntityRef<Doctor>);
 			this._PrescriptionDetail = default(EntityRef<PrescriptionDetail>);
 			OnCreated();
 		}
@@ -2083,7 +2750,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Date
 		{
 			get
@@ -2103,8 +2770,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescribedDoctor", DbType="VarChar(50)")]
-		public string PrescribedDoctor
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescribedDoctor", DbType="Int NOT NULL")]
+		public int PrescribedDoctor
 		{
 			get
 			{
@@ -2114,6 +2781,10 @@ namespace Webdev_Assignment2
 			{
 				if ((this._PrescribedDoctor != value))
 				{
+					if (this._Doctor.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPrescribedDoctorChanging(value);
 					this.SendPropertyChanging();
 					this._PrescribedDoctor = value;
@@ -2123,8 +2794,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionDetailsId", DbType="Int")]
-		public System.Nullable<int> PrescriptionDetailsId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriptionDetailsId", DbType="Int NOT NULL")]
+		public int PrescriptionDetailsId
 		{
 			get
 			{
@@ -2160,6 +2831,40 @@ namespace Webdev_Assignment2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Prescription", Storage="_Doctor", ThisKey="PrescribedDoctor", OtherKey="Id", IsForeignKey=true)]
+		public Doctor Doctor
+		{
+			get
+			{
+				return this._Doctor.Entity;
+			}
+			set
+			{
+				Doctor previousValue = this._Doctor.Entity;
+				if (((previousValue != value) 
+							|| (this._Doctor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Doctor.Entity = null;
+						previousValue.Prescriptions.Remove(this);
+					}
+					this._Doctor.Entity = value;
+					if ((value != null))
+					{
+						value.Prescriptions.Add(this);
+						this._PrescribedDoctor = value.Id;
+					}
+					else
+					{
+						this._PrescribedDoctor = default(int);
+					}
+					this.SendPropertyChanged("Doctor");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PrescriptionDetail_Prescription", Storage="_PrescriptionDetail", ThisKey="PrescriptionDetailsId", OtherKey="Id", IsForeignKey=true)]
 		public PrescriptionDetail PrescriptionDetail
 		{
@@ -2187,7 +2892,7 @@ namespace Webdev_Assignment2
 					}
 					else
 					{
-						this._PrescriptionDetailsId = default(Nullable<int>);
+						this._PrescriptionDetailsId = default(int);
 					}
 					this.SendPropertyChanged("PrescriptionDetail");
 				}
@@ -2235,11 +2940,11 @@ namespace Webdev_Assignment2
 		
 		private int _Id;
 		
-		private System.Nullable<int> _DrugId;
+		private int _DrugId;
 		
-		private System.Nullable<int> _Quantity;
+		private int _Quantity;
 		
-		private System.Nullable<int> _DosePerDay;
+		private int _DosePerDay;
 		
 		private string _SpecialInstruction;
 		
@@ -2251,11 +2956,11 @@ namespace Webdev_Assignment2
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnDrugIdChanging(System.Nullable<int> value);
+    partial void OnDrugIdChanging(int value);
     partial void OnDrugIdChanged();
-    partial void OnQuantityChanging(System.Nullable<int> value);
+    partial void OnQuantityChanging(int value);
     partial void OnQuantityChanged();
-    partial void OnDosePerDayChanging(System.Nullable<int> value);
+    partial void OnDosePerDayChanging(int value);
     partial void OnDosePerDayChanged();
     partial void OnSpecialInstructionChanging(string value);
     partial void OnSpecialInstructionChanged();
@@ -2287,8 +2992,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugId", DbType="Int")]
-		public System.Nullable<int> DrugId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugId", DbType="Int NOT NULL")]
+		public int DrugId
 		{
 			get
 			{
@@ -2307,8 +3012,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
-		public System.Nullable<int> Quantity
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
 		{
 			get
 			{
@@ -2327,8 +3032,8 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DosePerDay", DbType="Int")]
-		public System.Nullable<int> DosePerDay
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DosePerDay", DbType="Int NOT NULL")]
+		public int DosePerDay
 		{
 			get
 			{
@@ -2347,7 +3052,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpecialInstruction", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpecialInstruction", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string SpecialInstruction
 		{
 			get
@@ -2421,7 +3126,7 @@ namespace Webdev_Assignment2
 		
 		private int _Id;
 		
-		private string _UserName;
+		private string _Username;
 		
 		private string _Password;
 		
@@ -2433,8 +3138,8 @@ namespace Webdev_Assignment2
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
     partial void OnPasswordChanging(string value);
     partial void OnPasswordChanged();
     partial void OnRoleChanging(string value);
@@ -2466,27 +3171,27 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="VarChar(100)")]
-		public string UserName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Username
 		{
 			get
 			{
-				return this._UserName;
+				return this._Username;
 			}
 			set
 			{
-				if ((this._UserName != value))
+				if ((this._Username != value))
 				{
-					this.OnUserNameChanging(value);
+					this.OnUsernameChanging(value);
 					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Password
 		{
 			get
@@ -2506,7 +3211,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Role
 		{
 			get

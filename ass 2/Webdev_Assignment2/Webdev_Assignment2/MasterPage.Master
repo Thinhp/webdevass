@@ -4,9 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Welcome to the site</title>
+
+    <script type="text/javascript" src="<%= ResolveUrl ("~/Script/masterscript.js") %>"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link href="Stylesheet/master.css" rel="stylesheet" />
     <link href="Stylesheet/bootstrap.css" rel="stylesheet" />
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -67,5 +71,6 @@
             <div id="Footer">Footer</div>
         </div>
     </form>
+
 </body>
 </html>

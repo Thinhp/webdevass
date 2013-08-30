@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -75,7 +76,14 @@ namespace Webdev_Assignment2.Entities
                 DobTextBox.Text = "";
                 LicenseTextBox.Text = "";
                 AddressTextBox.Text = "";
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("toggle_visibility('SuccessBoxMessage');");
+
+                ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "success", sb.ToString(), true);
+                //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "AnUniqueKey", "toggle_visibility('FailBoxMessage');", true);
             }
+
         }
 
         [System.Web.Services.WebMethod]

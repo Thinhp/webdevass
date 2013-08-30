@@ -18,9 +18,8 @@ namespace Webdev_Assignment2
             else
             {
                 var response = base.Response;
-                response.Redirect("~/error.aspx",false);
+                response.Redirect("~/error.aspx", false);
             }
-
 
         }
 
