@@ -19,3 +19,9 @@ function toggle_insertbox(id) {
     else
         box.fadeIn(500);
 }
+
+function hide_newboxbelow(classid) {
+    var box = $("." + classid)
+
+    box.css("display", "block");
+}

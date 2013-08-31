@@ -11,15 +11,15 @@ namespace Webdev_Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Username"] != null && !Session["Username"].Equals(""))
-            {
-                WelcomeLabel.Text = "Welcome  " + (string)Session["Username"];
-            }
-            else
-            {
-                var response = base.Response;
-                response.Redirect("~/error.aspx", false);
-            }
+            //if (Session["Username"] != null && !Session["Username"].Equals(""))
+            //{
+            //    WelcomeLabel.Text = "Welcome  " + (string)Session["Username"];
+            //}
+            //else
+            //{
+            //    var response = base.Response;
+            //    response.Redirect("~/error.aspx", false);
+            //}
 
         }
 

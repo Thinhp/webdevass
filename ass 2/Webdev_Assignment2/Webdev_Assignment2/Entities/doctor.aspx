@@ -31,9 +31,10 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
                 <asp:GridView ID="GridView1" class="AllGridViews" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="738px">
+                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="738px" PageSize="15">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
+                        <asp:HyperLinkField Text="View"  />
                         <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" ReadOnly="True" />
                         <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                         <asp:BoundField DataField="Dob" HeaderText="Dob" SortExpression="Dob" />
@@ -52,22 +53,17 @@
                     <SortedDescendingCellStyle BackColor="#D4DFE1" />
                     <SortedDescendingHeaderStyle BackColor="#15524A" />
                 </asp:GridView>
-                <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Doctors" OnSelecting="LinqDataSource1_Selecting">
+                <asp:LinqDataSource  ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Doctors" OnSelecting="LinqDataSource1_Selecting">
                 </asp:LinqDataSource>
                 <div id="SuccessBoxMessage" class="AlertBoxMessage alert alert-dismissable alert-success">
                     <strong>Inserted successfull !</strong>
                 </div>
 
-                <div class="Newbox panel panel-success">
+                <div class="Newbox panel panel-success" >
                     <div class="panel-heading" style="z-index:1;">
                         <h3 class="panel-title" style="float:left;">Create new doctor</h3>
-                        <button style="float:right; margin-top: -10px; margin-right: -15px;"
-                            onclick="toggle_insertbox('Insertplace');"
-                            type="button" class="btn btn-success dropdown-toggle">
-                            <span class="caret"></span>
-                        </button>
                     </div>
-                    <div id="Insertplace" class="panel-body" style="display: none;">
+                    <div id="Insertplace" class="NewBoxBelow panel-body" style="display: block;">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
                                 <td>
@@ -96,6 +92,7 @@
                                     <br />
                                     <asp:Calendar ID="DobCalendar" runat="server"
                                         OnSelectionChanged="DobCalendar_SelectionChanged"
+                                        
                                         Height="175px" Width="300px"></asp:Calendar>
 
                                 </td>

@@ -14,7 +14,7 @@ namespace Webdev_Assignment2.Entities
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+        
         }
 
         protected void SearchButton_Click(object sender, EventArgs e)
@@ -81,7 +81,7 @@ namespace Webdev_Assignment2.Entities
                 sb.Append("toggle_visibility('SuccessBoxMessage');");
 
                 ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "success", sb.ToString(), true);
-                //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "AnUniqueKey", "toggle_visibility('FailBoxMessage');", true);
+
             }
 
         }

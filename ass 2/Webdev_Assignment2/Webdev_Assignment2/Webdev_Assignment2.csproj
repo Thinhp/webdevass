@@ -66,7 +66,10 @@
     <Content Include="error.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Image\ajax-loader.gif" />
+    <Content Include="Image\hospital-wallpaper.jpg" />
+    <Content Include="Image\white-dandelion-field_00449219.jpg" />
     <Content Include="index.aspx" />
+    <Content Include="Script\jquery.min.js" />
     <Content Include="Script\masterscript.js" />
     <Content Include="Stylesheet\bootstrap.css" />
     <Content Include="Stylesheet\doctor.css" />
