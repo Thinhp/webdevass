@@ -27,7 +27,9 @@
                     <asp:LinkButton class="MenuButton" runat="server" OnClick="AboutButton_Click" Width="100px">About</asp:LinkButton>
                 </div>
                 <div id="AccountArea">
-                    <asp:Label ID="WelcomeLabel" runat="server"></asp:Label>
+                    <asp:Label ID="WelcomeLabel" runat="server">Welcome </asp:Label>
+                    <asp:LoginName ID="LoginName1" runat="server" />
+&nbsp;
                     <asp:LinkButton ID="LogoutLinkButton" runat="server" OnClick="LogoutLinkButton_Click" ForeColor="Yellow">  Logout</asp:LinkButton>
                 </div>
             </div>

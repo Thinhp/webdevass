@@ -30,7 +30,7 @@
                         <img src="../Image/ajax-loader.gif" style="width: 147px; height: 18px" />
                     </ProgressTemplate>
                 </asp:UpdateProgress>
-                <asp:GridView ID="GridView1" class="AllGridViews" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
+                <asp:GridView ID="GridView1" class="AllGridViews" OnPreRender="GridView1_PreRender" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
                     CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="738px" PageSize="15">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
@@ -40,7 +40,16 @@
                         <asp:BoundField DataField="Dob" HeaderText="Dob" SortExpression="Dob" />
                         <asp:BoundField DataField="Licensenumber" HeaderText="Licensenumber" SortExpression="Licensenumber" />
                         <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
-                        <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                        <asp:TemplateField ShowHeader="False">
+                            <EditItemTemplate>
+                                <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#7C6F57" />
                     <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -59,10 +68,10 @@
                     <strong>Inserted successfull !</strong>
                 </div>
 
-                <div class="Newbox panel panel-success" >
-                    <div class="panel-heading" style="z-index:1;">
+                <asp:panel id="panel_insert" runat="server" class="Newbox panel panel-success" >
+                    <asp:panel runat="server" class="panel-heading" style="z-index:1;">
                         <h3 class="panel-title" style="float:left;">Create new doctor</h3>
-                    </div>
+                    </asp:panel>
                     <div id="Insertplace" class="NewBoxBelow panel-body" style="display: block;">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
@@ -127,7 +136,7 @@
                         </table>
 
                     </div>
-                </div>
+                </asp:panel>
                 <br />
                 <br />
 

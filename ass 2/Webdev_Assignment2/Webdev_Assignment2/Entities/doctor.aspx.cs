@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Security;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,7 +15,7 @@ namespace Webdev_Assignment2.Entities
 
         protected void Page_Load(object sender, EventArgs e)
         {
-        
+            
         }
 
         protected void SearchButton_Click(object sender, EventArgs e)
@@ -115,6 +116,18 @@ namespace Webdev_Assignment2.Entities
             string enteredDate = DobCalendar.SelectedDate.Day + "/" +
                 DobCalendar.SelectedDate.Month + "/" + DobCalendar.SelectedDate.Year;
             DobTextBox.Text = enteredDate;
+        }
+
+        protected void GridView1_PreRender(object sender, EventArgs e)
+        {
+            if (Roles.IsUserInRole("user"))
+            {
+                panel_insert.Visible = false;
+                for (int i = 1; i < GridView1.Rows.Count + 1; i++)
+                {
+                    GridView1.Controls[0].Controls[i].FindControl("LinkButton1").Visible = false;
+                }
+            }
         }
 
     }
