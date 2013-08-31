@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entities\doctor.aspx" />
+    <Content Include="Entities\doctordetails.aspx" />
     <Content Include="error.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Image\ajax-loader.gif" />
@@ -91,6 +92,13 @@
     </Compile>
     <Compile Include="Entities\doctor.aspx.designer.cs">
       <DependentUpon>doctor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\doctordetails.aspx.cs">
+      <DependentUpon>doctordetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\doctordetails.aspx.designer.cs">
+      <DependentUpon>doctordetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="error.aspx.cs">
       <DependentUpon>error.aspx</DependentUpon>
