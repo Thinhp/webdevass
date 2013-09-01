@@ -108,15 +108,11 @@
                                 <td>
                                     <asp:Label ID="DobLabel" class="NewBoxTextLabel" runat="server" Text="Date of birth:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox Enabled="false" ID="DobTextBox" runat="server" Width="196px"></asp:TextBox>
+                                    <asp:TextBox ID="DobTextBox" runat="server" Width="196px"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="DobValidation" runat="server" ValidationGroup="InsertAllValidation"
                                         ErrorMessage="* Date of birth is required"
                                         ControlToValidate="DobTextBox" Font-Bold="true" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <br />
-                                    <br />
-                                    <asp:Calendar ID="DobCalendar" runat="server"
-                                        OnSelectionChanged="DobCalendar_SelectionChanged"
-                                        Height="175px" Width="300px"></asp:Calendar>
+                                    <asp:CalendarExtender ID="CalendarExtender2" Format="dd-MM-yyyy" runat="server" TargetControlID="DobTextBox"></asp:CalendarExtender>
 
                                 </td>
                             </tr>

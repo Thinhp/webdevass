@@ -122,11 +122,18 @@ namespace Webdev_Assignment2.Entities
                     GridView1.Controls[0].Controls[i].FindControl("LinkButton1").Visible = false;
                     GridView1.Controls[0].Controls[i].FindControl("LinkButton2").Visible = false;
                 }
-
-                
+           
             }
-            //((TextBox)GridView1.Controls[0].Controls[0].FindControl("TextBox1")).Attributes.Add("readonly", "readonly");
+            
+            //No inserting datetime
             DobTextBox.Attributes.Add("readonly", "readly");
+
+            if (GridView1.EditIndex != -1)
+            {
+                int index = GridView1.EditIndex;
+                TextBox text = GridView1.Rows[index].FindControl("TextBox1") as TextBox;
+                text.Attributes.Add("readonly", "readonly");
+            }
         }
 
     }

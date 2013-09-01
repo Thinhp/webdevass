@@ -90,6 +90,16 @@ namespace Webdev_Assignment2.Entities
                     GridView1.Controls[0].Controls[i].FindControl("LinkButton2").Visible = false;
                 }
             }
+
+            //No inserting datetime
+            DobTextBox.Attributes.Add("readonly", "readly");
+
+            if (GridView1.EditIndex != -1)
+            {
+                int index = GridView1.EditIndex;
+                TextBox text = GridView1.Rows[index].FindControl("TextBox1") as TextBox;
+                text.Attributes.Add("readonly", "readonly");
+            }
         }
 
         protected void InsertButton_Click(object sender, EventArgs e)

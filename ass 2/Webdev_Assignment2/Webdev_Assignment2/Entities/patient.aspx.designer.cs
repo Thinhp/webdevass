@@ -202,13 +202,13 @@ namespace Webdev_Assignment2.Entities {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator DobValidation;
         
         /// <summary>
-        /// DobCalendar control.
+        /// CalendarExtender2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar DobCalendar;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
         
         /// <summary>
         /// AddressLabel control.
