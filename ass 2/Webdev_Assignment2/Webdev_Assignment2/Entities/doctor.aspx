@@ -5,8 +5,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <link href="../Stylesheet/doctor.css" rel="stylesheet" />
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePageMethods="true"></asp:ToolkitScriptManager>
+    <link href="../Stylesheet/doctor.css" rel="stylesheet" />
     <div id="doctorfield">
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -37,7 +37,15 @@
                         <asp:HyperLinkField Text="View" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="doctordetails.aspx?id={0}" />
                         <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" ReadOnly="True" />
                         <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                        <asp:BoundField DataField="Dob" HeaderText="Dob" SortExpression="Dob" />
+                        <asp:TemplateField HeaderText="Dob" SortExpression="Dob">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Dob") %>'></asp:TextBox>
+                                <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="TextBox1"></asp:CalendarExtender>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Dob") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="Licensenumber" HeaderText="Licensenumber" SortExpression="Licensenumber" />
                         <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
                         <asp:TemplateField ShowHeader="False">
@@ -62,16 +70,16 @@
                     <SortedDescendingCellStyle BackColor="#D4DFE1" />
                     <SortedDescendingHeaderStyle BackColor="#15524A" />
                 </asp:GridView>
-                <asp:LinqDataSource  ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Doctors" OnSelecting="LinqDataSource1_Selecting">
+                <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Doctors" OnSelecting="LinqDataSource1_Selecting">
                 </asp:LinqDataSource>
                 <div id="SuccessBoxMessage" class="AlertBoxMessage alert alert-dismissable alert-success">
                     <strong>Inserted successfull !</strong>
                 </div>
 
-                <asp:panel id="panel_insert" runat="server" class="Newbox panel panel-success" >
-                    <asp:panel runat="server" class="panel-heading" style="z-index:1;">
-                        <h3 class="panel-title" style="float:left;">Create new doctor</h3>
-                    </asp:panel>
+                <asp:Panel ID="panel_insert" runat="server" class="Newbox panel panel-success">
+                    <asp:Panel runat="server" class="panel-heading" Style="z-index: 1;">
+                        <h3 class="panel-title" style="float: left;">Create new doctor</h3>
+                    </asp:Panel>
                     <div id="Insertplace" class="NewBoxBelow panel-body" style="display: block;">
                         <table class="table table-striped table-bordered table-hover">
                             <tr>
@@ -93,16 +101,12 @@
                                 <td>
                                     <asp:Label ID="DobLabel" class="NewBoxTextLabel" runat="server" Text="Date of birth:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox Enabled="false" ID="DobTextBox" runat="server" Width="196px"></asp:TextBox>
+                                    <asp:TextBox ID="DobTextBox" runat="server" Width="196px"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="DobValidation" runat="server" ValidationGroup="InsertAllValidation"
                                         ErrorMessage="* Date of birth is required"
                                         ControlToValidate="DobTextBox" Font-Bold="true" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <br />
-                                    <br />
-                                    <asp:Calendar ID="DobCalendar" runat="server"
-                                        OnSelectionChanged="DobCalendar_SelectionChanged"
-                                        
-                                        Height="175px" Width="300px"></asp:Calendar>
+                                    <asp:CalendarExtender ID="CalendarExtender2" Format="dd-MM-yyyy" runat="server" TargetControlID="DobTextBox"></asp:CalendarExtender>
+
 
                                 </td>
                             </tr>
@@ -136,7 +140,7 @@
                         </table>
 
                     </div>
-                </asp:panel>
+                </asp:Panel>
                 <br />
                 <br />
 

@@ -1,0 +1,12 @@
+﻿#patientfield {
+    margin-top: 5px;
+}
+
+.LabelSite {
+    color: orange;
+    font-size: 50px;
+    text-align: center;
+    margin-left: 30%;
+    font-family: serif;
+    background-color: #FFFFCC;
+}

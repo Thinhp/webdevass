@@ -64,6 +64,7 @@
   <ItemGroup>
     <Content Include="Entities\doctor.aspx" />
     <Content Include="Entities\doctordetails.aspx" />
+    <Content Include="Entities\patient.aspx" />
     <Content Include="error.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Image\ajax-loader.gif" />
@@ -76,6 +77,7 @@
     <Content Include="Stylesheet\doctor.css" />
     <Content Include="Stylesheet\index.css" />
     <Content Include="Stylesheet\master.css" />
+    <Content Include="Stylesheet\patient.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -99,6 +101,13 @@
     </Compile>
     <Compile Include="Entities\doctordetails.aspx.designer.cs">
       <DependentUpon>doctordetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\patient.aspx.cs">
+      <DependentUpon>patient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\patient.aspx.designer.cs">
+      <DependentUpon>patient.aspx</DependentUpon>
     </Compile>
     <Compile Include="error.aspx.cs">
       <DependentUpon>error.aspx</DependentUpon>

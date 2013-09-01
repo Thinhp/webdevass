@@ -44,6 +44,7 @@ namespace Webdev_Assignment2.Entities
                            || p.Licensenumber.Contains(searchkey)
                            || p.Id.ToString().Contains(searchkey)
                            || p.Address.Contains(searchkey)
+                           || p.Dob.Contains(searchkey)
                            select p;
 
             e.Result = searched;
@@ -111,13 +112,6 @@ namespace Webdev_Assignment2.Entities
             return result.ToArray();
         }
 
-        protected void DobCalendar_SelectionChanged(object sender, EventArgs e)
-        {
-            string enteredDate = DobCalendar.SelectedDate.Day + "/" +
-                DobCalendar.SelectedDate.Month + "/" + DobCalendar.SelectedDate.Year;
-            DobTextBox.Text = enteredDate;
-        }
-
         protected void GridView1_PreRender(object sender, EventArgs e)
         {
             if (Roles.IsUserInRole("user"))
@@ -126,8 +120,13 @@ namespace Webdev_Assignment2.Entities
                 for (int i = 1; i < GridView1.Rows.Count + 1; i++)
                 {
                     GridView1.Controls[0].Controls[i].FindControl("LinkButton1").Visible = false;
+                    GridView1.Controls[0].Controls[i].FindControl("LinkButton2").Visible = false;
                 }
+
+                
             }
+            //((TextBox)GridView1.Controls[0].Controls[0].FindControl("TextBox1")).Attributes.Add("readonly", "readonly");
+            DobTextBox.Attributes.Add("readonly", "readly");
         }
 
     }

@@ -12,7 +12,7 @@ namespace Webdev_Assignment2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Page.Header.DataBind();
         }
 
         
@@ -38,6 +38,12 @@ namespace Webdev_Assignment2
         protected void AboutButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/patient.aspx", false);
         }
 
     }
