@@ -42,7 +42,7 @@
 
                     <asp:LinkButton ID="LinkButton2" class="Entity" runat="server" Width="200px" OnClick="LinkButton2_Click">Patient</asp:LinkButton><br />
 
-                    <asp:LinkButton ID="LinkButton3" class="Entity" runat="server" Width="200px">Hospital</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButton3" class="Entity" runat="server" Width="200px" OnClick="LinkButton3_Click">Hospital</asp:LinkButton><br />
 
                     <asp:LinkButton ID="LinkButton4" class="Entity" runat="server" Width="200px">Visit</asp:LinkButton><br />
 

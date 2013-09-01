@@ -23,12 +23,6 @@ namespace Webdev_Assignment2
             Response.Redirect("~/index.aspx",false);
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-            var response = base.Response;
-            response.Redirect("~/Entities/doctor.aspx", false);
-        }
-
         protected void HomeButton_Click(object sender, EventArgs e)
         {
             var response = base.Response;
@@ -40,10 +34,22 @@ namespace Webdev_Assignment2
 
         }
 
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/doctor.aspx", false);
+        }
+
         protected void LinkButton2_Click(object sender, EventArgs e)
         {
             var response = base.Response;
             response.Redirect("~/Entities/patient.aspx", false);
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/hospital.aspx", false);
         }
 
     }
