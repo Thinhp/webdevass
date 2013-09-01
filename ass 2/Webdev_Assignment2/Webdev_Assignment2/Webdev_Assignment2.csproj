@@ -65,11 +65,11 @@
     <Content Include="Entities\doctor.aspx" />
     <Content Include="Entities\doctordetails.aspx" />
     <Content Include="Entities\patient.aspx" />
+    <Content Include="Entities\patientdetails.aspx" />
     <Content Include="error.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Image\ajax-loader.gif" />
     <Content Include="Image\hospital-wallpaper.jpg" />
-    <Content Include="Image\white-dandelion-field_00449219.jpg" />
     <Content Include="index.aspx" />
     <Content Include="Script\jquery.min.js" />
     <Content Include="Script\masterscript.js" />
@@ -108,6 +108,13 @@
     </Compile>
     <Compile Include="Entities\patient.aspx.designer.cs">
       <DependentUpon>patient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\patientdetails.aspx.cs">
+      <DependentUpon>patientdetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\patientdetails.aspx.designer.cs">
+      <DependentUpon>patientdetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="error.aspx.cs">
       <DependentUpon>error.aspx</DependentUpon>

@@ -31,35 +31,49 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
                 <asp:GridView ID="GridView1" class="AllGridViews" OnPreRender="GridView1_PreRender" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="738px" PageSize="15">
+                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="800px" PageSize="15">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:HyperLinkField Text="View" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="doctordetails.aspx?id={0}" />
+                        <asp:HyperLinkField Text="View" ControlStyle-CssClass="btn btn-warning btn-xs" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="doctordetails.aspx?id={0}" >
+                        <ControlStyle CssClass="btn btn-warning btn-xs" />
+                        </asp:HyperLinkField>
                         <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" ReadOnly="True" />
-                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" >
+                            <ControlStyle Width="100">
+                            </ControlStyle>
+                            </asp:BoundField>
                         <asp:TemplateField HeaderText="Dob" SortExpression="Dob">
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Dob") %>'></asp:TextBox>
-                                <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="TextBox1"></asp:CalendarExtender>
+                                <asp:CalendarExtender ID="CalendarExtender1" Format="dd-MM-yyyy" runat="server" TargetControlID="TextBox1"></asp:CalendarExtender>
+                            
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Dob") %>'></asp:Label>
                             </ItemTemplate>
+                            <ControlStyle Width="90">
+                            </ControlStyle>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Licensenumber" HeaderText="Licensenumber" SortExpression="Licensenumber" />
-                        <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
+                        <asp:BoundField DataField="Licensenumber" HeaderText="Licensenumber" SortExpression="Licensenumber" >
+                        <ControlStyle Width="120">
+                            </ControlStyle>    
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" >
+                            <ControlStyle Width="160">
+                            </ControlStyle>
+                        </asp:BoundField>
                         <asp:TemplateField ShowHeader="False">
                             <EditItemTemplate>
-                                <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-warning btn-sm" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="LinkButton2" CssClass="btn btn-default btn-sm" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary btn-sm"  runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger btn-sm"  runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
-                    <EditRowStyle BackColor="#7C6F57" />
+                    <EditRowStyle BackColor="#7C6F57" HorizontalAlign="Left" />
                     <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
                     <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#1C5E55" ForeColor="White" HorizontalAlign="Center" />
@@ -69,6 +83,7 @@
                     <SortedAscendingHeaderStyle BackColor="#246B61" />
                     <SortedDescendingCellStyle BackColor="#D4DFE1" />
                     <SortedDescendingHeaderStyle BackColor="#15524A" />
+                    <EditRowStyle CssClass="edit_rows_style" /> 
                 </asp:GridView>
                 <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Doctors" OnSelecting="LinqDataSource1_Selecting">
                 </asp:LinqDataSource>

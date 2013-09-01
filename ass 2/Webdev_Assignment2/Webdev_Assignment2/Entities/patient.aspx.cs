@@ -48,13 +48,6 @@ namespace Webdev_Assignment2.Entities
             e.Result = searched;
         }
 
-        protected void DobCalendar_SelectionChanged(object sender, EventArgs e)
-        {
-            string enteredDate = DobCalendar.SelectedDate.Day + "/" +
-                DobCalendar.SelectedDate.Month + "/" + DobCalendar.SelectedDate.Year;
-            DobTextBox.Text = enteredDate;
-        }
-
         [System.Web.Services.WebMethod]
         [System.Web.Script.Services.ScriptMethod]
         public static string[] GetCompletionList(string prefixText)

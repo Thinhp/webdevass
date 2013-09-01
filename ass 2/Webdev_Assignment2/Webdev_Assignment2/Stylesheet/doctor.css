@@ -24,3 +24,7 @@
 .back_buttons {
     margin-left: 470px;
 }
+
+.edit_rows_style input[type=text] {
+    width: 30px;
+}

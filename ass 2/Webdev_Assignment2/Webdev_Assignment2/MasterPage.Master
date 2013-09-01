@@ -16,7 +16,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="bg"><img src="<%# ResolveUrl ("~/Image/hospital-wallpaper.jpg") %>" alt=""/></div>
+        <div id="bg"><img src="<%= ResolveUrl ("~/Image/hospital-wallpaper.jpg") %>" alt=""/></div>
         <div id="Page">
 
             <div id="Menu">

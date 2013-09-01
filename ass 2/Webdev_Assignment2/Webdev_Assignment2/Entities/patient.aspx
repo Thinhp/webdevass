@@ -33,21 +33,51 @@
                     CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="738px" PageSize="15">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:HyperLinkField Text="View" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="patientdetails.aspx?id={0}" />
+                        <asp:HyperLinkField Text="View" ControlStyle-CssClass="btn btn-warning btn-xs"  DataNavigateUrlFields="Id" DataNavigateUrlFormatString="patientdetails.aspx?id={0}" />
                         <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                        <asp:BoundField DataField="Gender" HeaderText="Gender" SortExpression="Gender" />
-                        <asp:BoundField DataField="Dob" HeaderText="Dob" SortExpression="Dob" />
-                        <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
-                        <asp:TemplateField ShowHeader="False">
+                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" >
+                            <ControlStyle Width="100">
+                            </ControlStyle>
+                            </asp:BoundField>
+                        <asp:TemplateField HeaderText="Gender" SortExpression="Gender">
                             <EditItemTemplate>
-                                <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                                <%--<asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Gender") %>'></asp:TextBox>--%>
+                                <asp:DropDownList ID="GenderTextBox" runat="server" selectedvalue='<%# Bind("Gender") %>' Width="106px">
+                                        <asp:ListItem>Male</asp:ListItem>
+                                        <asp:ListItem>Female</asp:ListItem>
+                                </asp:DropDownList>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-                                &nbsp;<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Gender") %>'></asp:Label>
                             </ItemTemplate>
+                            <ControlStyle Width="80">
+                            </ControlStyle>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Dob" SortExpression="Dob">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Dob") %>'></asp:TextBox>
+                                 <asp:CalendarExtender ID="CalendarExtender1" Format="dd-MM-yyyy" runat="server" TargetControlID="TextBox1"></asp:CalendarExtender>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Dob") %>'></asp:Label>
+                            </ItemTemplate>
+                            <ControlStyle Width="90">
+                            </ControlStyle>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" >
+                            <ControlStyle Width="160">
+                            </ControlStyle>
+                        </asp:BoundField>
+                        <asp:TemplateField ShowHeader="False">
+                            <EditItemTemplate>
+                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-warning btn-sm" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="LinkButton2" CssClass="btn btn-default btn-sm" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary btn-sm"  runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="LinkButton2" CssClass="btn btn-danger btn-sm" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
+                            </ItemTemplate>
+                            
                         </asp:TemplateField>
                         <asp:TemplateField ShowHeader="False"></asp:TemplateField>
                     </Columns>
