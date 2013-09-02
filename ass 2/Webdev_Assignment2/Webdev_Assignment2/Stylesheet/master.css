@@ -32,27 +32,27 @@
 
 #Header {
     height: 150px;
-    background-color:lightgreen;
-    font-size: 30px;
-    line-height: 150px;
-    text-align: center;
+}
+
+#ImageHeader {
+    width:100%;
+    height: 100%;
 }
 
 #Menu {
-    background-color: #1C5E55;
+    background-color: #006600;
     width: 1200px;
     height: 50px;
     margin-left: auto;
     margin-right: auto;
     line-height: 50px;
-
 }
 
 .MenuButton {
     margin-right: 1px;
     text-align: center;
     line-height: 50px;
-    background-color: #1C5E55;
+    background-color: #006600;
     width: 200px;
     color: #FFFFFF;
 }
@@ -85,16 +85,16 @@
 .Entity
 {
     text-align: center;
+    font-family: sans-serif;
     line-height: 50px;
-    background-color: lightyellow;
     width: 200px;
-    background-color: #1C5E55;
+    background-color: #331100;
     color: #FFFFFF;
 }
 
     .Entity:hover
     {
-        background-color: #008080;
+        background-color: #A3A329;
         color: #000000;
     }
 

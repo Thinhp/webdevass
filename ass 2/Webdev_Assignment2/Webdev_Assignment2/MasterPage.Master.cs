@@ -52,5 +52,16 @@ namespace Webdev_Assignment2
             response.Redirect("~/Entities/hospital.aspx", false);
         }
 
+        protected void Drug_Group_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/druggroup.aspx", false);
+        }
+
+        protected void Drug_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/drug.aspx", false);
+        }
     }
 }

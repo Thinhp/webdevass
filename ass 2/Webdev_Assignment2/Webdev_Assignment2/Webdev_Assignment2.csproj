@@ -64,18 +64,25 @@
   <ItemGroup>
     <Content Include="Entities\doctor.aspx" />
     <Content Include="Entities\doctordetails.aspx" />
+    <Content Include="Entities\drug.aspx" />
+    <Content Include="Entities\druggroup.aspx" />
+    <Content Include="Entities\druggroupdetails.aspx" />
     <Content Include="Entities\hospital.aspx" />
+    <Content Include="Entities\hospitaldetails.aspx" />
     <Content Include="Entities\patient.aspx" />
     <Content Include="Entities\patientdetails.aspx" />
     <Content Include="error.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Image\ajax-loader.gif" />
+    <Content Include="Image\banner_green.jpg" />
     <Content Include="Image\hospital-wallpaper.jpg" />
+    <Content Include="Image\hospital_wallpaper.jpg" />
     <Content Include="index.aspx" />
     <Content Include="Script\jquery.min.js" />
     <Content Include="Script\masterscript.js" />
     <Content Include="Stylesheet\bootstrap.css" />
     <Content Include="Stylesheet\doctor.css" />
+    <Content Include="Stylesheet\druggroup.css" />
     <Content Include="Stylesheet\hospital.css" />
     <Content Include="Stylesheet\index.css" />
     <Content Include="Stylesheet\master.css" />
@@ -104,12 +111,40 @@
     <Compile Include="Entities\doctordetails.aspx.designer.cs">
       <DependentUpon>doctordetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\drug.aspx.cs">
+      <DependentUpon>drug.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\drug.aspx.designer.cs">
+      <DependentUpon>drug.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\druggroup.aspx.cs">
+      <DependentUpon>druggroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\druggroup.aspx.designer.cs">
+      <DependentUpon>druggroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\druggroupdetails.aspx.cs">
+      <DependentUpon>druggroupdetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\druggroupdetails.aspx.designer.cs">
+      <DependentUpon>druggroupdetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Entities\hospital.aspx.cs">
       <DependentUpon>hospital.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Entities\hospital.aspx.designer.cs">
       <DependentUpon>hospital.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\hospitaldetails.aspx.cs">
+      <DependentUpon>hospitaldetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\hospitaldetails.aspx.designer.cs">
+      <DependentUpon>hospitaldetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Entities\patient.aspx.cs">
       <DependentUpon>patient.aspx</DependentUpon>

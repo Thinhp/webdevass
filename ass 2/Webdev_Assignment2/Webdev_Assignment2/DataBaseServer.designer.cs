@@ -1127,7 +1127,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrugGroup_Drug", Storage="_DrugGroup", ThisKey="DrugGroupId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrugGroup_Drug", Storage="_DrugGroup", ThisKey="DrugGroupId", OtherKey="DrugGroupId", IsForeignKey=true)]
 		public DrugGroup DrugGroup
 		{
 			get
@@ -1150,7 +1150,7 @@ namespace Webdev_Assignment2
 					if ((value != null))
 					{
 						value.Drugs.Add(this);
-						this._DrugGroupId = value.Id;
+						this._DrugGroupId = value.DrugGroupId;
 					}
 					else
 					{
@@ -1188,7 +1188,7 @@ namespace Webdev_Assignment2
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Id;
+		private int _DrugGroupId;
 		
 		private string _GroupName;
 		
@@ -1198,8 +1198,8 @@ namespace Webdev_Assignment2
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
+    partial void OnDrugGroupIdChanging(int value);
+    partial void OnDrugGroupIdChanged();
     partial void OnGroupNameChanging(string value);
     partial void OnGroupNameChanged();
     #endregion
@@ -1210,22 +1210,22 @@ namespace Webdev_Assignment2
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrugGroupId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int DrugGroupId
 		{
 			get
 			{
-				return this._Id;
+				return this._DrugGroupId;
 			}
 			set
 			{
-				if ((this._Id != value))
+				if ((this._DrugGroupId != value))
 				{
-					this.OnIdChanging(value);
+					this.OnDrugGroupIdChanging(value);
 					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
+					this._DrugGroupId = value;
+					this.SendPropertyChanged("DrugGroupId");
+					this.OnDrugGroupIdChanged();
 				}
 			}
 		}
@@ -1250,7 +1250,7 @@ namespace Webdev_Assignment2
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrugGroup_Drug", Storage="_Drugs", ThisKey="Id", OtherKey="DrugGroupId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrugGroup_Drug", Storage="_Drugs", ThisKey="DrugGroupId", OtherKey="DrugGroupId")]
 		public EntitySet<Drug> Drugs
 		{
 			get

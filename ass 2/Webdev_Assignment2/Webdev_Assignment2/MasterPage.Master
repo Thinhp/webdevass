@@ -16,7 +16,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="bg"><img src="<%= ResolveUrl ("~/Image/hospital-wallpaper.jpg") %>" alt=""/></div>
+        <div id="bg"><img src="<%= ResolveUrl ("~/Image/hospital_wallpaper.jpg") %>" alt=""/></div>
         <div id="Page">
 
             <div id="Menu">
@@ -33,7 +33,7 @@
                     <asp:LinkButton ID="LogoutLinkButton" runat="server" OnClick="LogoutLinkButton_Click" ForeColor="Yellow">  Logout</asp:LinkButton>
                 </div>
             </div>
-            <div id="Header">Electronic Medical Record (EMR)</div>
+            <div id="Header"><img id="ImageHeader" src="<%= ResolveUrl ("~/Image/banner_green.jpg") %>" alt="" /></div>
 
             <div id="ContentArea">
                 <div id="EntityPanel">
@@ -54,9 +54,9 @@
 
                     <asp:LinkButton ID="LinkButton8" class="Entity" runat="server" Width="200px">Lab Order Details</asp:LinkButton><br />
 
-                    <asp:LinkButton ID="LinkButton9" class="Entity" runat="server" Width="200px">Drug</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButton9" class="Entity" runat="server" Width="200px" OnClick="Drug_Click">Drug</asp:LinkButton><br />
 
-                    <asp:LinkButton ID="LinkButton10" class="Entity" runat="server" Width="200px">Drug Group</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButton10" class="Entity" runat="server" Width="200px" OnClick="Drug_Group_Click">Drug Group</asp:LinkButton><br />
 
                     <asp:LinkButton ID="LinkButton11" class="Entity" runat="server" Width="200px">Medical Service</asp:LinkButton><br />
 
