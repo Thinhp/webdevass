@@ -63,5 +63,11 @@ namespace Webdev_Assignment2
             var response = base.Response;
             response.Redirect("~/Entities/drug.aspx", false);
         }
+
+        protected void Icd_Chapter_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/icdchapter.aspx", false);
+        }
     }
 }

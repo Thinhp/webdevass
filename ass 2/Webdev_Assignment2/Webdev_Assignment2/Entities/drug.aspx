@@ -38,17 +38,29 @@
                             <ControlStyle CssClass="btn btn-warning btn-xs" />
                         </asp:HyperLinkField>
                         <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                        <asp:BoundField DataField="GenericName" HeaderText="GenericName" SortExpression="GenericName" />
-                        <asp:BoundField DataField="Unit" HeaderText="Unit" SortExpression="Unit" />
-                        <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
+                        <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" >
+                            <ControlStyle Width="120">
+                            </ControlStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="GenericName" HeaderText="GenericName" SortExpression="GenericName" >
+                            <ControlStyle Width="120">
+                            </ControlStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Unit" HeaderText="Unit" SortExpression="Unit" >
+                            <ControlStyle Width="100">
+                            </ControlStyle>
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" >
+                            <ControlStyle Width="100">
+                            </ControlStyle>
+                        </asp:BoundField >
                         <asp:TemplateField HeaderText="DrugGroup" SortExpression="DrugGroupId">
                             <EditItemTemplate>
                                   <%--<asp:TextBox ID="DrugGroupChange" runat="server" Text='<%# Bind("DrugGroupId") %>'></asp:TextBox>--%> 
                                  
                                 <asp:DropDownList ID="DrugGroupChange"
                                                   DataSourceID="LinqDataSource2"
-                                                  DataValueField="DrugGroupId"
+                                                  DataValueField="Id"
                                                   DataTextField="GroupName"
                                                   SelectedValue='<%# Bind("DrugGroupId") %>'
                                                   runat="server"/>
@@ -57,6 +69,8 @@
                                  <%--<asp:Label ID="DrugGroupNormal" runat="server" Text='<%# Bind("DrugGroupId") %>'></asp:Label>--%>
                                 <%# Eval("DrugGroup.GroupName") %>
                             </ItemTemplate>
+                            <ControlStyle Width="120">
+                            </ControlStyle>
                         </asp:TemplateField>
                         <asp:TemplateField ShowHeader="False">
                             <EditItemTemplate>

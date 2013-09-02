@@ -74,7 +74,7 @@ namespace Webdev_Assignment2.Entities
                 {
                     if (n.GroupName.Equals(drug))
                     {
-                        targetId = n.DrugGroupId;
+                        targetId = n.Id;
                         break;
                     }
                 }
@@ -128,8 +128,8 @@ namespace Webdev_Assignment2.Entities
                                                      where n.Price.ToString().ToLower().Contains(prefixText.ToLower())
                                                      select n.Price.ToString())
                                                      .Union(from n in db.DrugGroups
-                                                            where n.DrugGroupId.ToString().ToLower().Contains(prefixText.ToLower())
-                                                            select n.DrugGroupId.ToString())
+                                                            where n.Id.ToString().ToLower().Contains(prefixText.ToLower())
+                                                            select n.Id.ToString())
                                                             .Union(from n in db.DrugGroups
                                                                    where n.GroupName.ToLower().Contains(prefixText.ToLower())
                                                                    select n.GroupName);

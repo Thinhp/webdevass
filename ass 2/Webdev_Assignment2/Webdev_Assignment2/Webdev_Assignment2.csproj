@@ -69,6 +69,7 @@
     <Content Include="Entities\druggroupdetails.aspx" />
     <Content Include="Entities\hospital.aspx" />
     <Content Include="Entities\hospitaldetails.aspx" />
+    <Content Include="Entities\icdchapter.aspx" />
     <Content Include="Entities\patient.aspx" />
     <Content Include="Entities\patientdetails.aspx" />
     <Content Include="error.aspx" />
@@ -82,6 +83,7 @@
     <Content Include="Script\masterscript.js" />
     <Content Include="Stylesheet\bootstrap.css" />
     <Content Include="Stylesheet\doctor.css" />
+    <Content Include="Stylesheet\drug.css" />
     <Content Include="Stylesheet\druggroup.css" />
     <Content Include="Stylesheet\hospital.css" />
     <Content Include="Stylesheet\index.css" />
@@ -145,6 +147,13 @@
     </Compile>
     <Compile Include="Entities\hospitaldetails.aspx.designer.cs">
       <DependentUpon>hospitaldetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\icdchapter.aspx.cs">
+      <DependentUpon>icdchapter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Entities\icdchapter.aspx.designer.cs">
+      <DependentUpon>icdchapter.aspx</DependentUpon>
     </Compile>
     <Compile Include="Entities\patient.aspx.cs">
       <DependentUpon>patient.aspx</DependentUpon>

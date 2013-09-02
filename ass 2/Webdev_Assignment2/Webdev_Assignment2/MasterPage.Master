@@ -63,6 +63,8 @@
                     <asp:LinkButton ID="LinkButton12" class="Entity" runat="server" Width="200px">Medical Service Group</asp:LinkButton><br />
 
                     <asp:LinkButton ID="LinkButton13" class="Entity" runat="server" Width="200px">ICD</asp:LinkButton><br />
+
+                    <asp:LinkButton ID="LinkButton14" class="Entity" runat="server" Width="200px" OnClick="Icd_Chapter_Click">ICD CHAPTER</asp:LinkButton><br />
                 </div>
                 <div id="ContentPage">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

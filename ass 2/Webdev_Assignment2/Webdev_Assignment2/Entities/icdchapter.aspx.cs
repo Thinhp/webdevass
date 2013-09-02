@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Webdev_Assignment2.Entities
 {
-    public partial class druggroup : System.Web.UI.Page
+    public partial class icdchapter : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,9 +37,9 @@ namespace Webdev_Assignment2.Entities
             DataBaseServerDataContext db = new DataBaseServerDataContext();
             string searchkey = SearchField.Text;
 
-            var searched = from p in db.DrugGroups
-                           where p.GroupName.Contains(searchkey)
-                           || p.Id.ToString().Contains(searchkey)
+            var searched = from p in db.ICDChapters
+                           where p.Name.Contains(searchkey)
+                           || p.id.ToString().Contains(searchkey)
                            select p;
 
             e.Result = searched;
@@ -53,13 +53,13 @@ namespace Webdev_Assignment2.Entities
                 DataBaseServerDataContext db = new DataBaseServerDataContext();
                 var name = NameTextBox.Text;
 
-                var insert = new DrugGroup()
+                var insert = new ICDChapter()
                 {
-                    GroupName = name,
+                    Name = name,
 
                 };
 
-                db.DrugGroups.InsertOnSubmit(insert);
+                db.ICDChapters.InsertOnSubmit(insert);
                 db.SubmitChanges();
                 GridView1.DataBind();
 
@@ -69,30 +69,27 @@ namespace Webdev_Assignment2.Entities
                 StringBuilder sb = new StringBuilder();
                 sb.Append("toggle_visibility('SuccessBoxMessage');");
 
-                ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "successdruggroup", sb.ToString(), true);
+                ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), "successicdchapter", sb.ToString(), true);
 
             }
 
         }
 
-        //Return an array of completed list to search
         [System.Web.Services.WebMethod]
         [System.Web.Script.Services.ScriptMethod]
         public static string[] GetCompletionList(string prefixText)
         {
-
             DataBaseServerDataContext db = new DataBaseServerDataContext();
-            var result = (from n in db.DrugGroups
-                          where n.Id.ToString().ToLower().Contains(prefixText.ToLower())
-                          select n.Id.ToString())
-                         .Union(from n in db.DrugGroups
-                                where n.GroupName.ToLower().Contains(prefixText.ToLower())
-                                select n.GroupName);
+            var result = (from n in db.ICDChapters
+                          where n.id.ToString().ToLower().Contains(prefixText.ToLower())
+                          select n.id.ToString())
+                         .Union(from n in db.ICDChapters
+                                where n.Name.ToLower().Contains(prefixText.ToLower())
+                                select n.Name);
 
             return result.ToArray();
         }
 
-        // Check user's role to hide edit and delete field
         protected void GridView1_PreRender(object sender, EventArgs e)
         {
             if (Roles.IsUserInRole("user"))
@@ -106,51 +103,7 @@ namespace Webdev_Assignment2.Entities
 
             }
         }
-
-        //Check if druggroup existed
-        protected void DrugGroup_Existed_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            //Get Linq command from server
-            DataBaseServerDataContext db = new DataBaseServerDataContext();
-            var lin = from p in db.DrugGroups
-                      select p.GroupName;
-
-            foreach (var g in lin)
-            {
-                if (g.Equals(NameTextBox.Text))
-                {
-                    args.IsValid = false;
-                    return;
-                }
-            }
-
-            args.IsValid = true;
-
-        }
-
-        protected void DrugGroup_Existed_UpdateValidate(object source, ServerValidateEventArgs args)
-        {
-            //Get Linq command from server
-            DataBaseServerDataContext db = new DataBaseServerDataContext();
-            var lin = from p in db.DrugGroups
-                      select p.GroupName;
-
-            int index = GridView1.EditIndex;
-            TextBox text = GridView1.Rows[index].FindControl("EditItemGroupName") as TextBox;
-
-            foreach (var g in lin)
-            {
-                if (g.Equals(text.Text))
-                {
-                    args.IsValid = false;
-                    return;
-                }
-            }
-
-            args.IsValid = true;
-        }
-
-
-
     }
+
+
 }

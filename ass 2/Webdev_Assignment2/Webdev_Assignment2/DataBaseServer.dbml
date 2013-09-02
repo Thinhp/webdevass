@@ -39,14 +39,14 @@
       <Column Name="Unit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="DrugGroupId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="DrugGroup_Drug" Member="DrugGroup" ThisKey="DrugGroupId" OtherKey="DrugGroupId" Type="DrugGroup" IsForeignKey="true" />
+      <Association Name="DrugGroup_Drug" Member="DrugGroup" ThisKey="DrugGroupId" OtherKey="Id" Type="DrugGroup" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DrugGroup" Member="DrugGroups">
     <Type Name="DrugGroup">
-      <Column Name="DrugGroupId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="GroupName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Association Name="DrugGroup_Drug" Member="Drugs" ThisKey="DrugGroupId" OtherKey="DrugGroupId" Type="Drug" />
+      <Association Name="DrugGroup_Drug" Member="Drugs" ThisKey="Id" OtherKey="DrugGroupId" Type="Drug" />
     </Type>
   </Table>
   <Table Name="dbo.Hospitals" Member="Hospitals">
