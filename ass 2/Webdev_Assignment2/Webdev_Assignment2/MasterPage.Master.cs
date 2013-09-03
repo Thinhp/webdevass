@@ -69,5 +69,35 @@ namespace Webdev_Assignment2
             var response = base.Response;
             response.Redirect("~/Entities/icdchapter.aspx", false);
         }
+
+        protected void Icd_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/icd.aspx", false);
+        }
+
+        protected void Medical_Service_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/medicalservice.aspx", false);
+        }
+
+        protected void Medical_Service_Group_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/medicalservicegroup.aspx", false);
+        }
+
+        protected void Prescription_Info_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/prescriptioninfo.aspx", false);
+        }
+
+        protected void Prescription_Click(object sender, EventArgs e)
+        {
+            var response = base.Response;
+            response.Redirect("~/Entities/prescription.aspx", false);
+        }
     }
 }

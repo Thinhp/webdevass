@@ -1,0 +1,40 @@
+﻿#medicalservicefield {
+    margin-top: 5px;
+}
+
+#tabledetails {
+    margin-left:auto; 
+    margin-right:auto; 
+    width:350px;
+}
+
+.LabelSite {
+    color: orange;
+    font-size: 50px;
+    text-align: center;
+    margin-left: 20%;
+    font-family: serif;
+    background-color: #FFFFCC;
+}
+
+.LabelSiteMain
+{
+    color: orange;
+    font-size: 50px;
+    text-align: center;
+    margin-left: 20%;
+    font-family: serif;
+    background-color: #FFFFCC;
+}
+
+.details_info {
+    text-align: center;
+}
+
+.back_buttons {
+    margin-left: 470px;
+}
+
+.edit_rows_style input[type=text] {
+    width: 30px;
+}

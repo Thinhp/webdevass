@@ -46,9 +46,9 @@
 
                     <asp:LinkButton ID="LinkButton4" class="Entity" runat="server" Width="200px">Visit</asp:LinkButton><br />
 
-                    <asp:LinkButton ID="LinkButton5" class="Entity" runat="server" Width="200px">Prescription</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButton5" class="Entity" runat="server" Width="200px" OnClick="Prescription_Click">Prescription</asp:LinkButton><br />
 
-                    <asp:LinkButton ID="LinkButton6" class="Entity" runat="server" Width="200px">PrescriptionDetails</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButton6" class="Entity" runat="server" Width="200px" OnClick="Prescription_Info_Click">Prescription Info</asp:LinkButton><br />
 
                     <asp:LinkButton ID="LinkButton7" class="Entity" runat="server" Width="200px">Lab Order</asp:LinkButton><br />
 
@@ -58,11 +58,11 @@
 
                     <asp:LinkButton ID="LinkButton10" class="Entity" runat="server" Width="200px" OnClick="Drug_Group_Click">Drug Group</asp:LinkButton><br />
 
-                    <asp:LinkButton ID="LinkButton11" class="Entity" runat="server" Width="200px">Medical Service</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButton11" class="Entity" runat="server" Width="200px" OnClick="Medical_Service_Click">Medical Service</asp:LinkButton><br />
 
-                    <asp:LinkButton ID="LinkButton12" class="Entity" runat="server" Width="200px">Medical Service Group</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButton12" class="Entity" runat="server" Width="200px" OnClick="Medical_Service_Group_Click">Medical Service Group</asp:LinkButton><br />
 
-                    <asp:LinkButton ID="LinkButton13" class="Entity" runat="server" Width="200px">ICD</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButton13" class="Entity" runat="server" Width="200px" OnClick="Icd_Click">ICD</asp:LinkButton><br />
 
                     <asp:LinkButton ID="LinkButton14" class="Entity" runat="server" Width="200px" OnClick="Icd_Chapter_Click">ICD CHAPTER</asp:LinkButton><br />
                 </div>

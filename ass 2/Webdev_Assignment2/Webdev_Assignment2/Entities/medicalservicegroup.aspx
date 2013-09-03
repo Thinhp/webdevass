@@ -1,17 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="icdchapter.aspx.cs" Inherits="Webdev_Assignment2.Entities.icdchapter" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeBehind="medicalservicegroup.aspx.cs" Inherits="Webdev_Assignment2.Entities.medicalservicegroup" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="../Stylesheet/medicalservice.css" rel="stylesheet" />
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
-    <link href="../Stylesheet/icdchapter.css" rel="stylesheet" />
-    <div id="icdchapterfield">
+
+    <div id="medicalservicegroupfield">
 
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <div id="icdchaptersearchfield">
-                    <asp:Label ID="Label1" class="LabelSite" runat="server" Text="ICD CHAPTER" Font-Bold="False"></asp:Label>
+                <div id="medicalservicesearchfield">
+                    <asp:Label ID="Label1" class="LabelSiteMain" runat="server" Text="MEDICAL SERVICE GROUP" Font-Bold="False"></asp:Label>
                     <br />
                     <br />
                     <asp:Button ID="SearchButton" class="AllSearchButtons btn btn-default" runat="server" Text="Search" OnClick="SearchButton_Click" />
@@ -29,15 +30,19 @@
                         <img src="../Image/ajax-loader.gif" style="width: 147px; height: 18px" />
                     </ProgressTemplate>
                 </asp:UpdateProgress>
+                
                 <asp:GridView ID="GridView1" class="AllGridViews" OnPreRender="GridView1_PreRender" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-                    CellPadding="4" DataKeyNames="id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="800px" PageSize="15">
+                    CellPadding="4" DataKeyNames="Id" DataSourceID="LinqDataSource1" ForeColor="#1C5E55" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="800px" PageSize="15">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:HyperLinkField Text="View" ControlStyle-CssClass="btn btn-warning btn-xs" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="icdchapterdetails.aspx?id={0}">
+                        <asp:HyperLinkField Text="View" ControlStyle-CssClass="btn btn-warning btn-xs" DataNavigateUrlFields="Id" DataNavigateUrlFormatString="medicalservicegroupdetails.aspx?id={0}" >
                             <ControlStyle CssClass="btn btn-warning btn-xs" />
                         </asp:HyperLinkField>
-                        <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" InsertVisible="False" ReadOnly="True" />
-                        <asp:BoundField DataField="Name" HeaderText="Chapter" SortExpression="Name"></asp:BoundField>
+                        <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" ReadOnly="True" />
+                        <asp:BoundField DataField="ServiceGroup" HeaderText="ServiceGroup" SortExpression="ServiceGroup" >
+                        <ControlStyle Width="150">
+                            </ControlStyle>    
+                        </asp:BoundField>
                         <asp:TemplateField ShowHeader="False">
                             <EditItemTemplate>
                                 <asp:LinkButton ID="LinkButton1" CssClass="btn btn-warning btn-sm" runat="server" CausesValidation="True" CommandName="Update" Text="Update"></asp:LinkButton>
@@ -59,9 +64,10 @@
                     <SortedAscendingHeaderStyle BackColor="#246B61" />
                     <SortedDescendingCellStyle BackColor="#D4DFE1" />
                     <SortedDescendingHeaderStyle BackColor="#15524A" />
-                    <EditRowStyle CssClass="edit_rows_style" />
+                    <EditRowStyle CssClass="edit_rows_style" /> 
                 </asp:GridView>
-                <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="ICDChapters" OnSelecting="LinqDataSource1_Selecting">
+
+                <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="Webdev_Assignment2.DataBaseServerDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="MedicalServiceGroups" OnSelecting="LinqDataSource1_Selecting">
                 </asp:LinqDataSource>
                 <div id="SuccessBoxMessage" class="AlertBoxMessage alert alert-dismissable alert-success">
                     <strong>Inserted successfull !</strong>
@@ -80,20 +86,20 @@
                                     <asp:TextBox ID="NameTextBox" runat="server" Width="196px"></asp:TextBox>
 
                                     <asp:RegularExpressionValidator ID="NameValidation" runat="server" Display="Dynamic" ValidationGroup="InsertAllValidation"
-                                        ForeColor="Red" Font-Bold="true" ErrorMessage="* Wrong ICD name format" ControlToValidate="NameTextBox"
+                                        ForeColor="Red" Font-Bold="true" ErrorMessage="* Wrong medical service name format" ControlToValidate="NameTextBox"
                                         ValidationExpression="^[a-zA-Z''-'\s]{1,40}$"></asp:RegularExpressionValidator>
                                     <asp:RequiredFieldValidator ID="NameValidation2" ValidationGroup="InsertAllValidation"
-                                        runat="server" ErrorMessage="* ICD Name is required" Display="Dynamic"
+                                        runat="server" ErrorMessage="* Medical Service name is required" Display="Dynamic"
                                         ControlToValidate="NameTextBox" Font-Bold="true" ForeColor="Red"></asp:RequiredFieldValidator>
 
                                 </td>
                             </tr>
+                            
                             <tr>
                                 <td>
                                     <td>
                                         <asp:Button ID="InsertButton" ValidationGroup="InsertAllValidation" class="btn btn-success" runat="server" OnClick="InsertButton_Click" Text="Insert" Width="106px"></asp:Button></td>
                             </tr>
-                            
                         </table>
 
                     </div>
@@ -104,5 +110,6 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
+
 
 </asp:Content>

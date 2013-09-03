@@ -977,6 +977,8 @@ namespace Webdev_Assignment2
 		
 		private int _DrugGroupId;
 		
+		private EntitySet<PrescriptionDetail> _PrescriptionDetails;
+		
 		private EntityRef<DrugGroup> _DrugGroup;
 		
     #region Extensibility Method Definitions
@@ -999,6 +1001,7 @@ namespace Webdev_Assignment2
 		
 		public Drug()
 		{
+			this._PrescriptionDetails = new EntitySet<PrescriptionDetail>(new Action<PrescriptionDetail>(this.attach_PrescriptionDetails), new Action<PrescriptionDetail>(this.detach_PrescriptionDetails));
 			this._DrugGroup = default(EntityRef<DrugGroup>);
 			OnCreated();
 		}
@@ -1127,6 +1130,19 @@ namespace Webdev_Assignment2
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drug_PrescriptionDetail", Storage="_PrescriptionDetails", ThisKey="Id", OtherKey="DrugId")]
+		public EntitySet<PrescriptionDetail> PrescriptionDetails
+		{
+			get
+			{
+				return this._PrescriptionDetails;
+			}
+			set
+			{
+				this._PrescriptionDetails.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrugGroup_Drug", Storage="_DrugGroup", ThisKey="DrugGroupId", OtherKey="Id", IsForeignKey=true)]
 		public DrugGroup DrugGroup
 		{
@@ -1179,6 +1195,18 @@ namespace Webdev_Assignment2
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_PrescriptionDetails(PrescriptionDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Drug = this;
+		}
+		
+		private void detach_PrescriptionDetails(PrescriptionDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Drug = null;
 		}
 	}
 	
@@ -2939,6 +2967,8 @@ namespace Webdev_Assignment2
 		
 		private EntitySet<Prescription> _Prescriptions;
 		
+		private EntityRef<Drug> _Drug;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2958,6 +2988,7 @@ namespace Webdev_Assignment2
 		public PrescriptionDetail()
 		{
 			this._Prescriptions = new EntitySet<Prescription>(new Action<Prescription>(this.attach_Prescriptions), new Action<Prescription>(this.detach_Prescriptions));
+			this._Drug = default(EntityRef<Drug>);
 			OnCreated();
 		}
 		
@@ -2992,6 +3023,10 @@ namespace Webdev_Assignment2
 			{
 				if ((this._DrugId != value))
 				{
+					if (this._Drug.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnDrugIdChanging(value);
 					this.SendPropertyChanging();
 					this._DrugId = value;
@@ -3071,6 +3106,40 @@ namespace Webdev_Assignment2
 			set
 			{
 				this._Prescriptions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drug_PrescriptionDetail", Storage="_Drug", ThisKey="DrugId", OtherKey="Id", IsForeignKey=true)]
+		public Drug Drug
+		{
+			get
+			{
+				return this._Drug.Entity;
+			}
+			set
+			{
+				Drug previousValue = this._Drug.Entity;
+				if (((previousValue != value) 
+							|| (this._Drug.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Drug.Entity = null;
+						previousValue.PrescriptionDetails.Remove(this);
+					}
+					this._Drug.Entity = value;
+					if ((value != null))
+					{
+						value.PrescriptionDetails.Add(this);
+						this._DrugId = value.Id;
+					}
+					else
+					{
+						this._DrugId = default(int);
+					}
+					this.SendPropertyChanged("Drug");
+				}
 			}
 		}
 		
